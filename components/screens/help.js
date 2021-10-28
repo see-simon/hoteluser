@@ -10,6 +10,7 @@ const help =()=>{
                 <View>
                     
                     <Text>
+                        
 
                     </Text>
                 </View>

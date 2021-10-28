@@ -40,6 +40,7 @@ const Stack = createNativeStackNavigator();
         <Stack.Screen name="paymentSuccess" component={paymentSuccess}/>
         <Stack.Screen name = "help" component = {help}/>
         
+        
       </Stack.Navigator>
     </NavigationContainer>
   );
