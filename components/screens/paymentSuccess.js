@@ -74,6 +74,12 @@ const style = StyleSheet.create({
         marginRight:130,
         marginTop:20,
         padding:20,
+<<<<<<< Updated upstream
+=======
+      
+
+
+>>>>>>> Stashed changes
     },
     roundButton1: {
         width: 100,
