@@ -16,6 +16,7 @@ import paymentSuccess from './components/screens/paymentSuccess'
 // navigator
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import help from './components/screens/help';
 
 
 
@@ -37,6 +38,8 @@ const Stack = createNativeStackNavigator();
         <Stack.Screen name="Dashboard" component={DashBoard} />
         
         <Stack.Screen name="paymentSuccess" component={paymentSuccess}/>
+        <Stack.Screen name = "help" component = {help}/>
+        
       </Stack.Navigator>
     </NavigationContainer>
   );

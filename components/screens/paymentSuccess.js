@@ -3,6 +3,8 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { Button, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 
+import help from './help'
+
 
 
 const paymentSuccess = () => {
@@ -74,12 +76,6 @@ const style = StyleSheet.create({
         marginRight:130,
         marginTop:20,
         padding:20,
-<<<<<<< Updated upstream
-=======
-      
-
-
->>>>>>> Stashed changes
     },
     roundButton1: {
         width: 100,
