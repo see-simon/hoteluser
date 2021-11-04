@@ -1,3 +1,4 @@
+
 import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { Button, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
@@ -5,46 +6,36 @@ import Icon from 'react-native-vector-icons/MaterialIcons'
 
 import help from './help'
 
+import PaymentScreen from './paymentScreen'
 
 
-const paymentSuccess = () => {
+
+const paymentSuccess = ({ navigation }) => {
     return (
-
         <>
-
             <SafeAreaView>
                 <TouchableOpacity>
-                    <Icon style={style.arrow} name="arrow-back" size={20}></Icon>
-                </TouchableOpacity>
-
-
-
+                    <Icon style={style.arrow} name="arrow-back" onPress={() =>
+                     navigation.navigate('help', { name: 'help' })} size={20}></Icon>
+                    </TouchableOpacity>
                 <View >
 
                     <View style={style.roundButton1}>
                         <Icon name="done" size={30} color="blue">  </Icon>
                     </View>
-
                     <Text style={style.description}>  Successfully paid 350 for wedding
                         check your email for confirmation
                     </Text>
 
                 </View>
-              
-
                 <View >
 
-                    <TouchableOpacity style={style.ok} >
-                    <Text >
-                        OK
-                    </Text> 
+                    <TouchableOpacity style={style.ok}  onPress={() => navigation.navigate('paymentScreen', { name: 'paymentScreen' })}>
+                        <Text >
+                            OK
+                        </Text>
                     </TouchableOpacity>
-
                 </View>
-
-
-
-
             </SafeAreaView>
         </>
 
@@ -74,9 +65,9 @@ const style = StyleSheet.create({
         justifyContent: "center",
         borderRadius: 20,
         marginLeft: 130,
-        marginRight:130,
-        marginTop:20,
-        padding:20,
+        marginRight: 130,
+        marginTop: 20,
+        padding: 20,
     },
     roundButton1: {
         width: 100,
@@ -89,6 +80,7 @@ const style = StyleSheet.create({
         backgroundColor: 'lightgreen',
         marginLeft: 145
     },
+    
 })
 
 export default paymentSuccess
