@@ -1,18 +1,21 @@
 import React, { useState } from 'react'
 import { View, Text, SafeAreaView, StyleSheet, ScrollView } from 'react-native'
 import * as yup from 'yup'
-import { Formik } from 'formik'
+// import { Formik } from 'formik'
 
-import { Image } from 'react-native'
+import { Image, ImageBackground } from 'react-native'
 import { TextInput, TouchableOpacity } from 'react-native-gesture-handler'
 import Icon from 'react-native-vector-icons/Foundation'
 import { Value } from 'react-native-reanimated'
 import Home from './Home'
 
+const image = {
+    uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRm7t3TPoPgmhbrIGkY5iLCfENgExc44sWJUg&usqp=CAU",
+  };
 
 const Login = ({ navigation }) => {
 
-    const [isPasswordShow, setPasswordShow] = useState(false)
+    
     const [isSelected, setIsSelected] = useState(false)
     const validate = yup.object({
         email: yup.string().required().min(8),
@@ -29,14 +32,20 @@ const Login = ({ navigation }) => {
 
 
                 <View style={style.container}>
+                <ImageBackground 
+                 source={image}
+                 resizeMode="cover"
+                 style={style.image}
+                 
+                 >
                     <View style={style.crownContainer}>
 
 
-                        <Icon name="crown" style={style.crown} size={80} color="#CA730D" />
+                        <Icon name="crown" style={style.crown} size={80} color="#c2c4c3" />
 
                         <Text style={style.heading}>
 
-                            login
+                            Login
 
                         </Text >
 
@@ -62,8 +71,8 @@ const Login = ({ navigation }) => {
                                     
                                         style={style.TextInput}
 
-                                        placeholder="Email."
-                                        placeholderTextColor="#003f5c"
+                                        placeholder="Email"
+                                        placeholderTextColor="#000000"
                                         onChangeText={(email) => setEmail(email)}
                                     />
                                 </View>
@@ -72,8 +81,8 @@ const Login = ({ navigation }) => {
                                     <Icon style={style.icon} name="lock" color="#aeb0af" size={20} />
                                     <TextInput
                                         style={style.TextInput}
-                                        placeholder="Password."
-                                        placeholderTextColor="#003f5c"
+                                        placeholder="Password"
+                                        placeholderTextColor="#000000"
                                         secureTextEntry={true}
                                         onChangeText={(password) => setPassword(password)}
                                     />
@@ -82,7 +91,7 @@ const Login = ({ navigation }) => {
 
 
                             </View>
-                        </ScrollView>
+                       
 
                         <View style={style.logAndFogot}>
 
@@ -90,16 +99,18 @@ const Login = ({ navigation }) => {
                                 <Text style={style.forgot_button}>Forgot Password?</Text>
                             </TouchableOpacity>
                             <TouchableOpacity onPress={() => navigation.navigate('home', { name: 'home' })} style={style.login}>
-                                <Text>
+                                <Text style={{color:'#000',fontWeight:'bold'}}>
                                     Login
                                 </Text>
                             </TouchableOpacity>
                            
 
                         </View>
+                        
                         <Text style={style.line} >
                             _____________________________________
                         </Text>
+                       
                         <View style={style.createAcc}>
                             <TouchableOpacity onPress={() => navigation.navigate('Registration', { name: 'Registration' })}>
                                 <Text>
@@ -108,8 +119,9 @@ const Login = ({ navigation }) => {
                             </TouchableOpacity>
                          
                         </View>
+                        </ScrollView>
                     </View>
-
+                    </ImageBackground>
 
                 </View>
 
@@ -122,11 +134,11 @@ const Login = ({ navigation }) => {
 const style = StyleSheet.create({
 
     container: {
-        backgroundColor: "#CA730D",
+      
         height: "100%",
     },
     inputContainer: {
-        // backgroundColor:"red"
+        marginTop: 15,
     },
 
     createAcc: {
@@ -137,21 +149,22 @@ const style = StyleSheet.create({
 
     crownContainer: {
         flexDirection: "row",
-        padding:20,
+       justifyContent:'space-between'
     },
     icon: {
         paddingLeft: 20
     },
     inputView: {
         backgroundColor: "#EFEFEF",
-        borderRadius: 30,
-        width: "70%",
+        borderRadius: 20,
+        width: "90%",
         height: 45,
         marginBottom: 20,
-        paddingTop: 7,
-        margin: 50,
+        paddingTop: 0,
+        marginLeft: 20,
+        marginTop: 10,
         flexDirection: "row",
-
+        alignContent:'center',
         alignItems: "center",
     },
     TextInput: {
@@ -166,12 +179,12 @@ const style = StyleSheet.create({
         width: 100,
         height: 100,
         backgroundColor: "white",
-
+        elevation:4,
         borderRadius: 100,
         alignContent: "center",
         justifyContent: "center",
         marginLeft: 11,
-        marginTop: 50,
+      
         padding: 20
 
     },
@@ -179,32 +192,29 @@ const style = StyleSheet.create({
 
         width: "40%",
         marginLeft: "25%",
-        marginTop: 80,
+        marginTop: 30,
         marginBottom: 25,
         //backgroundColor:"red",
-        fontSize: 18,
+        fontSize: 22,
         fontWeight: "bold",
-        color: "white"
+        color: "#000"
 
     },
     backBox: {
-        height: "65%",
+        height: "60%",
         width: "95%",
         marginLeft: 10,
 
         marginTop: 10,
         //backgroundColor:"red",
-
+  elevation:4,
         borderRadius: 10,
         backgroundColor: "white"
 
     },
 
     login: {
-        backgroundColor: "#CA730D",
-
-
-
+        backgroundColor: "#c2c4c3",
         marginLeft: 25,
         borderRadius: 90,
         padding: 10,
@@ -235,6 +245,10 @@ const style = StyleSheet.create({
         paddingLeft: 60
 
     },
+    image: {
+        flex: 1,
+        justifyContent: "center",
+      },
 
 })
 export default Login

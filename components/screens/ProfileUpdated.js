@@ -1,12 +1,14 @@
 import React from 'react'
-import { View, Text, SafeAreaView, StyleSheet } from 'react-native'
+import { View, Text, SafeAreaView, StyleSheet,ImageBackground } from 'react-native'
 
 
 
 import { TextInput, TouchableOpacity } from 'react-native-gesture-handler'
 import Icon from 'react-native-vector-icons/Foundation'
 import  Icons from 'react-native-vector-icons/MaterialIcons'
-
+const image = {
+    uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRm7t3TPoPgmhbrIGkY5iLCfENgExc44sWJUg&usqp=CAU",
+  };
 
 const ProfileUpdated = ({ navigation }) => {
 
@@ -15,8 +17,13 @@ const ProfileUpdated = ({ navigation }) => {
             <SafeAreaView >
 
                 <View style={style.container}>
+                <ImageBackground
+            source={image}
+            resizeMode="cover"
+            style={style.image}
+          >
                     <View style={style.crownContainer}>
-                        <Icon name="crown" style={style.crown} size={80} color="#CA730D" />
+                        <Icon name="crown" style={style.crown} size={80} color="#c2c4c3"/>
                     </View>
 
 
@@ -27,14 +34,14 @@ const ProfileUpdated = ({ navigation }) => {
                           Profile updated
                             </Text>
 
-                        <TouchableOpacity style={style.OK} onPress={() => navigation.navigate('home', { name: 'home' })} >
+                        <TouchableOpacity style={style.OK}  onPress={() => navigation.navigate('home', { name: 'home' })} >
                             <Text style={style.textColours}>
                            OK
                             </Text>
                         </TouchableOpacity>
                     </View>
 
-
+                    </ImageBackground>
 
                 </View>
             </SafeAreaView>
@@ -46,15 +53,19 @@ const ProfileUpdated = ({ navigation }) => {
 const style = StyleSheet.create({
 
     container: {
-        backgroundColor: "#CA730D",
+        
         height: "100%",
     },
     textColours:{
-        color:"white",
+        color:"black",
     },
+    image: {
+        flex: 1,
+        justifyContent: "center",
+      },
     OK:{
         marginTop:25,
-        backgroundColor:"#CA730D",
+        backgroundColor:"#c2c4c3",
         borderRadius:40,
         height:"20%",
         width:"50%",
@@ -76,7 +87,7 @@ const style = StyleSheet.create({
         flexDirection: "row"
     },
     done:{
-        backgroundColor:"#CA730D",
+        backgroundColor:"#c2c4c3",
         borderRadius: 100,
         padding:"20%",
        

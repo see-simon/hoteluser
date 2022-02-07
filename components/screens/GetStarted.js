@@ -1,126 +1,73 @@
-import React from 'react'
-import { View, Text, SafeAreaView, StyleSheet } from 'react-native'
+import React from "react";
+import { View, Text, SafeAreaView, StyleSheet } from "react-native";
 
+import { Image, ImageBackground } from "react-native";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import Icon from "react-native-vector-icons/Foundation";
 
-import { Image } from 'react-native'
-import { TouchableOpacity } from 'react-native-gesture-handler'
-import Icon from 'react-native-vector-icons/Foundation'
-
+const image = {
+  uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRm7t3TPoPgmhbrIGkY5iLCfENgExc44sWJUg&usqp=CAU",
+};
 
 const GetStarted = ({ navigation }) => {
+  return (
+    <>
+      <SafeAreaView>
+        <View style={style.container}>
+          <ImageBackground
+            source={image}
+            resizeMode="cover"
+            style={style.image}
+          >
+            <Image style={style.bed1} source={require("../images/bed.png")} />
 
-    return (
-        <>
-            <SafeAreaView >
-
-            {/* <StatusBar backgroundColor ={"blue"}>
-            </StatusBar> */}
-                <View style={style.container}>
-                    <View style={style.crownContainer}>
-
-
-
-                        <Icon name="crown" style={style.crown} size={80} color="#CA730D" />
-                        <Text style={style.heading}>
-
-                           Hotel name
-
-                        </Text >
-
-
-                    </View>
-
-                  
-                    <View style={style.backBox}>
-
-                        <Image style={style.bed1} source={require("../images/bed.png")} />
-
-                        <TouchableOpacity style={style.getStarted} onPress={()=> navigation.navigate('Login' , {name : 'Login'})}>
-                            <Text style={style.textColours}>
-                                Get Started
-                            </Text>
-                        </TouchableOpacity>
-                    </View>
-
-
-
-                </View>
-            </SafeAreaView>
-        </>
-    )
-}
+            <TouchableOpacity
+              onPress={() => navigation.navigate("Login", { name: "Login" })}
+            >
+              <View style={style.GetStartedText}>
+                <Text>Get Started</Text>
+              </View>
+            </TouchableOpacity>
+          </ImageBackground>
+        </View>
+      </SafeAreaView>
+    </>
+  );
+};
 
 const style = StyleSheet.create({
+  container: {
+    height: "100%",
+  },
 
-    container: {
-        backgroundColor: "#CA730D",
-        height: "100%",
-    },
-    crownContainer:{
-        flexDirection:"row"
-    },
-
-    crown: {
-        width: 100,
-        height: 100,
-        backgroundColor: "white",
-
-        borderRadius: 100,
-        alignContent: "center",
-        justifyContent: "center",
-        marginLeft: 11,
-        marginTop: 50,
-        padding: 20
-
-    },
-    heading: {
-
-        width: "40%",
-        marginLeft: "25%",
-        marginTop: 90,
-        marginBottom:25,
-        //backgroundColor:"red",
-        
-
-        fontSize: 18,
-        fontWeight: "bold",
-        color: "white"
-
-    },
-    textColours:{
-        color:"white",
-    },
-    backBox: {
-        height: "75%",
-        width: "95%",
-        marginLeft: 10,
-        padding: 10,
-        marginTop: 10,
-        //backgroundColor:"red",
-
-        borderRadius: 10,
-        backgroundColor: "white"
-
-    },
-    bed1: {
-        height: "70%",
-        width: "90%",
-        // backgroundColor:"white",
-        borderRadius: 100,
-        marginLeft: 18,
-
-
-    },
-    getStarted: {
-        backgroundColor: "#CA730D",
-        padding: 15,
-        paddingLeft: 105,
-        marginTop: 35,
-        marginLeft:25,
-        borderRadius: 90,
-        width:"87%"
-
-    }
-
-})
-export default GetStarted
+  GetStartedText: {
+    backgroundColor: "#c2c4c3",
+    width: "30%",
+    height: "30%",
+    borderRadius: 10,
+    paddingLeft: 17,
+    //   paddingTop:5,
+    flex: -2,
+    justifyContent: "center",
+    alignContent: "center",
+    marginLeft: "35%",
+    marginTop: "10%",
+  },
+  bed1: {
+    marginTop: "40%",
+    marginLeft: "7%",
+  },
+  image: {
+    flex: 1,
+    justifyContent: "center",
+  },
+  text: {
+    color: "white",
+    fontSize: 42,
+    lineHeight: 84,
+    fontWeight: "bold",
+    textAlign: "center",
+    backgroundColor: "#000000c0",
+  },
+});
+export default GetStarted;

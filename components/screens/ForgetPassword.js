@@ -1,14 +1,17 @@
 import React, { useState } from 'react'
 import { View, Text, SafeAreaView, StyleSheet, ScrollView } from 'react-native'
 import * as yup from 'yup'
-import { Formik } from 'formik'
 
-import { Image } from 'react-native'
+
+import { Image ,ImageBackground} from 'react-native'
 import { TextInput, TouchableOpacity } from 'react-native-gesture-handler'
 import Icon from 'react-native-vector-icons/Foundation'
 import { Value } from 'react-native-reanimated'
 import Home from './Home'
 
+const image = {
+    uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRm7t3TPoPgmhbrIGkY5iLCfENgExc44sWJUg&usqp=CAU",
+  };
 
 const ForgetPassword = ({ navigation }) => {
 
@@ -29,10 +32,18 @@ const ForgetPassword = ({ navigation }) => {
 
 
                 <View style={style.container}>
+
+                <ImageBackground 
+                 source={image}
+                 resizeMode="cover"
+                 style={style.image}
+                 
+                 >
+                    
                     <View style={style.crownContainer}>
 
 
-                        <Icon name="crown" style={style.crown} size={80} color="#CA730D" />
+                        <Icon name="crown" style={style.crown} size={80} color="#c2c4c3" />
 
                         
 
@@ -77,7 +88,7 @@ const ForgetPassword = ({ navigation }) => {
                         <View style={style.verify}>
 
 
-                            <TouchableOpacity onPress={() => navigation.navigate('home', { name: 'home' })} >
+                            <TouchableOpacity onPress={() => navigation.navigate('Login', { name: 'Login' })} >
                                 <Text>
                                     Varify
                                 </Text>
@@ -88,10 +99,11 @@ const ForgetPassword = ({ navigation }) => {
 
 
                     </View>
+                    </ImageBackground>
 
 
-                </View>
-
+                    </View>
+               
             </SafeAreaView>
 
         </>
@@ -101,7 +113,7 @@ const ForgetPassword = ({ navigation }) => {
 const style = StyleSheet.create({
 
     container: {
-        backgroundColor: "#CA730D",
+        // backgroundColor: "#CA730D",
         height: "100%",
     },
     description:{
@@ -112,6 +124,10 @@ const style = StyleSheet.create({
 
     },
 
+    image: {
+        flex: 1,
+        justifyContent: "center",
+      },
 
 
     crownContainer: {
@@ -173,7 +189,7 @@ const style = StyleSheet.create({
    
     verify: {
         flexDirection: "row",
-        backgroundColor:"#CA730D",
+        backgroundColor:"#c2c4c3",
         height: "10%",
         marginBottom:"40%",
         borderRadius:50,
@@ -183,8 +199,6 @@ const style = StyleSheet.create({
         paddingTop:10,
         marginLeft:"30%",
        
-        
-
     },
   
   

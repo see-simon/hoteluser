@@ -1,97 +1,98 @@
-import React from "react";
-import { View, Text, StyleSheet, SafeAreaView } from "react-native";
-import Icon from 'react-native-vector-icons/Foundation'
+import React, { useState, useEffect } from "react";
 
-const History = ({ navigation }) => {
+// import all the components we are going to use
+import {
+  SafeAreaView,
+  Text,
+  StyleSheet,
+  View,
+  FlatList,
+  ImageBackground,
+  TextInput,
+} from "react-native";
 
-    return (
-        <><SafeAreaView style={style.container}>
+const image = {
+  uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRm7t3TPoPgmhbrIGkY5iLCfENgExc44sWJUg&usqp=CAU",
+};
 
-            <View style={style.crownContainer}>
+const History = () => {
+  return (
+    <SafeAreaView>
+      <View style={style.container}>
+        <ImageBackground source={image} resizeMode="cover" style={style.image}>
+        <TextInput
+          style={style.textInputStyle}
+          
+          underlineColorAndroid="transparent"
+          placeholder="Search Here"
+        />
 
-
-                <Icon name="crown" style={style.crown} size={80} color="#CA730D" />
-
-                <Text style={style.heading}>
-
-                    History
-
-                </Text >
-
+          <View style={style.back}>
+            <View style={style.historyBox}>
+              <Text>Price for 1 Night, 2 Adult</Text>
+              <Text>Double Room</Text>
+              <View style={style.room}>
+                <Text>1 Bed </Text>
+                <Text> Room 2 </Text>
+                <Text> R500 </Text>
+              </View>
             </View>
-            <View style={style.backBox}>
-                <View style={style.HistoryBox}>
-                    <Text>
-                        hi am history
-                    </Text>
-                </View>
-                <View style={style.HistoryBox}>
-                    <Text>
-                        hi am history
-                    </Text>
-                </View>
-
-
+            <View style={style.historyBox}>
+              <Text>Price for 1 Night, 2 Adult</Text>
+              <Text>Double Room</Text>
+              <View style={style.room}>
+                <Text>1 Bed </Text>
+                <Text> Room 2 </Text>
+                <Text> R500 </Text>
+              </View>
             </View>
-        </SafeAreaView>
-
-        </>
-    )
-}
+            <View style={style.historyBox}>
+              <Text>Price for 1 Night, 2 Adult</Text>
+              <Text>Double Room</Text>
+              <View style={style.room}>
+                <Text>1 Bed </Text>
+                <Text> Room 2 </Text>
+                <Text> R500 </Text>
+              </View>
+            </View>
+          </View>
+        </ImageBackground>
+      </View>
+    </SafeAreaView>
+  );
+};
 
 const style = StyleSheet.create({
-    backBox: {
-        height: "78%",
-        width: "95%",
-        marginLeft: 10,
-        //backgroundColor:"red",
-        borderRadius: 10,
-        backgroundColor: "white"
+  container: {
+    height: "100%",
+  },
+  image: {
+    flex: 1,
+    justifyContent: "center",
+  },
+  itemStyle: {
+    padding: 10,
+  },
+  back: {},
+  historyBox: {
+    width: "90%",
+    height: "25%",
+    alignContent: "center",
+    justifyContent: "center",
+    backgroundColor: "white",
+    borderRadius: 50,
+    marginLeft: 18,
+    paddingLeft: "20%",
+    margin:10
+  },
+  textInputStyle: {
+    height: 40,
+    borderWidth: 1,
+    paddingLeft: 30,
+    margin: 10,
+    borderColor: "#0000",
+    backgroundColor: "#FFFFFF",
+  },
+});
 
-    },
-    HistoryBox: {
-        backgroundColor: "#ebeced",
-        shadowColor:100,
-        borderRadius:50,
-        width:"90%",
-        height:"40%",
-        marginLeft:15,
-        marginTop:10,
-
-    },
-    crown: {
-        width: 100,
-        height: 100,
-        backgroundColor: "white",
-
-        borderRadius: 100,
-        alignContent: "center",
-        justifyContent: "center",
-        marginLeft: 11,
-        
-        paddingLeft: 20
-
-    },
-    crownContainer: {
-        flexDirection: "row",
-        padding: 10,
-    },
-    heading: {
-
-        width: "40%",
-        marginLeft: "25%",
-        marginTop: 40,
-        marginBottom: 25,
-        //backgroundColor:"red",
-        fontSize: 18,
-        fontWeight: "bold",
-        color: "white"
-
-    },
-    container: {
-        backgroundColor: "#CA730D",
-        height: "100%",
-    },
-})
-export default History
-
+export default History;
