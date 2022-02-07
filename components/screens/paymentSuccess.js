@@ -6,6 +6,8 @@ import Icon from 'react-native-vector-icons/MaterialIcons'
 
 import help from './help'
 
+import { Image } from 'react-native'
+
 import PaymentScreen from './paymentScreen'
 
 
@@ -13,29 +15,32 @@ import PaymentScreen from './paymentScreen'
 const paymentSuccess = ({ navigation }) => {
     return (
         <>
-            <SafeAreaView>
-                <TouchableOpacity>
-                    <Icon style={style.arrow} name="arrow-back" onPress={() =>
-                     navigation.navigate('help', { name: 'help' })} size={20}></Icon>
-                    </TouchableOpacity>
+            <SafeAreaView style={style.container}>
+                
+
+
                 <View >
 
                     <View style={style.roundButton1}>
                         <Icon name="done" size={30} color="blue">  </Icon>
                     </View>
-                    <Text style={style.description}>  Successfully paid 350 for wedding
+                    <Text style={style.description}>  Successfully paid 3500 for wedding
                         check your email for confirmation
                     </Text>
 
                 </View>
                 <View >
 
-                    <TouchableOpacity style={style.ok}  onPress={() => navigation.navigate('paymentScreen', { name: 'paymentScreen' })}>
+                    <TouchableOpacity style={style.ok} onPress={() => navigation.navigate('home', { name: 'home' })}>
                         <Text >
                             OK
                         </Text>
                     </TouchableOpacity>
                 </View>
+
+               
+
+
             </SafeAreaView>
         </>
 
@@ -48,6 +53,7 @@ const style = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         flex: 1,
+        backgroundColor:"red"
 
     },
     description: {
@@ -80,7 +86,7 @@ const style = StyleSheet.create({
         backgroundColor: 'lightgreen',
         marginLeft: 145
     },
-    
+
 })
 
 export default paymentSuccess

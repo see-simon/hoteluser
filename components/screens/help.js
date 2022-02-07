@@ -7,20 +7,11 @@ import Icon from 'react-native-vector-icons/MaterialIcons'
 const help = ({ navigation }) => {
     return (
         <>
-            <SafeAreaView>
-                <View style={style.container}>
-                    <TouchableOpacity style={style.arrow}>
-                        <Icon name="arrow-back" onPress={() => navigation.navigate('paymentSuccess', { name: 'paymentSuccess' })} size={20}></Icon>
-                    </TouchableOpacity>
-
-
-                    <Text style={style.heading}>
-                        help and support
-
-                    </Text>
-                </View>
+            <SafeAreaView style={style.bigBox}>
+               
                 <View style={style.description}>
                     <Text style={style.spacebetween} >
+
 
 
                         hi am helpgvhvh jnkj jbgvgvgc gytccgh
@@ -105,6 +96,10 @@ const style = StyleSheet.create({
         flexDirection: "row",
         marginBottom: 50
 
+    },
+    bigBox:{
+        backgroundColor: "#CA730D",
+        height: "100%",
     },
     spacebetween: {
         paddingBottom: 10,

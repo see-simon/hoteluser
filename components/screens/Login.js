@@ -10,7 +10,7 @@ import { Value } from 'react-native-reanimated'
 import Home from './Home'
 
 
-const ForgetPassword = ({ navigation }) => {
+const Login = ({ navigation }) => {
 
     const [isPasswordShow, setPasswordShow] = useState(false)
     const [isSelected, setIsSelected] = useState(false)
@@ -34,7 +34,11 @@ const ForgetPassword = ({ navigation }) => {
 
                         <Icon name="crown" style={style.crown} size={80} color="#CA730D" />
 
-                        
+                        <Text style={style.heading}>
+
+                            login
+
+                        </Text >
 
                     </View>
 
@@ -47,11 +51,6 @@ const ForgetPassword = ({ navigation }) => {
                     <View style={style.backBox}>
 
                         {/* put form here NB */}
-                        <View style={style.description}>
-                            <Text>
-                                Enter your email for password recorvery
-                            </Text>
-                        </View>
 
 
                         <ScrollView style={style.inputContainer}>
@@ -60,7 +59,7 @@ const ForgetPassword = ({ navigation }) => {
                                     <Icon style={style.icon} name="mail" color="#aeb0af" size={20} />
 
                                     <TextInput
-
+                                    
                                         style={style.TextInput}
 
                                         placeholder="Email."
@@ -69,24 +68,46 @@ const ForgetPassword = ({ navigation }) => {
                                     />
                                 </View>
 
+                                <View style={style.inputView}>
+                                    <Icon style={style.icon} name="lock" color="#aeb0af" size={20} />
+                                    <TextInput
+                                        style={style.TextInput}
+                                        placeholder="Password."
+                                        placeholderTextColor="#003f5c"
+                                        secureTextEntry={true}
+                                        onChangeText={(password) => setPassword(password)}
+                                    />
+                                </View>
+
 
 
                             </View>
                         </ScrollView>
 
-                        <View style={style.verify}>
+                        <View style={style.logAndFogot}>
 
-
-                            <TouchableOpacity onPress={() => navigation.navigate('home', { name: 'home' })} >
+                            <TouchableOpacity style={style.forgot} onPress={() => navigation.navigate('ForgetPassword', { name: 'ForgetPassword' })}>
+                                <Text style={style.forgot_button}>Forgot Password?</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity onPress={() => navigation.navigate('home', { name: 'home' })} style={style.login}>
                                 <Text>
-                                    Varify
+                                    Login
                                 </Text>
                             </TouchableOpacity>
-
+                           
 
                         </View>
-
-
+                        <Text style={style.line} >
+                            _____________________________________
+                        </Text>
+                        <View style={style.createAcc}>
+                            <TouchableOpacity onPress={() => navigation.navigate('Registration', { name: 'Registration' })}>
+                                <Text>
+                                    Creact account
+                                </Text>
+                            </TouchableOpacity>
+                         
+                        </View>
                     </View>
 
 
@@ -104,19 +125,19 @@ const style = StyleSheet.create({
         backgroundColor: "#CA730D",
         height: "100%",
     },
-    description:{
-
-        //backgroundColor:"red",
-        padding:"12%",
-        marginTop:25
-
+    inputContainer: {
+        // backgroundColor:"red"
     },
 
+    createAcc: {
 
+        marginBottom: 80,
+        marginLeft: 120,
+    },
 
     crownContainer: {
-        
-        padding: 20,
+        flexDirection: "row",
+        padding:20,
     },
     icon: {
         paddingLeft: 20
@@ -126,14 +147,12 @@ const style = StyleSheet.create({
         borderRadius: 30,
         width: "70%",
         height: 45,
-        // marginBottom: 10,
-        // paddingTop: 7,
-        marginLeft: 50,
+        marginBottom: 20,
+        paddingTop: 7,
+        margin: 50,
         flexDirection: "row",
-        
 
         alignItems: "center",
-        
     },
     TextInput: {
         height: 50,
@@ -156,7 +175,18 @@ const style = StyleSheet.create({
         padding: 20
 
     },
-   
+    heading: {
+
+        width: "40%",
+        marginLeft: "25%",
+        marginTop: 80,
+        marginBottom: 25,
+        //backgroundColor:"red",
+        fontSize: 18,
+        fontWeight: "bold",
+        color: "white"
+
+    },
     backBox: {
         height: "65%",
         width: "95%",
@@ -170,24 +200,41 @@ const style = StyleSheet.create({
 
     },
 
-   
-    verify: {
+    login: {
+        backgroundColor: "#CA730D",
+
+
+
+        marginLeft: 25,
+        borderRadius: 90,
+        padding: 10,
+        paddingLeft: 30,
+        width: "100%",
+        height: "100%",
+    },
+    logAndFogot: {
         flexDirection: "row",
-        backgroundColor:"#CA730D",
+        // backgroundColor:"blue",
         height: "10%",
-        marginBottom:"40%",
-        borderRadius:50,
-        width:"40%",
-        alignContent:"center",
-        justifyContent:"center",
-        paddingTop:10,
-        marginLeft:"30%",
-       
-        
+
 
     },
-  
-  
+    line: {
+        marginBottom: 0,
+        // backgroundColor:"red",
+        marginLeft: 50,
+        marginBottom: 50
+
+
+    },
+    forgot: {
+
+        padding: 1,
+
+        marginTop: 10,
+        paddingLeft: 60
+
+    },
 
 })
-export default ForgetPassword
+export default Login
