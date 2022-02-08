@@ -3,6 +3,7 @@ import { Text } from "react-native";
 import { SafeAreaView, View,ImageBackground, Image, StyleSheet } from "react-native";
 import { ListItem } from "react-native-elements/dist/list/ListItem";
 import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
+import Pictures from "./array";
 const image = {
   uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRm7t3TPoPgmhbrIGkY5iLCfENgExc44sWJUg&usqp=CAU",
 };
