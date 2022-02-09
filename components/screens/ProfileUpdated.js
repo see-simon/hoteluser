@@ -6,6 +6,7 @@ import { View, Text, SafeAreaView, StyleSheet,ImageBackground } from 'react-nati
 import { TextInput, TouchableOpacity } from 'react-native-gesture-handler'
 import Icon from 'react-native-vector-icons/Foundation'
 import  Icons from 'react-native-vector-icons/MaterialIcons'
+
 const image = {
     uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRm7t3TPoPgmhbrIGkY5iLCfENgExc44sWJUg&usqp=CAU",
   };

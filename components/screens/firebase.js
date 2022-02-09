@@ -1,9 +1,7 @@
-
-import firebase from "firebase";
-import "firebase/firestore"
-
-
-var firebaseConfig = {
+import firebase from "firebase/app";
+import "firebase/storage";
+import "firebase/firestore";
+const firebaseConfig = {
     apiKey: "AIzaSyBUPSgw5FVcqegYiVJEyvZnUBbPD5o5L9c",
     authDomain: "codetripe1.firebaseapp.com",
     projectId: "codetripe1",
@@ -11,16 +9,20 @@ var firebaseConfig = {
     messagingSenderId: "930880363923",
     appId: "1:930880363923:web:165cda42e547d58bae5c66",
     measurementId: "G-6RN73BPSX4"
-    
   };
-  
   // Initialize Firebase
+//   firebase.initializeApp(Config);
+  // firebase.analytics();
 
- 
-  const app = firebase.initializeApp(firebaseConfig);
+// const storage = firebase.storage();
+// const db = firebase.firestore();
 
-  const db = firebase.firestore(app)
-
-  export const usersRef =db.collection('users')
-
-  export {firebase}
+// export  { storage,db , firebase as default};
+let app;
+if (!firebase.apps.length){
+    app = firebase.initializeApp(firebaseConfig)
+}
+else{
+    firebase.app
+}
+const auth = firebase .auth()
