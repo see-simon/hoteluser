@@ -26,3 +26,5 @@ else{
     firebase.app
 }
 const auth = firebase .auth()
+
+export {auth};    // remove if is not working to let the previous parts to work again

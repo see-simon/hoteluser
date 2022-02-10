@@ -85,17 +85,17 @@ const ForgetPassword = ({ navigation }) => {
                             </View>
                         </ScrollView>
 
-                        <View style={style.verify}>
+                        
 
 
                             <TouchableOpacity onPress={() => navigation.navigate('Login', { name: 'Login' })} >
-                                <Text>
+                                <Text style={style.verify}>
                                     Varify
                                 </Text>
                             </TouchableOpacity>
 
 
-                        </View>
+                        
 
 
                     </View>
@@ -188,15 +188,18 @@ const style = StyleSheet.create({
 
    
     verify: {
-        flexDirection: "row",
+        
         backgroundColor:"#c2c4c3",
-        height: "10%",
+        height: "20%",
         marginBottom:"40%",
         borderRadius:50,
         width:"40%",
-        alignContent:"center",
-        justifyContent:"center",
+       flex:0,
+        justifyContent:'center',
+        alignItems:"center",
         paddingTop:10,
+        paddingLeft:55,
+
         marginLeft:"30%",
        
     },

@@ -1,52 +1,67 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { Avatar } from "react-native-elements";
 import { Text } from "react-native";
-import { SafeAreaView, View,ImageBackground, Image, StyleSheet } from "react-native";
+import {
+  SafeAreaView,
+  View,
+  ImageBackground,
+  Image,
+  StyleSheet,
+} from "react-native";
 import { ListItem } from "react-native-elements/dist/list/ListItem";
 import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
-import Pictures from "./array";
+
+import firebase from "firebase";
 const image = {
   uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRm7t3TPoPgmhbrIGkY5iLCfENgExc44sWJUg&usqp=CAU",
 };
 
-
 const AvailableRooms = ({ navigation }) => {
+  const [room, setUsers] = useState([]);
+  const db = firebase.firestore();
+
+  useEffect(() => {
+    let userInfo = [];
+    db.collection("createRoom")
+      .get()
+      .then((res) => {
+        res.forEach((action) => {
+          userInfo.push({ ...action.data(), id: action.id });
+        });
+
+        setUsers(userInfo);
+      });
+  }, []);
+
+
   return (
     <>
       <SafeAreaView>
-      <View style={style.cover}>
-      <ImageBackground
+        <View style={style.cover}>
+          <ImageBackground
             source={image}
             resizeMode="cover"
             style={style.image}
           >
-        <View style={style.header}>
-          <Text style={style.text}>Available Rooms</Text>
-        </View>
-        <ScrollView>
-          <View style={style.RoomAndDetails}>
-            <View style={style.picContainer}>
-              {Pictures.availableRooms.map((action) => [
-                <ListItem>
-                  <TouchableOpacity
-                    onPress={() =>
-                      navigation.navigate("paymentScreen", {
-                        name: "paymentScreen",
-                      })
-                    }
-                  >
-                    <Image style={style.pic} source={action.room}></Image>
-                    <View style={style.RoomDetails}>
-                <Text>Room {action.id} Price:  {action.price} </Text>
-
+            <View style={style.header}>
+              <Text style={style.text}>Available Rooms</Text>
             </View>
-                  </TouchableOpacity>
-                </ListItem>,
-              ])}
-            </View>
-           
-          </View>
-        </ScrollView>
-        </ImageBackground>
+            <ScrollView>
+              <View>
+                {room.map((element) => (
+                 
+                 <View style={style.details}>
+                 <Avatar size={150} source={{ uri: element.Url }}></Avatar>
+                 <View style={style.price}>
+                 <Text style={{}}>Price : {element.RoomPrice}</Text>
+                 <Text style={{}}>Room : {element.RoomNumber}</Text>
+                 </View>
+                 
+                 </View>
+                ))}
+              </View>
+            </ScrollView>
+          </ImageBackground>
         </View>
       </SafeAreaView>
     </>
@@ -61,8 +76,13 @@ const style = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
   },
-  RoomAndDetails:{
-   
+  details: {
+    flexDirection:"row",
+    marginTop: "10%",
+    marginLeft: 20,
+  },
+  price:{
+    marginLeft: 20,
 
   },
   text: {
@@ -70,13 +90,13 @@ const style = StyleSheet.create({
     color: "black",
   },
   RoomDetails: {
-    flexDirection:"row"
+    flexDirection: "row",
   },
   pic: {
     marginTop: "10%",
     width: 200,
     height: 110,
-    borderRadius:20
+    borderRadius: 20,
   },
   header: {
     marginTop: "20%",
@@ -85,7 +105,6 @@ const style = StyleSheet.create({
   picContainer: {
     width: "10%",
     marginTop: "0%",
-    
   },
   container: {
     flexDirection: "column",

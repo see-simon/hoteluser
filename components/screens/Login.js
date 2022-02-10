@@ -62,8 +62,8 @@ const Login = ({ navigation }) => {
                         {/* put form here NB */}
 
 
-                        <ScrollView style={style.inputContainer}>
-                            <View>
+                        <ScrollView>
+                            <View style={style.inputContainer}>
                                 <View style={style.inputView}>
                                     <Icon style={style.icon} name="mail" color="#aeb0af" size={20} />
 
@@ -95,7 +95,7 @@ const Login = ({ navigation }) => {
 
                         <View style={style.logAndFogot}>
 
-                            <TouchableOpacity style={style.forgot} onPress={() => navigation.navigate('ForgetPassword', { name: 'ForgetPassword' })}>
+                            <TouchableOpacity  onPress={() => navigation.navigate('ForgetPassword', { name: 'ForgetPassword' })}>
                                 <Text style={style.forgot_button}>Forgot Password?</Text>
                             </TouchableOpacity>
                             <TouchableOpacity onPress={() => navigation.navigate('home', { name: 'home' })} style={style.login}>
@@ -108,7 +108,7 @@ const Login = ({ navigation }) => {
                         </View>
                         
                         <Text style={style.line} >
-                            _____________________________________
+                            
                         </Text>
                        
                         <View style={style.createAcc}>
@@ -138,7 +138,7 @@ const style = StyleSheet.create({
         height: "100%",
     },
     inputContainer: {
-        marginTop: 15,
+        marginTop: 50,
     },
 
     createAcc: {
@@ -162,7 +162,7 @@ const style = StyleSheet.create({
         marginBottom: 20,
         paddingTop: 0,
         marginLeft: 20,
-        marginTop: 10,
+        marginTop: 30,
         flexDirection: "row",
         alignContent:'center',
         alignItems: "center",
@@ -212,10 +212,15 @@ const style = StyleSheet.create({
         backgroundColor: "white"
 
     },
+    forgot_button:{
+        marginLeft:0,
+        marginTop:10,
 
+    },
     login: {
         backgroundColor: "#c2c4c3",
-        marginLeft: 25,
+         marginLeft: 45,
+        
         borderRadius: 90,
         padding: 10,
         paddingLeft: 30,
@@ -224,9 +229,13 @@ const style = StyleSheet.create({
     },
     logAndFogot: {
         flexDirection: "row",
-        // backgroundColor:"blue",
+        //  backgroundColor:"blue",
         height: "10%",
-
+        // flex:0,
+        // justifyContent:'center',
+        // alignItems:"center",
+        marginLeft:30,
+        marginTop:40,
 
     },
     line: {

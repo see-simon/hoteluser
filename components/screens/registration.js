@@ -17,70 +17,56 @@ const image = {
 };
 
 const Registration = ({ navigation }) => {
-  //getting from firebase starts here
-  // State ={
-  //   Users : [],
-  // }
+ 
+  
+const [firstName, setFirstName] = useState();
+const [surname, setSurname] = useState();
+const [email, setEmail] = useState();
+const [password, setPassword] = useState();
 
-  const [users, setUsers] = useState([]);
 
-  //  State ={
-  //     Users : []
-  // }
-
-  const componentDidMount = () => {
-    let users = [];
-    usersRef.where("damage", ">", 100).onSnapshot((querySanpShort) => {
-      querySanpShort.forEach((doc) => {
-        users.push(doc.data());
-      });
-      setUsers({ Users: users });
-    });
-  };
+ 
 
   return (
     <SafeAreaView>
       <View style={style.wrap}>
         <ImageBackground source={image} resizeMode="cover" style={style.image}>
-          <View>
-            <FlatList data={users}></FlatList>{" "}
-          </View>
+         
           <View style={style.crownContainer}>
             <Icon name="crown" style={style.crown} size={80} color="#c2c4c3" />
-            <Text style={style.heading}> Registration </Text>{" "}
-          </View>{" "}
+            <Text style={style.heading}> Registration </Text>
+          </View>
           <View style={style.backBox}>
             <View style={style.textWrap}>
-              {" "}
-              {/* <Form onPress={CreateUser}> */}{" "}
+              {/* <Form onPress={CreateUser}> */}
               <View style={style.TextInput}>
                 <Icons
                   style={style.icon}
                   name="user"
                   size={20}
                   color={"#aeb0af"}
-                />{" "}
+                />
                 <TextInput
                   style={style.input}
                   placeholder="First name"
                   autoCapitalize="none"
                   placeholderTextColor="black"
-                  // onChangeText={(val) => this.onChangeText("First name", val)}
+                 onChangeText={(text) => setFirstName(text)}
                 />
-              </View>{" "}
+              </View>
               <View style={style.TextInput}>
                 <Icons
                   style={style.icon}
                   name="user"
                   size={20}
                   color={"#aeb0af"}
-                />{" "}
+                />
                 <TextInput
                   style={style.input}
                   placeholder="Surname"
                   autoCapitalize="none"
                   placeholderTextColor="black"
-                  // onChangeText={(val) => this.onChangeText("Surname", val)}
+                  onChangeText={(text) => setSurname(text)}
                 />
               </View>
               <View style={style.TextInput}>
@@ -90,83 +76,72 @@ const Registration = ({ navigation }) => {
                   color="#aeb0af"
                   size={20}
                   marginLeft={20}
-                />{" "}
+                />
                 <TextInput
                   style={style.input}
                   placeholder="Email"
                   autoCapitalize="none"
                   placeholderTextColor="black"
-                  // onChangeText={(val) => this.onChangeText("email", val)}
+                  onChangeText={(text) => setEmail(text)}
                 />
-              </View>{" "}
+              </View>
               <View style={style.TextInput}>
                 <Icons
                   style={style.icon}
                   name="lock"
                   size={20}
                   color={"#aeb0af"}
-                />{" "}
+                />
                 <TextInput
                   style={style.input}
                   placeholder="Password"
                   secureTextEntry={true}
                   autoCapitalize="none"
                   placeholderTextColor="black"
-                  // onChangeText={(val) => this.onChangeText("password", val)}
+                  onChangeText={(text) => setPassword(text)}
                 />
+                {/* <Icons
+                  style={style.icon}
+                  name="lock"
+                  size={20}
+                  color={"#aeb0af"}
+                /> */}
+              </View>
+              {/* <View style={style.TextInput}>
                 <Icons
                   style={style.icon}
                   name="lock"
                   size={20}
                   color={"#aeb0af"}
-                />{" "}
-              </View>{" "}
-              <View style={style.TextInput}>
-                <Icons
-                  style={style.icon}
-                  name="lock"
-                  size={20}
-                  color={"#aeb0af"}
-                />{" "}
+                />
                 <TextInput
                   style={style.input}
-                  // secureTextEntry={isPasswordShow ? false : true}
+                  
                   placeholder="Confirm password"
                   autoCapitalize="none"
-                  placeholderTextColor="black"
-                  // onChangeText={(val) => onChangeText("phone_number", val)}
-                  // name={isPasswordShow ? "eye-off" : "eye"}
+                  placeholderTextColor="black"                 
                   size={22}
-                  // onPress={() => setPasswordShow(!isPasswordShow)}
                   style={style.icon}
                   name="lock"
                   size={20}
                   color={"#aeb0af"}
-                />{" "}
-                {/* <Icon name={isPasswordShow ? "eye-off" : "eye"} size={22} /> */}{" "}
-              </View>
+                  onChangeText={(text) => setPassword(text)}
+                />
+                
+              </View> */}
               <View style={style.createAcc}>
                 <TouchableOpacity
                   onPress={() =>
                     navigation.navigate("Login", { name: "Login" })
                   }
                 >
-                  <Text> Register </Text>{" "}
-                </TouchableOpacity>{" "}
-              </View>{" "}
-              {/* </Form> */}{" "}
-            </View>{" "}
+                  <Text> Register </Text>
+                </TouchableOpacity>
+              </View>
+              {/* </Form> */}
+            </View>
           </View>
-          {/* <View>
-                                                                                          {<Text>name : </Text>}
-                                                                                          {users.map((action)=>[
-                                                                                              <View className="simon" key={action.id}>
-                                                                                                   {action.name}
-                                                                    
-                                                                                              </View>
-                                                                                          ])}
-                                                                                          </View> */}{" "}
-        </ImageBackground>{" "}
+        </ImageBackground>
       </View>
     </SafeAreaView>
   );
@@ -198,14 +173,16 @@ const style = StyleSheet.create({
     borderRadius: 40,
     height: "15%",
     width: "50%",
-    paddingLeft: 55,
-    paddingTop: 7,
+    paddingLeft: 65,
+    paddingTop: 9,
     marginBottom: 80,
     marginLeft: 85,
   },
 
   textWrap: {
     height: "55%",
+    marginTop:50,
+    marginLeft: 27,
   },
   icon: {
     paddingLeft: 20,
@@ -216,13 +193,13 @@ const style = StyleSheet.create({
   TextInput: {
     backgroundColor: "#EFEFEF",
     borderRadius: 30,
-    width: "70%",
+    width: "90%",
     height: 45,
     // marginBottom: 20,
     paddingTop: 7,
-    marginStart: 50,
-    marginLeft: 50,
-    marginTop: 20,
+    
+    
+    marginTop: 35,
 
     flexDirection: "row",
 

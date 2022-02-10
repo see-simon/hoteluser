@@ -20,179 +20,165 @@ import firebase from "firebase";
 // import { Avatar } from 'react-native-paper';
 // import {auth} from "./firebase"
 
-
 const image = {
   uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRm7t3TPoPgmhbrIGkY5iLCfENgExc44sWJUg&usqp=CAU",
 };
 
 const home = ({ navigation }) => {
+  const [search, setSearch] = useState("");
+  const [filteredDataSource, setFilteredDataSource] = useState([]);
+  const [masterDataSource, setMasterDataSource] = useState([]);
 
-    const [search, setSearch] = useState('');
-    const [filteredDataSource, setFilteredDataSource] = useState([]);
-    const [masterDataSource, setMasterDataSource] = useState([]);
-  
-    // let item = () => {
-    //     return images.description.fetch(action => {
-    //         return action.id == id
-    //     })
-    // }
+  // let item = () => {
+  //     return images.description.fetch(action => {
+  //         return action.id == id
+  //     })
+  // }
+
+  // const searchFilterFunction = (text) => {
+  //   // Check if searched text is not blank
+  //   if (text) {
+  //     // Inserted text is not blank
+  //     // Filter the masterDataSource
+  //     // Update FilteredDataSource
+  //     const newData = masterDataSource.filter(function (item) {
+  //       const itemData = item.title
+  //         ? item.title.toUpperCase()
+  //         : "".toUpperCase();
+  //       const textData = text.toUpperCase();
+  //       return itemData.indexOf(textData) > -1;
+  //     });
+  //     setFilteredDataSource(newData);
+  //     setSearch(text);
+  //   } else {
+  //     // Inserted text is blank
+  //     // Update FilteredDataSource with masterDataSource
+  //     setFilteredDataSource(masterDataSource);
+  //     setSearch(text);
+  //   }
+  // };
+
+  // const ItemView = ({ item }) => {
+  //   return (
+  //     // Flat List Item
+  //     <Text style={style.itemStyle} onPress={() => getItem(item)}>
+  //       {item.id}
+  //       {"."}
+  //       {item.title.toUpperCase()}
+  //     </Text>
+  //   );
+  // };
+
+  // const ItemSeparatorView = () => {
+  //   return (
+  //     // Flat List Item Separator
+  //     <View
+  //       style={{
+  //         height: 0.5,
+  //         width: "100%",
+  //         backgroundColor: "#C8C8C8",
+  //       }}
+  //     />
+  //   );
+  // };
+
+  // const getItem = (item) => {
+  //   // Function for click on an item
+  //   alert("Id : " + item.id + " Title : " + item.title);
+  // };
+
+  const [users, setUsers] = useState([]);
+  const db = firebase.firestore();
+
+  useEffect(() => {
+    let userInfo = [];
+    db.collection("createHotel")
+      .get()
+      .then((res) => {
+        res.forEach((action) => {
+          userInfo.push({ ...action.data(), id: action.id });
+        });
+
+        setUsers(userInfo);
+      });
+  }, []);
+
+  //
+
+  const hotelAndAvailableRooms = (e) => {
+    let uid = e.target.id
+
+    db.collection('createHotel').doc(uid).get({
+        // Name: name,
+        // Surname: surname,
+        // Location: location,
+        // Description: description,
+        // Age: age
+        Url
+    })
+        .then(() => { console.log('got the url') })
+        .catch((err) => { console.log(Url) })
 
 
-  
+}
 
+ 
 
-    const searchFilterFunction = (text) => {
-        // Check if searched text is not blank
-        if (text) {
-          // Inserted text is not blank
-          // Filter the masterDataSource
-          // Update FilteredDataSource
-          const newData = masterDataSource.filter(
-            function (item) {
-              const itemData = item.title
-                ? item.title.toUpperCase()
-                : ''.toUpperCase();
-              const textData = text.toUpperCase();
-              return itemData.indexOf(textData) > -1;
-          });
-          setFilteredDataSource(newData);
-          setSearch(text);
-        } else {
-          // Inserted text is blank
-          // Update FilteredDataSource with masterDataSource
-          setFilteredDataSource(masterDataSource);
-          setSearch(text);
-        }
-      };
-    
-      const ItemView = ({item}) => {
-        return (
-          // Flat List Item
-          <Text
-            style={style.itemStyle}
-            onPress={() => getItem(item)}>
-            {item.id}
-            {'.'}
-            {item.title.toUpperCase()}
-          </Text>
-        );
-      };
-    
-      const ItemSeparatorView = () => {
-        return (
-          // Flat List Item Separator
-          <View
-            style={{
-              height: 0.5,
-              width: '100%',
-              backgroundColor: '#C8C8C8',
-            }}
-          />
-        );
-      };
-
-      
-      const getItem = (item) => {
-        // Function for click on an item
-        alert('Id : ' + item.id + ' Title : ' + item.title);
-      };
-
-      const [users, setUsers] = useState([]);
-      const db = firebase.firestore();
-
-      useEffect(() => {
-        let userInfo = [];
-        db.collection('createHotel')
-          .get()
-          .then((res) => {
-            res.forEach((action) => {
-              userInfo.push({ ...action.data(), id: action.id });
-            });
-    
-            setUsers(userInfo);
-          });
-      }, []);
-
-
-return (
+  return (
     <>
       <SafeAreaView style={style.cover}>
         <ImageBackground source={image} resizeMode="cover" style={style.image}>
           {/* <View style={style.backBox}> */}
-          <Text style={style.heading}>Search hotel</Text>
 
-          <View style={style.search}>
-          <TextInput
-          style={style.textInputStyle}
-          onChangeText={(text) => searchFilterFunction(text)}
-          value={search}
-          underlineColorAndroid="transparent"
-          placeholder="Search Here"
-        />
+          <View style={{ alignItems: "center", marginTop: 5 }}>
+            <Text style={{ color: "#000", fontWeight: "bold", fontSize: 20 }}>
+              Search hotel
+            </Text>
+          </View>
+          <View
+            style={{
+              backgroundColor: "#d4d3cf",
+              width: "95%",
+              height: "6%",
+              padding: 5,
+              margin: 10,
+            }}
+          >
+            <TextInput
+              style={{ width: "100%" }}
+              // onChangeText={(text) => searchFilterFunction(text)}
+              value={search}
+              underlineColorAndroid="transparent"
+              placeholder="Search Here"
+            />
           </View>
 
-         
+          <View>
+            <Text style={{ fontSize: 20, margin: 10 }}>Popular hotels</Text>
+          </View>
+
+          <ScrollView>
             <View>
-              <Text style={style.line}>
-                _____________________________________
-              </Text>
-              <Text style={style.heading}>Popular hotels</Text>
+              {users.map((element) => (
+                <TouchableOpacity
+                  style={{ margin: 10, flexDirection: "row" }}
+                  onPress={() =>
+                    navigation.navigate("AvailableRooms", {
+                      name: "AvailableRooms",
+                    })
+                  }
+                >
+                  <View style={style.details}>
+                  <Avatar size={150} source={{ uri: element.Url }}></Avatar>
+                  <View style={style.price}>
+                  <Text style={{}}>{element.HotelName}</Text>
+                  </View>
+                  </View>
+                </TouchableOpacity>
+              ))}
             </View>
 
-         
-            
-                <ScrollView>
-
-                <View >
-                  
-
-{users.map((element)=>
-  <View style={style.hotelPictures}>
-  <Text style={style.hotelNameText}>{element.HotelName}</Text>
-    <TouchableOpacity >
- <Avatar  size={100}  source={{uri: element.Url}}></Avatar>
-</TouchableOpacity>
-  </View>
-    
-
-
-
-
-
-
-//   <TouchableOpacity style={style.hotelPictures}>
-// <Avatar  size={200}  source={{uri: element.Url}}></Avatar>
-// </TouchableOpacity>
-)}
-
-</View>
-                
-
-                  {/* <View style={style.picContainer}>
-         
-                    {Pictures.images.map((action) => [
-                      <ListItem style={style.container}>
-
-                            <Text style={style.description}>{action.description}</Text>
-
-                        <TouchableOpacity
-                          onPress={() =>
-                            navigation.navigate("searchroom", {
-                              name: "searchroom",
-                            })
-                          }
-                        >
-                          
-                          <Image style={style.pic} source={action.src}></Image>
-                        </TouchableOpacity>
-                      </ListItem>
-                    ])}
-                  </View> */}
-                </ScrollView>
-             
-         
-         
-          
+        </ScrollView>
         </ImageBackground>
       </SafeAreaView>
     </>
@@ -203,24 +189,32 @@ const style = StyleSheet.create({
   cover: {
     height: "100%",
   },
-  hotelPictures:{
-      marginLeft:0,
-      marginTop:5,
-      borderRadius:20,
-      // backgroundColor:"red",
-      paddingLeft:50,
-      flexDirection:"row",
+  details: {
+    flexDirection:"row",
+    marginTop: "10%",
+    marginLeft: 20,
+  },
+  price:{
+    marginLeft: 20,
 
   },
-  hotelNameText:{
-      marginRight:20
+  hotelPictures: {
+    marginLeft: 0,
+    marginTop: 5,
+    borderRadius: 20,
+    // backgroundColor:"red",
+    paddingLeft: 50,
+    flexDirection: "row",
   },
-  description:{
-      marginRight:20
+  hotelNameText: {
+    marginRight: 20,
   },
-  pic:{
-      marginLeft:10,
-      borderRadius:15
+  description: {
+    marginRight: 20,
+  },
+  pic: {
+    marginLeft: 10,
+    borderRadius: 15,
   },
   container: {
     flexDirection: "column",
@@ -239,14 +233,13 @@ const style = StyleSheet.create({
     width: "70%",
     height: "5%",
   },
- 
+
   heading: {
     // color:"white",
 
     marginLeft: "30%",
     fontWeight: "bold",
   },
- 
 
   line: {
     marginBottom: 0,
@@ -256,8 +249,6 @@ const style = StyleSheet.create({
     marginTop: 10,
     color: "#d1d0cd",
   },
-  picContainer:{
-
-  },
+  picContainer: {},
 });
 export default home;
