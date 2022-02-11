@@ -11,6 +11,8 @@ import Icons from "react-native-vector-icons/Entypo";
 import React, { useEffect, useState } from "react";
 import firebase, { usersRef } from "./firebase";
 import { ListItem } from "react-native-elements";
+// import users from './classes'
+import { auth } from "./firebase";
 
 const image = {
   uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRm7t3TPoPgmhbrIGkY5iLCfENgExc44sWJUg&usqp=CAU",
@@ -19,11 +21,23 @@ const image = {
 const Registration = ({ navigation }) => {
  
   
-const [firstName, setFirstName] = useState();
-const [surname, setSurname] = useState();
-const [email, setEmail] = useState();
-const [password, setPassword] = useState();
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+  const [firstName, setFirstName] = useState();
+  const [surname, setSurname] = useState();
 
+
+  handleSinUp =()=>{
+    auth.createUserWithEmailAndPassword(email,password)
+    .then(userCredentials =>{
+      const user = userCredentials.user;
+      console.log(user.email)
+      console.log(user.password)
+    })
+    .catch(error=>alert(error.message))
+    
+ }
+ 
 
  
 
@@ -131,10 +145,12 @@ const [password, setPassword] = useState();
               </View> */}
               <View style={style.createAcc}>
                 <TouchableOpacity
-                  onPress={() =>
-                    navigation.navigate("Login", { name: "Login" })
-                  }
-                >
+                  // onPress={() =>
+                  //   navigation.navigate("Login", { name: "Login" })
+                  // }
+                
+                onPress={handleSinUp}>
+                  
                   <Text> Register </Text>
                 </TouchableOpacity>
               </View>

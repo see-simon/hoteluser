@@ -51,6 +51,8 @@ import Icons from "react-native-vector-icons/Entypo";
 import AvailableRooms from './components/screens/AvailableRooms';
 // import BookingSuccess from './components/screens/bookingSuccess';
 
+import users from './components/screens/classes'
+
 
 
 

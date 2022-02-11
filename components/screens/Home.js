@@ -29,63 +29,7 @@ const home = ({ navigation }) => {
   const [filteredDataSource, setFilteredDataSource] = useState([]);
   const [masterDataSource, setMasterDataSource] = useState([]);
 
-  // let item = () => {
-  //     return images.description.fetch(action => {
-  //         return action.id == id
-  //     })
-  // }
-
-  // const searchFilterFunction = (text) => {
-  //   // Check if searched text is not blank
-  //   if (text) {
-  //     // Inserted text is not blank
-  //     // Filter the masterDataSource
-  //     // Update FilteredDataSource
-  //     const newData = masterDataSource.filter(function (item) {
-  //       const itemData = item.title
-  //         ? item.title.toUpperCase()
-  //         : "".toUpperCase();
-  //       const textData = text.toUpperCase();
-  //       return itemData.indexOf(textData) > -1;
-  //     });
-  //     setFilteredDataSource(newData);
-  //     setSearch(text);
-  //   } else {
-  //     // Inserted text is blank
-  //     // Update FilteredDataSource with masterDataSource
-  //     setFilteredDataSource(masterDataSource);
-  //     setSearch(text);
-  //   }
-  // };
-
-  // const ItemView = ({ item }) => {
-  //   return (
-  //     // Flat List Item
-  //     <Text style={style.itemStyle} onPress={() => getItem(item)}>
-  //       {item.id}
-  //       {"."}
-  //       {item.title.toUpperCase()}
-  //     </Text>
-  //   );
-  // };
-
-  // const ItemSeparatorView = () => {
-  //   return (
-  //     // Flat List Item Separator
-  //     <View
-  //       style={{
-  //         height: 0.5,
-  //         width: "100%",
-  //         backgroundColor: "#C8C8C8",
-  //       }}
-  //     />
-  //   );
-  // };
-
-  // const getItem = (item) => {
-  //   // Function for click on an item
-  //   alert("Id : " + item.id + " Title : " + item.title);
-  // };
+  
 
   const [users, setUsers] = useState([]);
   const db = firebase.firestore();
