@@ -26,17 +26,17 @@ const Login = ({ navigation }) => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
-    useEffect (()=>{
+    // useEffect (()=>{
 
-        const unsubscribe = auth.onAuthStateChanged(user =>{
-            if(user){
-                navigation.navigate("home")
-            }
-            else{
-                return unsubscribe
-            }
-        })
-    })
+    //     const unsubscribe = auth.onAuthStateChanged(user =>{
+    //         if(user){
+    //             navigation.navigate("home")
+    //         }
+    //         else{
+    //             return unsubscribe
+    //         }
+    //     })
+    // })
 
 
   const handleLogin = () => {
@@ -44,6 +44,7 @@ const Login = ({ navigation }) => {
       .signInWithEmailAndPassword(email, password)
       .then((userCredentials) => {
         const user = userCredentials.user;
+        navigation.navigate("home")
         console.log(user.email);
       })
       .catch((error) => alert(error.message));

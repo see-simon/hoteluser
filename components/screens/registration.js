@@ -3,6 +3,7 @@ import {
   FlatList,
   State,
   TextInput,
+  ToastAndroid,
   TouchableOpacity,
 } from "react-native-gesture-handler";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -23,20 +24,23 @@ const Registration = ({ navigation }) => {
   
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-  const [firstName, setFirstName] = useState();
-  const [surname, setSurname] = useState();
+  // const [firstName, setFirstName] = useState();
+  // const [surname, setSurname] = useState();
 
 
-  handleSinUp =()=>{
+  const  handleSinUp =()=>{
     auth.createUserWithEmailAndPassword(email,password)
     .then(userCredentials =>{
       const user = userCredentials.user;
       console.log(user.email)
       console.log(user.password)
+      ToastAndroid.show('Request sent successfully!', ToastAndroid.SHORT);
     })
     .catch(error=>alert(error.message))
     
  }
+
+ 
  
 
  

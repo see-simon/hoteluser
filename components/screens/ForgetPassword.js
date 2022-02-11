@@ -8,6 +8,8 @@ import { TextInput, TouchableOpacity } from 'react-native-gesture-handler'
 import Icon from 'react-native-vector-icons/Foundation'
 import { Value } from 'react-native-reanimated'
 import Home from './Home'
+import { auth } from './firebase'
+
 
 const image = {
     uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRm7t3TPoPgmhbrIGkY5iLCfENgExc44sWJUg&usqp=CAU",
@@ -25,6 +27,20 @@ const ForgetPassword = ({ navigation }) => {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+
+
+    const handleResetPassord =()=>{
+        auth.sendPasswordResetEmail(code , password)
+        .then(userCredentials =>{
+          const user = userCredentials.user;
+          console.log(user.email)
+          console.log(user.password)
+        })
+        .catch(error=>alert(error.message))
+        
+     }
+
+     auth.confirmPasswordReset(code , password)
 
     return (
         <>
