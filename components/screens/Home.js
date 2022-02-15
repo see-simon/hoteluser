@@ -105,7 +105,7 @@ const home = ({ navigation }) => {
           <ScrollView>
             <View>
               {users.map((element) => (
-                <TouchableOpacity hotelAndAvailableRooms
+                <TouchableOpacity 
                   style={{ margin: 10, flexDirection: "row" }}
                   onPress={() =>
                     navigation.navigate("AvailableRooms", {
