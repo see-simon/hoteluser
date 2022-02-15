@@ -48,17 +48,21 @@ const AvailableRooms = ({ navigation }) => {
             </View>
             <ScrollView>
               <View>
+                <TouchableOpacity onPress={() => navigation.navigate("paymentScreen", { name: "paymentScreen" })}>
                 {room.map((element) => (
                  
                  <View style={style.details}>
-                 <Avatar size={150} source={{ uri: element.Url }}></Avatar>
+
+                 <Avatar size={150}  source={{ uri: element.Url }}></Avatar>
+                 
                  <View style={style.price}>
-                 <Text style={{}}>Price : {element.RoomPrice}</Text>
+                 <Text style={{}}>Price : R {element.RoomPrice}</Text>
                  <Text style={{}}>Room : {element.RoomNumber}</Text>
                  </View>
                  
                  </View>
                 ))}
+                </TouchableOpacity>
               </View>
             </ScrollView>
           </ImageBackground>

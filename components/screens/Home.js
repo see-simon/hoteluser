@@ -44,6 +44,7 @@ const home = ({ navigation }) => {
         });
 
         setUsers(userInfo);
+        // console.log(id)
       });
   }, []);
 
@@ -104,7 +105,7 @@ const home = ({ navigation }) => {
           <ScrollView>
             <View>
               {users.map((element) => (
-                <TouchableOpacity
+                <TouchableOpacity hotelAndAvailableRooms
                   style={{ margin: 10, flexDirection: "row" }}
                   onPress={() =>
                     navigation.navigate("AvailableRooms", {
@@ -112,10 +113,17 @@ const home = ({ navigation }) => {
                     })
                   }
                 >
+                  
                   <View style={style.details}>
+
+                    {/* <Text>{element.id}</Text> graps the id from database */}
+
+
                   <Avatar size={150} source={{ uri: element.Url }}></Avatar>
+                  
                   <View style={style.price}>
-                  <Text style={{}}>{element.HotelName}</Text>
+                  <Text>Name: {element.HotelName}</Text>
+                  <Text>Location: {element.Location}</Text>
                   </View>
                   </View>
                 </TouchableOpacity>
