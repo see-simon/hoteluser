@@ -39,16 +39,16 @@ const Login = ({ navigation }) => {
     // })
 
 
-  const handleLogin = () => {
-    auth
-      .signInWithEmailAndPassword(email, password)
-      .then((userCredentials) => {
-        const user = userCredentials.user;
-        navigation.navigate("home")
-        console.log(user.email);
-      })
-      .catch((error) => alert(error.message));
-  };
+  // const handleLogin = () => {
+  //   auth
+  //     .signInWithEmailAndPassword(email, password)
+  //     .then((userCredentials) => {
+  //       const user = userCredentials.user;
+  //       navigation.navigate("home")
+  //       console.log(user.email);
+  //     })
+  //     .catch((error) => alert(error.message));
+  // };
 
   return (
     <>
@@ -119,10 +119,10 @@ const Login = ({ navigation }) => {
                     <Text style={style.forgot_button}>Forgot Password?</Text>
                   </TouchableOpacity>
                   <TouchableOpacity
-                    onPress={handleLogin}
-                    // onPress={() =>
-                    //   navigation.navigate("home", { name: "home" })
-                    // }
+                    // onPress={handleLogin}
+                    onPress={() =>
+                      navigation.navigate("home", { name: "home" })
+                    }
                     style={style.login}
                   >
                     <Text style={{ color: "#000", fontWeight: "bold" }}>

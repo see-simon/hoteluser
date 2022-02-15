@@ -108,8 +108,8 @@ const home = ({ navigation }) => {
                 <TouchableOpacity 
                   style={{ margin: 10, flexDirection: "row" }}
                   onPress={() =>
-                    navigation.navigate("AvailableRooms", {
-                      name: "AvailableRooms",
+                    navigation.navigate("searchroom", {
+                      name: "searchroom",
                     })
                   }
                 >
@@ -117,6 +117,7 @@ const home = ({ navigation }) => {
                   <View style={style.details}>
 
                     {/* <Text>{element.id}</Text> graps the id from database */}
+
 
 
                   <Avatar size={150} source={{ uri: element.Url }}></Avatar>
