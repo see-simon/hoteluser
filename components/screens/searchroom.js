@@ -38,6 +38,7 @@ const searchroom = ({ navigation }) => {
           >
 
           <View style={style.crownContainer}>
+            
 
             <Icon name="crown" style={style.crown} size={80} color="#c2c4c3" />
           </View>

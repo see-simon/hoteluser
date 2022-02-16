@@ -47,7 +47,7 @@ import Map from './components/screens/Map';
 import BookingDetails from './components/screens/BookingDetails';
 import Book from './components/screens/book';
 import { View ,StyleSheet} from 'react-native';
-import Icons from "react-native-vector-icons/Entypo";
+import Icons from "react-native-vector-icons/AntDesign";
 import AvailableRooms from './components/screens/AvailableRooms';
 // import BookingSuccess from './components/screens/bookingSuccess';
 
@@ -72,7 +72,7 @@ export default function App() {
           <Drawer.Screen  name="Home" component={home} />
          
           
-           <Drawer.Screen  name="Profile" component ={Profile}/>
+           <Drawer.Screen Icons  name="Profile" component ={Profile} options={<Icons name="profile"/> }/>
            <Drawer.Screen name ="Bookings" component ={bookingDetails}/>
 
            <Drawer.Screen name = "History" component ={History}/>

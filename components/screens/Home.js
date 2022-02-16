@@ -20,16 +20,16 @@ import firebase from "firebase";
 // import { Avatar } from 'react-native-paper';
 // import {auth} from "./firebase"
 
-const image = {
-  uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRm7t3TPoPgmhbrIGkY5iLCfENgExc44sWJUg&usqp=CAU",
-};
+// const image = {
+//   uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRm7t3TPoPgmhbrIGkY5iLCfENgExc44sWJUg&usqp=CAU",
+// };
 
 const home = ({ navigation }) => {
   const [search, setSearch] = useState("");
   const [filteredDataSource, setFilteredDataSource] = useState([]);
   const [masterDataSource, setMasterDataSource] = useState([]);
 
-  
+
 
   const [users, setUsers] = useState([]);
   const db = firebase.firestore();
@@ -54,25 +54,25 @@ const home = ({ navigation }) => {
     let uid = e.target.id
 
     db.collection('createHotel').doc(uid).get({
-        // Name: name,
-        // Surname: surname,
-        // Location: location,
-        // Description: description,
-        // Age: age
-        Url
+      // Name: name,
+      // Surname: surname,
+      // Location: location,
+      // Description: description,
+      // Age: age
+      Url
     })
-        .then(() => { console.log('got the url') })
-        .catch((err) => { console.log(Url) })
+      .then(() => { console.log('got the url') })
+      .catch((err) => { console.log(Url) })
 
 
-}
+  }
 
- 
+
 
   return (
     <>
       <SafeAreaView style={style.cover}>
-        <ImageBackground source={image} resizeMode="cover" style={style.image}>
+        <ImageBackground >
           {/* <View style={style.backBox}> */}
 
           <View style={{ alignItems: "center", marginTop: 5 }}>
@@ -82,19 +82,20 @@ const home = ({ navigation }) => {
           </View>
           <View
             style={{
-              backgroundColor: "#d4d3cf",
-              width: "95%",
-              height: "6%",
+              // backgroundColor: "#d4d3cf",
+
+              // width: "95%",
+              // height: "6%",
               padding: 5,
               margin: 10,
             }}
           >
             <TextInput
-              style={{ width: "100%" }}
+              style={{ width: "100%", height:40, borderRadius:10, borderColor:'#6666ff', borderWidth:3 }}
               // onChangeText={(text) => searchFilterFunction(text)}
               value={search}
               underlineColorAndroid="transparent"
-              placeholder="Search Here"
+              placeholder="Search Her leahe"
             />
           </View>
 
@@ -105,7 +106,7 @@ const home = ({ navigation }) => {
           <ScrollView>
             <View>
               {users.map((element) => (
-                <TouchableOpacity 
+                <TouchableOpacity
                   style={{ margin: 10, flexDirection: "row" }}
                   onPress={() =>
                     navigation.navigate("AvailableRooms", {
@@ -113,24 +114,27 @@ const home = ({ navigation }) => {
                     })
                   }
                 >
-                  
+
                   <View style={style.details}>
 
                     {/* <Text>{element.id}</Text> graps the id from database */}
 
 
-                  <Avatar size={150} source={{ uri: element.Url }}></Avatar>
-                  
-                  <View style={style.price}>
-                  <Text>Name: {element.HotelName}</Text>
-                  <Text>Location: {element.Location}</Text>
-                  </View>
+                    <Avatar size={150} source={{ uri: element.Url }}></Avatar>
+
+                    <View style={style.price}>
+                      <Text style={{marginBottom:20, fontWeight:400, fontSize:18}}>{element.HotelName}</Text>
+                      <Text style={{marginBottom:20}}> {element.Location}</Text>
+                      {/* <Icon name="eye"></Icon> */}
+                      <Text  style={{textAlign:'center', justifyContent:"center", backgroundColor:"#6666ff", width:"80%", height:"20%",
+                      padingLeft:"15%", color:'#fff', borderRadius:5, padding:"5%"}}>View</Text>
+                    </View>
                   </View>
                 </TouchableOpacity>
               ))}
             </View>
 
-        </ScrollView>
+          </ScrollView>
         </ImageBackground>
       </SafeAreaView>
     </>
@@ -141,12 +145,28 @@ const style = StyleSheet.create({
   cover: {
     height: "100%",
   },
+  view: {
+    width: "30%",
+    
+    backgroundColor:"#fff",
+    // alignItems:'center',
+    // justifyContent:'center'
+  paddingLeft:5,
+    justifyContent: "center",
+    alignContent: "center",
+
+  },
   details: {
-    flexDirection:"row",
+    flexDirection: "row",
     marginTop: "10%",
     marginLeft: 20,
+    borderWidth:1,
+    borderColor:"#c2c2c2",
+    padding:10,
+    borderStyle:"solid"
+
   },
-  price:{
+  price: {
     marginLeft: 20,
 
   },
