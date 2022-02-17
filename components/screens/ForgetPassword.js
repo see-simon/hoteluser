@@ -103,7 +103,7 @@ const ForgetPassword = ({ navigation }) => {
                         
 
 
-                            <TouchableOpacity onPress={() => navigation.navigate('Login', { name: 'Login' })} >
+                            <TouchableOpacity onPress={sendPasswordReset}>  
                                 <Text style={style.verify}>
                                     Varify
                                 </Text>
