@@ -76,9 +76,8 @@ const home = ({ navigation }) => {
           {/* <View style={style.backBox}> */}
 
           <View style={{ alignItems: "center", marginTop: 5 }}>
-            <Text style={{ color: "#000", fontWeight: "bold", fontSize: 20 }}>
-              Search hotel
-            </Text>
+            <Text style={{ color: "#6666ff", fontWeight: "bold", fontSize: 20 }}>
+                Welcome User           </Text>
           </View>
           <View
             style={{
@@ -95,12 +94,14 @@ const home = ({ navigation }) => {
               // onChangeText={(text) => searchFilterFunction(text)}
               value={search}
               underlineColorAndroid="transparent"
-              placeholder="Search Her leahe"
+              placeholder="Search Here"
             />
+
+
           </View>
 
           <View>
-            <Text style={{ fontSize: 20, margin: 10 }}>Popular hotels</Text>
+            <Text style={{ fontSize: 20, margin: 10, color:'gray' }}>Popular hotels</Text>
           </View>
 
           <ScrollView>
@@ -120,13 +121,13 @@ const home = ({ navigation }) => {
                     {/* <Text>{element.id}</Text> graps the id from database */}
 
 
-                    <Avatar size={150} source={{ uri: element.Url }}></Avatar>
+                    <ImageBackground  style={{width:110,height:110,}} source={{ uri: element.Url }}></ImageBackground>
 
                     <View style={style.price}>
-                      <Text style={{marginBottom:20, fontWeight:400, fontSize:18}}>{element.HotelName}</Text>
+                      <Text style={{marginBottom:10, fontWeight:600, fontSize:18, color:'#6666ff'}}>{element.HotelName}</Text>
                       <Text style={{marginBottom:20}}> {element.Location}</Text>
                       {/* <Icon name="eye"></Icon> */}
-                      <Text  style={{textAlign:'center', justifyContent:"center", backgroundColor:"#6666ff", width:"80%", height:"20%",
+                      <Text  style={{textAlign:'center', justifyContent:"center", backgroundColor:"#6666ff", width:"80%", height:"35%",
                       padingLeft:"15%", color:'#fff', borderRadius:5, padding:"5%"}}>View</Text>
                     </View>
                   </View>
@@ -144,6 +145,7 @@ const home = ({ navigation }) => {
 const style = StyleSheet.create({
   cover: {
     height: "100%",
+    backgroundColor:'#fff',
   },
   view: {
     width: "30%",

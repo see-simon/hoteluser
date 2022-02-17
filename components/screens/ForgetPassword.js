@@ -29,18 +29,17 @@ const ForgetPassword = ({ navigation }) => {
     const [password, setPassword] = useState("");
 
 
-    const handleResetPassord =()=>{
-        auth.sendPasswordResetEmail(code , password)
-        .then(userCredentials =>{
-          const user = userCredentials.user;
-          console.log(user.email)
-          console.log(user.password)
-        })
-        .catch(error=>alert(error.message))
-        
-     }
+    const sendPasswordReset = async (email) => {
+        try {
+          await sendPasswordResetEmail(auth, email);
+          alert("Password reset link sent!");
+        } catch (err) {
+          console.error(err);
+          alert(err.message);
+        }
+      };
 
-     auth.confirmPasswordReset(code , password)
+    //  auth.confirmPasswordReset(code , password)
 
     return (
         <>

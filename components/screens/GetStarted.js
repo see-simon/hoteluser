@@ -5,32 +5,26 @@ import { Image, ImageBackground } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import Icon from "react-native-vector-icons/Foundation";
 
-const image = {
-  uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRm7t3TPoPgmhbrIGkY5iLCfENgExc44sWJUg&usqp=CAU",
-};
+
 
 const GetStarted = ({ navigation }) => {
   return (
     <>
-      <SafeAreaView>
-        <View style={style.container}>
-          <ImageBackground
-            source={image}
-            resizeMode="cover"
-            style={style.image}
-          >
-            <Image style={style.bed1} source={require("../images/bed.png")} />
+      <View>
+       
+         <ImageBackground source={require("../images/back.jpg")} style={{height:'90%'}}>
+            {/* //<Image style={style.bed1} source={require("../images/bed.png")} /> */}
 
             <TouchableOpacity
               onPress={() => navigation.navigate("Login", { name: "Login" })}
             >
               <View style={style.GetStartedText}>
-                <Text>Get Started</Text>
+                <Text style={{color:'#fff'}}>Get Started</Text>
               </View>
             </TouchableOpacity>
-          </ImageBackground>
-        </View>
-      </SafeAreaView>
+            </ImageBackground>
+      
+      </View>
     </>
   );
 };
@@ -38,29 +32,25 @@ const GetStarted = ({ navigation }) => {
 const style = StyleSheet.create({
   container: {
     height: "100%",
+    backgroundColor:'white',
   },
 
   GetStartedText: {
-    backgroundColor: "#c2c4c3",
+    backgroundColor: "#6666ff",
     width: "30%",
-    height: "30%",
+    height: "50%",
+    color:'white',
     borderRadius: 10,
     paddingLeft: 17,
     //   paddingTop:5,
-    flex: -2,
     justifyContent: "center",
     alignContent: "center",
     marginLeft: "35%",
     marginTop: "10%",
+    color:'#fff'
   },
-  bed1: {
-    marginTop: "40%",
-    marginLeft: "7%",
-  },
-  image: {
-    flex: 1,
-    justifyContent: "center",
-  },
+  
+  
   text: {
     color: "white",
     fontSize: 42,

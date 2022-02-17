@@ -12,9 +12,9 @@ import users from "./classes";
 import { auth } from "./firebase";
 import { useEffect } from "react";
 
-const image = {
-  uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRm7t3TPoPgmhbrIGkY5iLCfENgExc44sWJUg&usqp=CAU",
-};
+// const image = {
+//   uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRm7t3TPoPgmhbrIGkY5iLCfENgExc44sWJUg&usqp=CAU",
+// };
 
 const Login = ({ navigation }) => {
   // const [isSelected, setIsSelected] = useState(false)
@@ -26,17 +26,7 @@ const Login = ({ navigation }) => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
-    // useEffect (()=>{
-
-    //     const unsubscribe = auth.onAuthStateChanged(user =>{
-    //         if(user){
-    //             navigation.navigate("home")
-    //         }
-    //         else{
-    //             return unsubscribe
-    //         }
-    //     })
-    // })
+    
 
 
   const handleLogin = () => {
@@ -54,12 +44,8 @@ const Login = ({ navigation }) => {
     <>
       <SafeAreaView>
         <View style={style.container}>
-          <ImageBackground
-            source={image}
-            resizeMode="cover"
-            style={style.image}
-          >
-            <View style={style.crownContainer}>
+         
+            {/* <View style={style.crownContainer}>
               <Icon
                 name="crown"
                 style={style.crown}
@@ -67,18 +53,20 @@ const Login = ({ navigation }) => {
                 color="#c2c4c3"
               />
 
-              <Text style={style.heading}>Login</Text>
-            </View>
+            </View> */}
+
             <View style={style.backBox}>
               {/* put form here NB */}
+              <Text style={style.heading}>Login</Text>
 
-              <ScrollView>
+              
                 <View style={style.inputContainer}>
+                  <ScrollView>
                   <View style={style.inputView}>
                     <Icon
                       style={style.icon}
                       name="mail"
-                      color="#aeb0af"
+                      color="#6666ff"
                       size={20}
                     />
 
@@ -95,7 +83,7 @@ const Login = ({ navigation }) => {
                     <Icon
                       style={style.icon}
                       name="lock"
-                      color="#aeb0af"
+                      color="#6666ff"
                       size={20}
                     />
                     <TextInput
@@ -106,6 +94,7 @@ const Login = ({ navigation }) => {
                       onChangeText={(text) => setPassword(text)}
                     />
                   </View>
+                   </ScrollView>
                 </View>
 
                 <View style={style.logAndFogot}>
@@ -119,13 +108,13 @@ const Login = ({ navigation }) => {
                     <Text style={style.forgot_button}>Forgot Password?</Text>
                   </TouchableOpacity>
                   <TouchableOpacity
-                    // onPress={handleLogin}
-                    onPress={() =>
-                      navigation.navigate("home", { name: "home" })
-                    }
+                    onPress={handleLogin}
+                    // onPress={() =>
+                    //   navigation.navigate("home", { name: "home" })
+                    // }
                     style={style.login}
                   >
-                    <Text style={{ color: "#000", fontWeight: "bold" }}>
+                    <Text style={{ color: "#fff",textAlign:'center', fontWeight: "bold" }}>
                       Login
                     </Text>
                   </TouchableOpacity>
@@ -144,9 +133,9 @@ const Login = ({ navigation }) => {
                     <Text>Creact account</Text>
                   </TouchableOpacity>
                 </View>
-              </ScrollView>
+             
             </View>
-          </ImageBackground>
+          
         </View>
       </SafeAreaView>
     </>
@@ -156,6 +145,7 @@ const Login = ({ navigation }) => {
 const style = StyleSheet.create({
   container: {
     height: "100%",
+    backgroundColor:"white"
   },
   inputContainer: {
     marginTop: 50,
@@ -209,11 +199,11 @@ const style = StyleSheet.create({
     width: "40%",
     marginLeft: "25%",
     marginTop: 30,
-    marginBottom: 25,
+    
     //backgroundColor:"red",
     fontSize: 22,
     fontWeight: "bold",
-    color: "#000",
+    color: "#6666ff",
   },
   backBox: {
     height: "60%",
@@ -231,12 +221,11 @@ const style = StyleSheet.create({
     marginTop: 10,
   },
   login: {
-    backgroundColor: "#c2c4c3",
+    backgroundColor: "#6666ff",
     marginLeft: 45,
 
-    borderRadius: 90,
+    borderRadius: 10,
     padding: 10,
-    paddingLeft: 30,
     width: "100%",
     height: "100%",
   },
