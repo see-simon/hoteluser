@@ -5,7 +5,7 @@ import {
   SafeAreaView,
   StyleSheet,
   Text,
-  ImageBackground,
+  
   TextInput,
   View,
   useColorScheme,
@@ -26,8 +26,7 @@ import firebase from "firebase";
 
 const home = ({ navigation }) => {
   const [search, setSearch] = useState("");
-  const [filteredDataSource, setFilteredDataSource] = useState([]);
-  const [masterDataSource, setMasterDataSource] = useState([]);
+  
 
 
 
@@ -77,12 +76,11 @@ const home = ({ navigation }) => {
 
           <View style={{ alignItems: "center", marginTop: 5 }}>
             <Text style={{ color: "#6666ff", fontWeight: "bold", fontSize: 20 }}>
-                Welcome User           </Text>
+                Welcome User</Text>
           </View>
           <View
             style={{
               // backgroundColor: "#d4d3cf",
-
               // width: "95%",
               // height: "6%",
               padding: 5,
@@ -108,26 +106,24 @@ const home = ({ navigation }) => {
             <View>
               {users.map((element) => (
                 <TouchableOpacity
-                  style={{ margin: 10, flexDirection: "row" }}
+                  style={{  flexDirection: "row" }}
                   onPress={() =>
-                    navigation.navigate("AvailableRooms", {
-                      name: "AvailableRooms",
-                    })
+                    navigation.navigate("AvailableRooms")
                   }
                 >
 
                   <View style={style.details}>
 
-                    {/* <Text>{element.id}</Text> graps the id from database */}
+                    
 
 
-                    <Image  style={{width:110,height:110,}} source={{ uri: element.Url }}></Image>
+                    <Avatar  style={{width:"50%",height:"100%"}} source={{ uri: element.Url }}></Avatar>
 
                     <View style={style.price}>
-                      <Text style={{marginBottom:10, fontWeight:600, fontSize:18, color:'#6666ff'}}>{element.HotelName}</Text>
+                      <Text style={{marginBottom:10, fontWeight:'bold', fontSize:18, color:'#6666ff'}}>{element.HotelName}</Text>
                       <Text style={{marginBottom:20}}> {element.Location}</Text>
-                      {/* <Icon name="eye"></Icon> */}
-                      <Text  style={{textAlign:'center', justifyContent:"center", backgroundColor:"#6666ff", width:"80%", height:"35%",
+                      
+                      <Text  style={{textAlign:'center', justifyContent:"center", backgroundColor:"#6666ff", width:"80%", height:"20%",
                       padingLeft:"15%", color:'#fff', borderRadius:5, padding:"5%"}}>View</Text>
                     </View>
                   </View>
@@ -147,21 +143,13 @@ const style = StyleSheet.create({
     height: "100%",
     backgroundColor:'#fff',
   },
-  view: {
-    width: "30%",
-    
-    backgroundColor:"#fff",
-    // alignItems:'center',
-    // justifyContent:'center'
-  paddingLeft:5,
-    justifyContent: "center",
-    alignContent: "center",
 
-  },
   details: {
     flexDirection: "row",
-    marginTop: "10%",
-    marginLeft: 20,
+    marginTop: "1%",
+    marginLeft: 25,
+    alignItems:"center",
+    justifyContent:"center",
     borderWidth:1,
     borderColor:"#c2c2c2",
     padding:10,
@@ -170,19 +158,20 @@ const style = StyleSheet.create({
   },
   price: {
     marginLeft: 20,
+    marginTop:-20
 
   },
-  hotelPictures: {
-    marginLeft: 0,
-    marginTop: 5,
-    borderRadius: 20,
-    // backgroundColor:"red",
-    paddingLeft: 50,
-    flexDirection: "row",
-  },
-  hotelNameText: {
-    marginRight: 20,
-  },
+  // hotelPictures: {
+  //   marginLeft: 0,
+  //   marginTop: 5,
+  //   borderRadius: 20,
+ 
+  //   paddingLeft: 50,
+  //   flexDirection: "row",
+  // },
+  // hotelNameText: {
+  //   marginRight: 20,
+  // },
   description: {
     marginRight: 20,
   },
@@ -193,10 +182,7 @@ const style = StyleSheet.create({
   container: {
     flexDirection: "column",
   },
-  // image: {
-  //   flex: 1,
-  //   justifyContent: "center",
-  // },
+
   search: {
     backgroundColor: "#d4d3cf",
     marginLeft: 50,
@@ -209,7 +195,7 @@ const style = StyleSheet.create({
   },
 
   heading: {
-    // color:"white",
+    
 
     marginLeft: "30%",
     fontWeight: "bold",
