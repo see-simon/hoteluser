@@ -45,15 +45,7 @@ const Login = ({ navigation }) => {
       <SafeAreaView>
         <View style={style.container}>
          
-            {/* <View style={style.crownContainer}>
-              <Icon
-                name="crown"
-                style={style.crown}
-                size={80}
-                color="#c2c4c3"
-              />
-
-            </View> */}
+        <Image   style={{alignSelf:"center", width:"120%", height:"40%", borderBottomRightRadius:300, marginBottom:0  }} source={require("../images/sheets.jpg")} />
 
             <View style={style.backBox}>
               {/* put form here NB */}
@@ -61,6 +53,7 @@ const Login = ({ navigation }) => {
 
               
                 <View style={style.inputContainer}>
+
                   <ScrollView>
                   <View style={style.inputView}>
                     <Icon
@@ -130,7 +123,8 @@ const Login = ({ navigation }) => {
                       })
                     }
                   >
-                    <Text>Creact account</Text>
+                    <Text>Do you have an
+                     account?</Text>
                   </TouchableOpacity>
                 </View>
              
@@ -145,15 +139,14 @@ const Login = ({ navigation }) => {
 const style = StyleSheet.create({
   container: {
     height: "100%",
-    backgroundColor:"white"
+    backgroundColor:"white",
+      flex:-2
   },
-  inputContainer: {
-    marginTop: 50,
-  },
+ 
 
   createAcc: {
-    marginBottom: 80,
-    marginLeft: 120,
+    
+    marginLeft: 30,
   },
 
   crownContainer: {
@@ -206,7 +199,7 @@ const style = StyleSheet.create({
     color: "#6666ff",
   },
   backBox: {
-    height: "60%",
+    height: "50%",
     width: "95%",
     marginLeft: 10,
 
@@ -217,7 +210,7 @@ const style = StyleSheet.create({
     backgroundColor: "white",
   },
   forgot_button: {
-    marginLeft: 0,
+    marginRight: 40,
     marginTop: 10,
   },
   login: {
@@ -237,14 +230,9 @@ const style = StyleSheet.create({
     // justifyContent:'center',
     // alignItems:"center",
     marginLeft: 30,
-    marginTop: 40,
+    marginTop: 20,
   },
-  line: {
-    marginBottom: 0,
-    // backgroundColor:"red",
-    marginLeft: 50,
-    marginBottom: 50,
-  },
+  
   forgot: {
     padding: 1,
 

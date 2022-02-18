@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Button, ImageBackground } from "react-native";
+import { View, Text, StyleSheet, Button, ImageBackground, Image } from "react-native";
 import {
   FlatList,
   State,
@@ -15,9 +15,7 @@ import { ListItem } from "react-native-elements";
 // import users from './classes'
 import { auth } from "./firebase";
 
-const image = {
-  uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRm7t3TPoPgmhbrIGkY5iLCfENgExc44sWJUg&usqp=CAU",
-};
+
 
 const Registration = ({ navigation }) => {
  
@@ -48,21 +46,22 @@ const Registration = ({ navigation }) => {
   return (
     <SafeAreaView>
       <View style={style.wrap}>
-        <ImageBackground source={image} resizeMode="cover" style={style.image}>
-         
+        
+      <Image   style={{alignSelf:"center", width:"120%", height:"40%", borderBottomRightRadius:300, marginBottom:0  }} source={require("../images/w.jpg")} />
+
           <View style={style.crownContainer}>
-            <Icon name="crown" style={style.crown} size={80} color="#c2c4c3" />
+            
             <Text style={style.heading}> Registration </Text>
           </View>
           <View style={style.backBox}>
-            <View style={style.textWrap}>
+            
               {/* <Form onPress={CreateUser}> */}
               <View style={style.TextInput}>
                 <Icons
                   style={style.icon}
                   name="user"
                   size={20}
-                  color={"#aeb0af"}
+                  color={"#6666ff"}
                 />
                 <TextInput
                   style={style.input}
@@ -77,7 +76,7 @@ const Registration = ({ navigation }) => {
                   style={style.icon}
                   name="user"
                   size={20}
-                  color={"#aeb0af"}
+                  color={"#6666ff"}
                 />
                 <TextInput
                   style={style.input}
@@ -91,7 +90,7 @@ const Registration = ({ navigation }) => {
                 <Icon
                   style={style.icon}
                   name="mail"
-                  color="#aeb0af"
+                  color="#6666ff"
                   size={20}
                   marginLeft={20}
                 />
@@ -108,7 +107,7 @@ const Registration = ({ navigation }) => {
                   style={style.icon}
                   name="lock"
                   size={20}
-                  color={"#aeb0af"}
+                  color={"#6666ff"}
                 />
                 <TextInput
                   style={style.input}
@@ -155,13 +154,13 @@ const Registration = ({ navigation }) => {
                 
                 onPress={handleSinUp}>
                   
-                  <Text> Register </Text>
+                  <Text style={{color:'white'}}> Register </Text>
                 </TouchableOpacity>
               </View>
               {/* </Form> */}
-            </View>
+           
           </View>
-        </ImageBackground>
+        
       </View>
     </SafeAreaView>
   );
@@ -170,39 +169,29 @@ const Registration = ({ navigation }) => {
 const style = StyleSheet.create({
   wrap: {
     height: "100%",
+    backgroundColor:'white'
   },
-  image: {
-    flex: 1,
-    justifyContent: "center",
-  },
-  crown: {
-    width: 100,
-    height: 100,
-    backgroundColor: "white",
-
-    borderRadius: 100,
-    alignContent: "center",
-    justifyContent: "center",
-    marginLeft: 11,
-    marginTop: 50,
-    padding: 20,
-  },
+ 
+  
   createAcc: {
     marginTop: 25,
-    backgroundColor: "#c2c4c3",
+    backgroundColor: "#6666ff",
     borderRadius: 40,
-    height: "15%",
-    width: "50%",
-    paddingLeft: 65,
-    paddingTop: 9,
+    height: "10%",
+    width: "40%",
+    
+    alignItems:'center',
+    alignContent:"center",
+    justifyContent:"center",
+    
     marginBottom: 80,
-    marginLeft: 85,
+    // marginLeft: 85,
   },
 
   textWrap: {
-    height: "55%",
-    marginTop:50,
-    marginLeft: 27,
+    // height: "55%",
+    // marginTop:50,
+    // marginLeft: 27,
   },
   icon: {
     paddingLeft: 20,
@@ -215,37 +204,35 @@ const style = StyleSheet.create({
     borderRadius: 30,
     width: "90%",
     height: 45,
-    // marginBottom: 20,
-    paddingTop: 7,
     
-    
-    marginTop: 35,
-
+    marginTop: 10,
     flexDirection: "row",
-
     alignItems: "center",
   },
   heading: {
-    width: "40%",
-    marginLeft: "20%",
-    marginTop: 80,
-    marginBottom: 25,
+    // width: "40%",
+    // marginLeft: "20%",
+    textAlign:"center",
+    marginTop: 10,
+    // marginBottom: 25,
     //backgroundColor:"red",
     fontSize: 18,
     fontWeight: "bold",
-    color: "black",
+    color: "#6666ff",
   },
   crownContainer: {
-    flexDirection: "row",
+    // flexDirection: "row",
     padding: 20,
   },
   backBox: {
-    height: "65%",
+    height: "46%",
     width: "95%",
     marginLeft: 10,
-
+    justifyContent:"center",
+    alignContent:"center",
+    alignItems:"center",
     //backgroundColor:"red",
-
+    elevation: 4,
     borderRadius: 10,
     backgroundColor: "white",
   },

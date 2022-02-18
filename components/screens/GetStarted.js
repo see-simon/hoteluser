@@ -10,11 +10,12 @@ import Icon from "react-native-vector-icons/Foundation";
 const GetStarted = ({ navigation }) => {
   return (
     <>
-      <View>
+      <View style={style.container}>
        
-         <ImageBackground source={require("../images/back.jpg")} style={{height:'90%'}}>
+         <ImageBackground source={require("../images/back.jpg")} style={{height:"100%"}}>
             {/* //<Image style={style.bed1} source={require("../images/bed.png")} /> */}
 
+              <Text style={{textAlign:"center", color:"white", fontSize:50, marginTop:"50%" , fontWeight:"bold"}}>Happy Stay</Text>
             <TouchableOpacity
               onPress={() => navigation.navigate("Login", { name: "Login" })}
             >
@@ -31,14 +32,13 @@ const GetStarted = ({ navigation }) => {
 
 const style = StyleSheet.create({
   container: {
-    height: "100%",
-    backgroundColor:'white',
+    flex: 1,
   },
 
   GetStartedText: {
     backgroundColor: "#6666ff",
     width: "30%",
-    height: "50%",
+    height: "10%",
     color:'white',
     borderRadius: 10,
     paddingLeft: 17,
@@ -46,7 +46,7 @@ const style = StyleSheet.create({
     justifyContent: "center",
     alignContent: "center",
     marginLeft: "35%",
-    marginTop: "10%",
+    marginTop: "100%",
     color:'#fff'
   },
   

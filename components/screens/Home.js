@@ -72,7 +72,7 @@ const home = ({ navigation }) => {
   return (
     <>
       <SafeAreaView style={style.cover}>
-        <ImageBackground >
+        
           {/* <View style={style.backBox}> */}
 
           <View style={{ alignItems: "center", marginTop: 5 }}>
@@ -121,7 +121,7 @@ const home = ({ navigation }) => {
                     {/* <Text>{element.id}</Text> graps the id from database */}
 
 
-                    <ImageBackground  style={{width:110,height:110,}} source={{ uri: element.Url }}></ImageBackground>
+                    <Image  style={{width:110,height:110,}} source={{ uri: element.Url }}></Image>
 
                     <View style={style.price}>
                       <Text style={{marginBottom:10, fontWeight:600, fontSize:18, color:'#6666ff'}}>{element.HotelName}</Text>
@@ -136,7 +136,7 @@ const home = ({ navigation }) => {
             </View>
 
           </ScrollView>
-        </ImageBackground>
+       
       </SafeAreaView>
     </>
   );
@@ -193,10 +193,10 @@ const style = StyleSheet.create({
   container: {
     flexDirection: "column",
   },
-  image: {
-    flex: 1,
-    justifyContent: "center",
-  },
+  // image: {
+  //   flex: 1,
+  //   justifyContent: "center",
+  // },
   search: {
     backgroundColor: "#d4d3cf",
     marginLeft: 50,
@@ -223,6 +223,6 @@ const style = StyleSheet.create({
     marginTop: 10,
     color: "#d1d0cd",
   },
-  picContainer: {},
+ 
 });
 export default home;

@@ -11,9 +11,7 @@ import Home from './Home'
 import { auth } from './firebase'
 
 
-const image = {
-    uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRm7t3TPoPgmhbrIGkY5iLCfENgExc44sWJUg&usqp=CAU",
-  };
+
 
 const ForgetPassword = ({ navigation }) => {
 
@@ -43,26 +41,14 @@ const ForgetPassword = ({ navigation }) => {
 
     return (
         <>
-            <SafeAreaView >
+            
 
 
                 <View style={style.container}>
 
-                <ImageBackground 
-                 source={image}
-                 resizeMode="cover"
-                 style={style.image}
-                 
-                 >
-                    
-                    <View style={style.crownContainer}>
+              
+                <Image   style={{alignSelf:"center", width:"120%", height:"40%", borderBottomRightRadius:300, marginBottom:0  }} source={require("../images/images.jpg")} />
 
-
-                        <Icon name="crown" style={style.crown} size={80} color="#c2c4c3" />
-
-                        
-
-                    </View>
 
 
 
@@ -80,10 +66,10 @@ const ForgetPassword = ({ navigation }) => {
                         </View>
 
 
-                        <ScrollView style={style.inputContainer}>
-                            <View>
+                        <ScrollView >
+                            <View style={style.inputContainer}>
                                 <View style={style.inputView}>
-                                    <Icon style={style.icon} name="mail" color="#aeb0af" size={20} />
+                                    <Icon style={style.icon} name="mail" color="#6666ff" size={20} />
 
                                     <TextInput
 
@@ -98,28 +84,28 @@ const ForgetPassword = ({ navigation }) => {
 
 
                             </View>
-                        </ScrollView>
+                      
 
                         
 
 
-                            <TouchableOpacity onPress={sendPasswordReset}>  
+                            <TouchableOpacity style={{alignItems:"center"}} onPress={sendPasswordReset}>  
                                 <Text style={style.verify}>
                                     Varify
                                 </Text>
                             </TouchableOpacity>
 
-
+                            </ScrollView>
                         
 
 
                     </View>
-                    </ImageBackground>
+                   
 
 
                     </View>
                
-            </SafeAreaView>
+           
 
         </>
     )
@@ -128,27 +114,29 @@ const ForgetPassword = ({ navigation }) => {
 const style = StyleSheet.create({
 
     container: {
-        // backgroundColor: "#CA730D",
+         backgroundColor: "white",
         height: "100%",
+    },
+    inputContainer:{
+
+  alignItems:"center",
+        justifyContent:"center",
+        marginTop:45
     },
     description:{
 
         //backgroundColor:"red",
-        padding:"12%",
-        marginTop:25
+        // padding:"12%",
+        alignItems:"center",
+        justifyContent:"center",
+        marginTop:45
 
     },
-
-    image: {
-        flex: 1,
-        justifyContent: "center",
-      },
+  
+    
 
 
-    crownContainer: {
-        
-        padding: 20,
-    },
+   
     icon: {
         paddingLeft: 20
     },
@@ -159,11 +147,12 @@ const style = StyleSheet.create({
         height: 45,
         // marginBottom: 10,
         // paddingTop: 7,
-        marginLeft: 50,
+        // marginLeft: 50,
         flexDirection: "row",
-        
+        alignItems:"center",
+     
 
-        alignItems: "center",
+        
         
     },
     TextInput: {
@@ -174,25 +163,12 @@ const style = StyleSheet.create({
     },
 
 
-    crown: {
-        width: 100,
-        height: 100,
-        backgroundColor: "white",
-
-        borderRadius: 100,
-        alignContent: "center",
-        justifyContent: "center",
-        marginLeft: 11,
-        marginTop: 50,
-        padding: 20
-
-    },
    
     backBox: {
-        height: "65%",
+        height: "55%",
         width: "95%",
         marginLeft: 10,
-
+        elevation: 4,
         marginTop: 10,
         //backgroundColor:"red",
 
@@ -204,18 +180,17 @@ const style = StyleSheet.create({
    
     verify: {
         
-        backgroundColor:"#c2c4c3",
+        backgroundColor:"#6666ff",
+        color:"white",
         height: "20%",
         marginBottom:"40%",
         borderRadius:50,
         width:"40%",
-       flex:0,
-        justifyContent:'center',
-        alignItems:"center",
-        paddingTop:10,
-        paddingLeft:55,
-
-        marginLeft:"30%",
+       
+      
+       textAlign:"center",
+        paddingTop:15,
+        marginTop:50
        
     },
   
