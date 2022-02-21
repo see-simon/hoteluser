@@ -17,6 +17,7 @@ import DatePicker from "react-native-datepicker";
 
 import { Button, Image, Platform } from "react-native";
 import * as ImagePicker from "expo-image-picker";
+import { Avatar } from "react-native-elements/dist/avatar/Avatar";
 
 
 const searchroom = ({ navigation,route }) => {
@@ -25,26 +26,38 @@ const searchroom = ({ navigation,route }) => {
   const [childPlus, setChildPlus] = useState(1);
   const [roomPlus, setRoomPlus] = useState(1);
 //
-const {ItemId,name} = route.params;
+const {ItemId,name , hotel, url} = route.params;
 const id = ItemId;
 const n = name;
+const h = hotel;
+const u = url;
+
+console.log(h);
 console.log(id);
 console.log(n);
+console.log(u)
+
   return (
     <>
       <SafeAreaView>
         <View  style={style.container}>
        
 
-          <View style={style.crownContainer}>
+          <View style={style.pic}>
+         
             
+              <Avatar size={200}  source={{uri: u}}></Avatar>
+              <Text>Welcom to {h}</Text>
+              </View>
+         
+          <View style={style.backBox}>
+
+            {/* <View style={style.search}>
+              <Text style={{ fo
+                ntWeight: "bold" }}>search room</Text>
+            </View> */}
 
             
-          </View>
-          <View style={style.backBox}>
-            {/* <View style={style.search}>
-              <Text style={{ fontWeight: "bold" }}>search room</Text>
-            </View> */}
             <View style={style.checkin}>
               <Text style={style.checkInText}>CheckIn</Text>
 
@@ -234,7 +247,7 @@ console.log(n);
                 })
               }
             >
-              <Text style={style.bookText}>Search Room {n}</Text>
+              <Text style={style.bookText}>Search Room</Text>
             </TouchableOpacity>
           </View>
           
@@ -254,6 +267,16 @@ const style = StyleSheet.create({
     elevation: 4,
     borderRadius: 10,
     backgroundColor: "white",
+  },
+ 
+  pic:{
+    // backgroundColor:"red",
+
+    alignItems:"center",
+    marginTop:20,
+    borderRadius:100,
+
+
   },
   bookNow: {
     alignContent: "center",

@@ -64,13 +64,9 @@ const Profile = ({ navigation }) => {
     <>
       <SafeAreaView>
         <View style={style.container}>
-        <ImageBackground
-            source={image}
-            resizeMode="cover"
-            style={style.image}
-          >
-          <View style={style.crownContainer}>
-            <Icon name="crown" style={style.crown} size={80} color="#c2c4c3" />
+       
+         
+           
 
             <Text style={style.heading} >Profile</Text>
             {/* <TouchableOpacity
@@ -85,7 +81,7 @@ const Profile = ({ navigation }) => {
                 />
               </View>
             </TouchableOpacity> */}
-          </View>
+         
 
           <View style={style.backBox}>
             {/* put form here NB */}
@@ -118,7 +114,7 @@ const Profile = ({ navigation }) => {
             </View>
 
             <ScrollView style={style.inputContainer}>
-              <View>
+            
                 <View style={style.inputView}>
                   <Icons
                     style={style.icon}
@@ -150,7 +146,7 @@ const Profile = ({ navigation }) => {
                     onChangeText={(Surname) => setPassword(Surname)}
                   />
                 </View>
-              </View>
+              
             </ScrollView>
 
             <View style={style.createAcc}>
@@ -165,7 +161,7 @@ const Profile = ({ navigation }) => {
               </TouchableOpacity>
             </View>
           </View>
-          </ImageBackground>
+          
         </View>
       </SafeAreaView>
     </>
@@ -217,7 +213,7 @@ const style = StyleSheet.create({
     height: 45,
     marginBottom: 20,
     paddingTop: 7,
-    marginLeft: 50,
+    // marginLeft: 50,
     flexDirection: "row",
 
     alignItems: "center",
@@ -253,15 +249,16 @@ const style = StyleSheet.create({
     color: "#000"
   },
   backBox: {
-    height: "70%",
+    height: "80%",
     width: "95%",
-    marginLeft: 10,
-
+    
+    margin:10,
     marginTop: 10,
     //backgroundColor:"red",
-
+    elevation: 4,
     borderRadius: 10,
     backgroundColor: "white",
+    alignItems: "center",
   },
 
   login: {

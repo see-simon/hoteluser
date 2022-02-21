@@ -17,12 +17,7 @@ import { array } from "yup/lib/locale";
 import Pictures from "./array";
 import firebase from "firebase";
 
-// import { Avatar } from 'react-native-paper';
-// import {auth} from "./firebase"
 
-// const image = {
-//   uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRm7t3TPoPgmhbrIGkY5iLCfENgExc44sWJUg&usqp=CAU",
-// };
 
 const home = ({ navigation }) => {
   const [search, setSearch] = useState("");
@@ -110,7 +105,7 @@ const home = ({ navigation }) => {
 
         <ScrollView>
           {users.map((element) => (
-            <TouchableOpacity onPress={() => navigation.navigate("searchroom",   {ItemId:element.id , name:element.Location })}>
+            <TouchableOpacity onPress={() => navigation.navigate("searchroom",   {ItemId:element.id , name:element.Location, hotel:element.HotelName, url: element.Url })}>
               <View
                 style={{
                   margin: 10,
@@ -124,7 +119,6 @@ const home = ({ navigation }) => {
                   <Text
                     style={{
                       marginBottom: 10,
-
                       fontSize: 12,
                     }}
                   ></Text>
