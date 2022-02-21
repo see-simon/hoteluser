@@ -1,138 +1,141 @@
 import React from "react";
-import { TextInput, Text, View, Image, StyleSheet ,ImageBackground} from "react-native";
+import {
+  TextInput,
+  Text,
+  View,
+  Image,
+  StyleSheet,
+  ImageBackground,
+} from "react-native";
 import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 import { SafeAreaView } from "react-native-safe-area-context";
 import "../images/logo.png";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import Icons from "react-native-vector-icons/Foundation";
-const image = {
-  uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRm7t3TPoPgmhbrIGkY5iLCfENgExc44sWJUg&usqp=CAU",
-};
-
 
 const paymentScreen = ({ navigation }) => {
   return (
     <>
-      <SafeAreaView >
+      <SafeAreaView>
         <View style={style.container}>
+          <Text
+            style={style.addCard}
+            style={{
+              width: 150,
 
-        <ImageBackground
-            source={image}
-            resizeMode="cover"
-            style={style.image}
+              color: "#6666ff",
+
+              textAlign: "center",
+              fontWeight: "bold",
+              textTransform: "capitalize",
+              marginTop: 30,
+
+              fontSize: 18,
+            }}
           >
-        
-        <View style={style.headercontainer}>
-          <View>
-            <Icons name="crown" style={style.crown} size={80} color="#c2c4c3" />
+            Add card
+          </Text>
+
+          <View style={style.backBox}>
+            <ScrollView>
+              <View>
+                <Image
+                  style={style.bank}
+                  source={require("../images/bankcard.png")}
+                />
+              </View>
+
+              <View style={style.details}>
+                <View style={style.spaceBetweenInput}>
+                  <Text>card Number</Text>
+
+                  <View
+                    style={style.inputBox}
+                    class="input-group mb-3 input-group-sm"
+                  >
+                    <Icon
+                      name="credit-card"
+                      size={25}
+                      style={{ paddingLeft: 2, paddingRight: 15 }}
+                    ></Icon>
+                    <TextInput
+                      style={style.input}
+                      type="text"
+                      class="form-control"
+                      placeholder="Enter card number"
+                    />
+                  </View>
+                </View>
+
+                <View style={style.spaceBetweenInput}>
+                  <Text>card holder name</Text>
+
+                  <View
+                    style={style.inputBox}
+                    class="input-group mb-3 input-group-sm"
+                  >
+                    <Icon
+                      name="people"
+                      size={25}
+                      style={{ paddingLeft: 2, paddingRight: 15 }}
+                    ></Icon>
+                    <TextInput
+                      style={style.input}
+                      type="text"
+                      class="form-control"
+                      placeholder="Enter card holder"
+                    />
+                  </View>
+                </View>
+
+                <View style={style.dataContainer}>
+                  <View>
+                    <Text>Date</Text>
+
+                    <View
+                      style={style.inputBox}
+                      class="input-group mb-3 input-group-sm"
+                    >
+                      <Icon name="calendar-today" size={25}></Icon>
+                      <TextInput
+                        style={style.input}
+                        type="text"
+                        class="form-control"
+                        placeholder="Enter card date"
+                      />
+                    </View>
+                  </View>
+                  <View style={style.cvv}>
+                    <Text>CVV</Text>
+
+                    <View
+                      style={style.inputBox}
+                      class="input-group mb-3 input-group-sm"
+                    >
+                      <TextInput
+                        style={style.input}
+                        type="text"
+                        class="form-control"
+                        placeholder="Enter card CVV"
+                      />
+                    </View>
+                  </View>
+                </View>
+
+                <View style={style.addButton}>
+                  <TouchableOpacity
+                    onPress={() =>
+                      navigation.navigate("paymentSuccess", {
+                        name: "paymentSuccess",
+                      })
+                    }
+                  >
+                    <Text style={style.addCardText}>Pay now</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </ScrollView>
           </View>
-          <Text style={style.addCard}>Add card</Text>
-        </View>
-
-        <View style={style.backBox}>
-          <ScrollView>
-            <View>
-              <Image
-                style={style.bank}
-                source={require("../images/bankcard.png")}
-              />
-            </View>
-
-            <View style={style.details}>
-              <View style={style.spaceBetweenInput}>
-                <Text>card Number</Text>
-
-                <View
-                  style={style.inputBox}
-                  class="input-group mb-3 input-group-sm"
-                >
-                  <Icon
-                    name="credit-card"
-                    size={25}
-                    style={{ paddingLeft: 2, paddingRight: 15 }}
-                  ></Icon>
-                  <TextInput
-                    style={style.input}
-                    type="text"
-                    class="form-control"
-                    placeholder="Enter card number"
-                  />
-                </View>
-              </View>
-
-              <View style={style.spaceBetweenInput}>
-                <Text>card holder name</Text>
-
-                <View
-                  style={style.inputBox}
-                  class="input-group mb-3 input-group-sm"
-                >
-                  <Icon
-                    name="people"
-                    size={25}
-                    style={{ paddingLeft: 2, paddingRight: 15 }}
-                  ></Icon>
-                  <TextInput
-                    style={style.input}
-                    type="text"
-                    class="form-control"
-                    placeholder="Enter card holder"
-                  />
-                </View>
-              </View>
-
-              <View style={style.dataContainer}>
-                <View>
-                  <Text>Date</Text>
-
-                  <View
-                    style={style.inputBox}
-                    class="input-group mb-3 input-group-sm"
-                  >
-                    <Icon name="calendar-today" size={25}></Icon>
-                    <TextInput
-                      style={style.input}
-                      type="text"
-                      class="form-control"
-                      placeholder="Enter card date"
-                    />
-                  </View>
-                </View>
-                <View style={style.cvv}>
-                  <Text>CVV</Text>
-
-                  <View
-                    style={style.inputBox}
-                    class="input-group mb-3 input-group-sm"
-                  >
-                    <TextInput
-                      style={style.input}
-                      type="text"
-                      class="form-control"
-                      placeholder="Enter card CVV"
-                    />
-                  </View>
-                </View>
-              </View>
-
-              <View style={style.addButton}>
-              <TouchableOpacity
-                onPress={() =>
-                  navigation.navigate("paymentSuccess", {
-                    name: "paymentSuccess",
-                  })
-                }
-              >
-                <Text style={style.addCardText}>
-                  Pay now
-                </Text>
-              </TouchableOpacity>
-            </View>
-            </View>
-            
-          </ScrollView>
-        </View>
-        </ImageBackground>
         </View>
       </SafeAreaView>
     </>
@@ -143,43 +146,42 @@ const style = StyleSheet.create({
   bank: {
     position: "absolute",
     width: "95%",
-    
-    width:"80%",
-    height:"76%",
+
+    width: "80%",
+    height: "76%",
     height: 130,
     marginLeft: 40,
     borderRadius: 5,
     marginTop: 20,
     paddingBottom: 15,
   },
-  image: {
-    flex: 1,
-    justifyContent: "center",
-  },
-  addCardText:{
-    width:100,
-    height:40,
-    backgroundColor:"#c2c4c3",
-marginLeft:"30%",
-    paddingTop:10,
-    paddingLeft:20,
-    borderRadius:50,
-    marginTop:20,
-    
-  },
-  backBox:{
 
-    width:"90%",
-    height:"76%",
-    backgroundColor:"white",
-borderRadius:50,
-    marginLeft:20,
-    marginTop:20
+  addCardText: {
+    width: 100,
+    height: 40,
+    backgroundColor: "#6666ff",
+    color:"white",
+    marginLeft: "30%",
+    paddingTop: 10,
+    paddingLeft: 20,
+    borderRadius: 50,
+    marginTop: 20,
+  },
+  backBox: {
+    height: "60%",
+    width: "95%",
+    marginLeft: 10,
+
+    marginTop: 50,
+    //backgroundColor:"red",
+    elevation: 4,
+    borderRadius: 10,
+    backgroundColor: "white",
   },
   crownContainer: {
     flexDirection: "row",
     padding: 20,
-    marginTop:50
+    marginTop: 50,
   },
 
   crown: {
@@ -193,13 +195,13 @@ borderRadius:50,
     padding: 20,
   },
   container: {
-    backgroundColor: "#CA730D",
     height: "100%",
-    
+    backgroundColor: "white",
+    alignItems: "center",
   },
   headercontainer: {
     flexDirection: "row",
-    marginTop:-5,
+    marginTop: -5,
   },
   arrow: {
     paddingTop: 20,
@@ -222,23 +224,13 @@ borderRadius:50,
     // marginLeft: 70,
     // marginTop: 40,
   },
-  addCard: {
-    width: 150,
 
-    color: "white",
-
-    marginLeft: 110,
-    fontWeight: "bold",
-    textTransform: "capitalize",
-    marginTop: 20,
-  },
   details: {
     marginLeft: 40,
     marginTop: 178,
     marginRight: 30,
-    paddingTop:-40,
-    paddingBottom:10
-
+    paddingTop: -40,
+    paddingBottom: 10,
   },
   //
 

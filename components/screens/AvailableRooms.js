@@ -38,11 +38,7 @@ const AvailableRooms = ({ navigation }) => {
     <>
       <SafeAreaView>
         <View style={style.cover}>
-          <ImageBackground
-            source={image}
-            resizeMode="cover"
-            style={style.image}
-          >
+          
             <View style={style.header}>
               <Text style={style.text}>Available Rooms</Text>
             </View>
@@ -56,8 +52,9 @@ const AvailableRooms = ({ navigation }) => {
                  <Avatar size={150}  source={{ uri: element.Url }}></Avatar>
                  
                  <View style={style.price}>
-                 <Text style={{}}>Price : R {element.RoomPrice}</Text>
-                 <Text style={{}}>Room : {element.RoomNumber}</Text>
+                 <Text >Price : R {element.RoomPrice}</Text>
+                 <Text >Room : {element.RoomNumber}</Text>
+                 <Text>Choose room</Text>
                  </View>
                  
                  </View>
@@ -65,7 +62,7 @@ const AvailableRooms = ({ navigation }) => {
                 </TouchableOpacity>
               </View>
             </ScrollView>
-          </ImageBackground>
+          
         </View>
       </SafeAreaView>
     </>
@@ -75,6 +72,7 @@ const AvailableRooms = ({ navigation }) => {
 const style = StyleSheet.create({
   cover: {
     height: "100%",
+    backgroundColor:"white"
   },
   image: {
     flex: 1,
@@ -83,7 +81,12 @@ const style = StyleSheet.create({
   details: {
     flexDirection:"row",
     marginTop: "10%",
-    marginLeft: 20,
+    marginLeft: 10,
+    width:"95%",
+    borderWidth:1,
+    padding:5,
+    
+
   },
   price:{
     marginLeft: 20,
@@ -91,7 +94,8 @@ const style = StyleSheet.create({
   },
   text: {
     fontWeight: "bold",
-    color: "black",
+    color: "#6666ff",
+    fontSize:18
   },
   RoomDetails: {
     flexDirection: "row",

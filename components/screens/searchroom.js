@@ -17,35 +17,34 @@ import DatePicker from "react-native-datepicker";
 
 import { Button, Image, Platform } from "react-native";
 import * as ImagePicker from "expo-image-picker";
-const image = {
-  uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRm7t3TPoPgmhbrIGkY5iLCfENgExc44sWJUg&usqp=CAU",
-};
 
-const searchroom = ({ navigation }) => {
+
+const searchroom = ({ navigation,route }) => {
   const [date, setDate] = useState(new Date());
   const [audultPlus, setAudultPlus] = useState(1);
   const [childPlus, setChildPlus] = useState(1);
   const [roomPlus, setRoomPlus] = useState(1);
-
+//
+const {ItemId,name} = route.params;
+const id = ItemId;
+const n = name;
+console.log(id);
+console.log(n);
   return (
     <>
       <SafeAreaView>
         <View  style={style.container}>
-        <ImageBackground
-            source={image}
-            resizeMode="cover"
-            style={style.image}
-          >
+       
 
           <View style={style.crownContainer}>
             
 
-            <Icon name="crown" style={style.crown} size={80} color="#c2c4c3" />
+            
           </View>
           <View style={style.backBox}>
-            <View style={style.search}>
+            {/* <View style={style.search}>
               <Text style={{ fontWeight: "bold" }}>search room</Text>
-            </View>
+            </View> */}
             <View style={style.checkin}>
               <Text style={style.checkInText}>CheckIn</Text>
 
@@ -235,10 +234,10 @@ const searchroom = ({ navigation }) => {
                 })
               }
             >
-              <Text style={style.bookText}>Search Room</Text>
+              <Text style={style.bookText}>Search Room {n}</Text>
             </TouchableOpacity>
           </View>
-          </ImageBackground>
+          
         </View>
       </SafeAreaView>
     </>
@@ -246,10 +245,13 @@ const searchroom = ({ navigation }) => {
 };
 const style = StyleSheet.create({
   backBox: {
-    height: "78%",
+    height: "60%",
     width: "95%",
     marginLeft: 10,
+    paddingTop:50,
+    marginTop: 50,
     //backgroundColor:"red",
+    elevation: 4,
     borderRadius: 10,
     backgroundColor: "white",
   },
@@ -349,7 +351,7 @@ const style = StyleSheet.create({
     color: "white",
   },
   container: {
-  
+  backgroundColor:"white",
     height: "100%",
   },
 });
