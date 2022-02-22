@@ -26,13 +26,13 @@ const searchroom = ({ navigation,route }) => {
   const [childPlus, setChildPlus] = useState(1);
   const [roomPlus, setRoomPlus] = useState(1);
 //
-const {ItemId,name , hotel, url , RoomNumber} = route.params;
+const {ItemId,name , hotel, url , roomNum} = route.params;
 const id = ItemId;
 const n = name;
 const h = hotel;
 const u = url;
 
-const rn = RoomNumber;
+const rn = roomNum;
 
 console.log(h);
 console.log(id);
@@ -51,7 +51,7 @@ console.log(rn);
          
             
               <Avatar size={200}  source={{uri: u}}></Avatar>
-              <Text>Welcom to {h}</Text>
+              <Text>Welcom to {h} {"Room number: "} {rn}</Text>
               </View>
          
           <View style={style.backBox}>
