@@ -32,16 +32,12 @@ const Registration = ({ navigation }) => {
       const user = userCredentials.user;
       console.log(user.email)
       console.log(user.password)
-      ToastAndroid.show('Request sent successfully!', ToastAndroid.SHORT);
+      ToastAndroid.show('successfully registered!', ToastAndroid.SHORT);
     })
     .catch(error=>alert(error.message))
     
  }
 
- 
- 
-
- 
 
   return (
     <SafeAreaView>

@@ -26,16 +26,20 @@ const searchroom = ({ navigation,route }) => {
   const [childPlus, setChildPlus] = useState(1);
   const [roomPlus, setRoomPlus] = useState(1);
 //
-const {ItemId,name , hotel, url} = route.params;
+const {ItemId,name , hotel, url , RoomNumber} = route.params;
 const id = ItemId;
 const n = name;
 const h = hotel;
 const u = url;
 
+const rn = RoomNumber;
+
 console.log(h);
 console.log(id);
 console.log(n);
 console.log(u)
+
+console.log(rn);
 
   return (
     <>

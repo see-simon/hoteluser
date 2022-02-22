@@ -11,7 +11,7 @@ import { Formik } from "formik";
 
 
 import React, { useState, useEffect } from "react";
-import { Button, Image, Platform } from "react-native";
+import { Button, Image, Platform, ToastAndroid } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 
 import { TextInput, TouchableOpacity } from "react-native-gesture-handler";
@@ -20,14 +20,12 @@ import Icon from "react-native-vector-icons/Foundation";
 import { Value } from "react-native-reanimated";
 import Icons from "react-native-vector-icons/Entypo";
 import Iconss from "react-native-vector-icons/FontAwesome";
-import Home from "./Home";
+import firebase from "firebase";
 
 import { launchCamera, launchImageLibrary } from "react-native-image-picker";
 
 
-const image = {
-  uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRm7t3TPoPgmhbrIGkY5iLCfENgExc44sWJUg&usqp=CAU",
-};
+
 
 const Profile = ({ navigation }) => {
   const [isPasswordShow, setPasswordShow] = useState(false);
@@ -37,8 +35,7 @@ const Profile = ({ navigation }) => {
     password: yup.string().required().min(8),
   });
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  
 
   // picture
 
@@ -60,31 +57,52 @@ const Profile = ({ navigation }) => {
     }
   };
 
+  //
+
+  const [name , setName]= useState();
+  const [surname, setSurname] = useState();
+
+  const getName = (e) => {
+    setName(e.target.value);
+  };
+
+  const getSurname = (e) => {
+    setSurname(e.target.value);
+  };
+
+  //create profile
+
+  const db = firebase.firestore()
+
+  const createProfile = (e) => {
+    // e.preventDefault();
+    // let uid = e.target.id
+    db.collection("/createProfile/")
+      .add({
+        // Url: url,
+        // HotelName: hotelName,
+        // Location: location,
+
+        Name : name,
+        Surname : surname,          
+      })
+      .then((res) => {
+        console.log("prfile created");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+      ToastAndroid.show('Request sent successfully!', ToastAndroid.SHORT)
+  };
+
+
+
   return (
     <>
       <SafeAreaView>
         <View style={style.container}>
-       
-         
-           
-
-            <Text style={style.heading} >Profile</Text>
-            {/* <TouchableOpacity
-              onPress={() => navigation.navigate("Login", { name: "Login" })}
-            >
-              <View style={style.logout}>
-               
-                <Icons
-                  name="log-out"
-                  size={25}
-                  style={{ marginLeft: 15, color: "#c2c4c3" }}
-                />
-              </View>
-            </TouchableOpacity> */}
-         
-
           <View style={style.backBox}>
-            {/* put form here NB */}
+            
 
             <View
               style={{
@@ -101,15 +119,18 @@ const Profile = ({ navigation }) => {
                     width: 150,
                     height: 150,
                     borderRadius: 100,
-                    backgroundColor: "#c2c4c3",
+                    // backgroundColor: "#6666ff",
+                    borderWidth:1,
+
                   }}
                 />
               )}
               <Iconss
                 name="camera"
                 size={20}
-                color={"#aeb0af"}
+                color={"#6666ff"}
                 onPress={pickImage}
+                marginTop={5}
               />
             </View>
 
@@ -120,14 +141,14 @@ const Profile = ({ navigation }) => {
                     style={style.icon}
                     name="user"
                     size={20}
-                    color={"#aeb0af"}
+                    color={"#6666ff"}
                   />
 
                   <TextInput
                     style={style.TextInput}
-                    placeholder="First name."
-                    placeholderTextColor="#003f5c"
-                    onChangeText={(firstname) => setEmail(firstname)}
+                    placeholder="First name"
+                    placeholderTextColor="black"
+                    onChangeText={(name) => getName(name)}
                   />
                 </View>
 
@@ -136,14 +157,14 @@ const Profile = ({ navigation }) => {
                     style={style.icon}
                     name="user"
                     size={20}
-                    color={"#aeb0af"}
+                    color={"#6666ff"}
                   />
                   <TextInput
                     style={style.TextInput}
-                    placeholder="Surname."
-                    placeholderTextColor="#003f5c"
+                    placeholder="Surname"
+                    placeholderTextColor="black"
                     secureTextEntry={true}
-                    onChangeText={(Surname) => setPassword(Surname)}
+                    onChangeText={(surname) => getSurname(surname)}
                   />
                 </View>
               
@@ -151,11 +172,13 @@ const Profile = ({ navigation }) => {
 
             <View style={style.createAcc}>
               <TouchableOpacity
-                onPress={() =>
-                  navigation.navigate("ProfileUpdated", {
-                    name: "ProfileUpdated",
-                  })
-                }
+                // onPress={() =>
+                //   navigation.navigate("ProfileUpdated", {
+                //     name: "ProfileUpdated",
+                //   })
+                  
+                // }
+                onPress={createProfile}
               >
                 <Text>Update Profile</Text>
               </TouchableOpacity>
@@ -170,7 +193,7 @@ const Profile = ({ navigation }) => {
 
 const style = StyleSheet.create({
   container: {
-    // backgroundColor: "#CA730D",
+    backgroundColor: "white",
     height: "100%",
   },
 
@@ -184,12 +207,9 @@ const style = StyleSheet.create({
     marginTop: 100,
     paddingTop: 20,
   },
-  image: {
-    flex: 1,
-    justifyContent: "center",
-  },
+ 
   createAcc: {
-    backgroundColor: "#c2c4c3",
+    backgroundColor: "#6666ff",
     padding: 15,
     paddingLeft: 100,
     // marginTop: 25,
@@ -225,68 +245,23 @@ const style = StyleSheet.create({
     marginLeft: 20,
   },
 
-  crown: {
-    width: 100,
-    height: 100,
-    backgroundColor: "white",
-
-    borderRadius: 100,
-    alignContent: "center",
-    justifyContent: "center",
-    marginLeft: 11,
-    marginTop: 10,
-    padding: 20,
-  },
-  heading: {
-    width: "20%",
-    marginLeft: "20%",
-    marginTop: 50,
-    marginBottom: 25,
-    // backgroundColor:"red",
-
-    fontSize: 18,
-    fontWeight: "bold",
-    color: "#000"
-  },
+  
+  
   backBox: {
     height: "80%",
     width: "95%",
-    
-    margin:10,
+    marginLeft: 10,
+
     marginTop: 10,
     //backgroundColor:"red",
     elevation: 4,
     borderRadius: 10,
     backgroundColor: "white",
-    alignItems: "center",
   },
 
-  login: {
-    backgroundColor: "#CA730D",
+ 
+ 
+   
 
-    marginLeft: 25,
-    borderRadius: 90,
-    padding: 10,
-    paddingLeft: 30,
-    width: "100%",
-    height: "100%",
-  },
-  logAndFogot: {
-    flexDirection: "row",
-    // backgroundColor:"blue",
-    height: "10%",
-  },
-  line: {
-    marginBottom: 0,
-    // backgroundColor:"red",
-    marginLeft: 50,
-    marginBottom: 50,
-  },
-  forgot: {
-    padding: 1,
-
-    marginTop: 10,
-    paddingLeft: 60,
-  },
 });
 export default Profile;
