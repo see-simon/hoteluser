@@ -16,7 +16,12 @@ const image = {
   uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRm7t3TPoPgmhbrIGkY5iLCfENgExc44sWJUg&usqp=CAU",
 };
 
-const AvailableRooms = ({ navigation }) => {
+const AvailableRooms = ({ navigation, route }) => {
+
+  const {roomPictures} = route.params;
+
+  console.log(" simon ",roomPictures)
+
   const [room, setUsers] = useState([]);
   const db = firebase.firestore();
 
@@ -44,15 +49,20 @@ const AvailableRooms = ({ navigation }) => {
             </View>
             <ScrollView>
               <View>
-                
+
+               <Avatar size={150}  source={ roomPictures }></Avatar>
+
                 {room.map((element) => (
-                 
-                
                  <View style={style.details}>
                     <TouchableOpacity onPress={() => navigation.navigate("paymentScreen")}>
 
+
+                 {/* <Avatar size={150}  source={{ uri: element.roomPictures }}></Avatar> */}
+                 
+
                  <Avatar size={150}  source={{ uri: element.Url }}></Avatar>
                  </TouchableOpacity>
+
                  <View style={style.price}>
                  <Text >Price : R {element.RoomPrice}</Text>
                  <Text >Room : {element.RoomNumber}</Text>
@@ -62,6 +72,7 @@ const AvailableRooms = ({ navigation }) => {
                  </View>
                 ))}
                 
+              
               </View>
             </ScrollView>
           

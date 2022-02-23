@@ -26,11 +26,14 @@ const searchroom = ({ navigation,route }) => {
   const [childPlus, setChildPlus] = useState(1);
   const [roomPlus, setRoomPlus] = useState(1);
 //
-const {ItemId,name , hotel, url , roomNum} = route.params;
+
+const {ItemId,name , hotel, url, roomNum,roomPic} = route.params;
+
 const id = ItemId;
 const n = name;
 const h = hotel;
 const u = url;
+const roomPictures = roomPic;
 
 const rn = roomNum;
 
@@ -38,6 +41,9 @@ console.log(h);
 console.log(id);
 console.log(n);
 console.log(u)
+
+
+console.log(roomPictures)
 
 console.log(rn);
 
@@ -246,9 +252,9 @@ console.log(rn);
             <TouchableOpacity
               style={style.bookNow}
               onPress={() =>
-                navigation.navigate("AvailableRooms", {
-                  name: "AvailableRooms",
-                })
+                navigation.navigate("AvailableRooms", {roomPictures})
+
+
               }
             >
               <Text style={style.bookText}>Search Room</Text>

@@ -10,7 +10,7 @@ import {
   useColorScheme,
   ImageStore,
 } from "react-native";
-import { Avatar, ListItem } from "react-native-elements";
+import { Avatar, Button, ListItem } from "react-native-elements";
 import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 import { Icon } from "react-native-vector-icons/AntDesign";
 import { array } from "yup/lib/locale";
@@ -20,9 +20,10 @@ import firebase from "firebase";
 
 
 const home = ({ navigation }) => {
-  const [search, setSearch] = useState("");
+  
 
   const [users, setUsers] = useState([]);
+
   const db = firebase.firestore();
 
   useEffect(() => {
@@ -62,6 +63,35 @@ const home = ({ navigation }) => {
       });
   };
 
+  // search 
+
+  useEffect(() => {
+    let search = [];
+    db.collection("createHotel")
+      .get()
+      .then((res) => {
+        res.forEach((action) => {
+          userInfo.push({ ...action.data(), id: action.id });
+        });
+
+        setSearch(search);
+        // console.log(id)
+      });
+  }, []);
+
+  const searchHotel =()=>{
+    db.collection('createHotel')
+    .where('Location' , 'in' , ['po','PO'])
+    .limit(5)
+    .get()
+    .then(querysnapshot=>{
+      console.log(querysnapshot, " jndjmcc")
+    })
+  }
+
+  const [search, setSearch] = useState([]);
+  
+
   return (
     <>
       <SafeAreaView style={style.cover}>
@@ -91,21 +121,35 @@ const home = ({ navigation }) => {
               paddingLeft: 10,
             }}
             // onChangeText={(text) => searchFilterFunction(text)}
-            value={search}
-            underlineColorAndroid="transparent"
+             value={search}
+            onChangeText={(text) => searchHotel(text)}
+            //underlineColorAndroid="transparent"
             placeholder="Search Here"
           />
         </View>
+        
 
         <View>
           <Text style={{ fontSize: 20, margin: 10, color: "gray" }}>
             Popular hotels
           </Text>
         </View>
+<View>
+            {
+              search.map(action=>(
+                <Button  onPress={searchHotel}> search</Button>
+              ))
+            }
+            </View>
 
         <ScrollView>
           {users.map((element) => (
-            <TouchableOpacity onPress={() => navigation.navigate("searchroom",   {ItemId:element.id , name:element.Location, hotel:element.HotelName, url: element.Url, roomNum: element.RoomNumber })}>
+
+           <> 
+            <TouchableOpacity onPress={() => navigation.navigate("searchroom",   {ItemId:element.id , name:element.Location, hotel:element.HotelName, url: element.Url, roomPic: element.roomUrl, roomNum:element.RoomNumber })}>
+
+            
+
               <View
                 style={{
                   margin: 10,
@@ -129,6 +173,7 @@ const home = ({ navigation }) => {
                 </View>
               </View>
             </TouchableOpacity>
+            </>
           ))}
         </ScrollView>
       </SafeAreaView>
