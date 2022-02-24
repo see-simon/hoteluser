@@ -146,7 +146,7 @@ const home = ({ navigation }) => {
           {users.map((element) => (
 
            <> 
-            <TouchableOpacity onPress={() => navigation.navigate("searchroom",   {ItemId:element.id , name:element.Location, hotel:element.HotelName, url: element.Url, roomPic: element.roomUrl, roomNum:element.RoomNumber })}>
+            <TouchableOpacity onPress={() => navigation.navigate("searchroom",   {ItemId:element.id , name:element.Location, hotel:element.HotelName, url: element.Url, roomPic: element.roomUrl, roomNum:element.RoomNumber , roomMoney: element.RoomPrice })}>
 
             
 

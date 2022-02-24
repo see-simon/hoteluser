@@ -20,46 +20,60 @@ import * as ImagePicker from "expo-image-picker";
 import { Avatar } from "react-native-elements/dist/avatar/Avatar";
 
 
-const searchroom = ({ navigation,route }) => {
+const searchroom = ({ navigation, route }) => {
   const [date, setDate] = useState(new Date());
   const [audultPlus, setAudultPlus] = useState(1);
   const [childPlus, setChildPlus] = useState(1);
   const [roomPlus, setRoomPlus] = useState(1);
-//
+  //
 
-const {ItemId,name , hotel, url, roomNum,roomPic} = route.params;
+  const { ItemId, name, hotel, url, roomNum, roomPic,roomMoney } = route.params;
 
-const id = ItemId;
-const n = name;
-const h = hotel;
-const u = url;
-const roomPictures = roomPic;
+  const id = ItemId;
+  const n = name;
+  const h = hotel;
+  const u = url;
+  const roomPictures = roomPic;
+  const roomPrice = roomMoney;
 
-const rn = roomNum;
+  const rn = roomNum;
 
-console.log(h);
-console.log(id);
-console.log(n);
-console.log(u)
+  console.log(h);
+  console.log(id);
+  console.log(n);
+  console.log(u)
+
+  console.log(roomPrice)
 
 
-console.log(roomPictures)
+  console.log(roomPictures)
 
-console.log(rn);
+  console.log(rn);
+
+  // this should be multiplied with room price from the database
+
+  var totalPrice = 0;
+
+  if (audultPlus > 0) {
+    totalPrice = roomPrice * audultPlus
+    console.log(totalPrice)
+    
+  }
+
+  
 
   return (
     <>
       <SafeAreaView>
-        <View  style={style.container}>
-       
+        <View style={style.container}>
+
 
           <View style={style.pic}>
-         
-            
-              <Avatar size={200}  source={{uri: u}}></Avatar>
-              <Text>Welcom to {h} {"Room number: "} {rn}</Text>
-              </View>
-         
+
+            <Avatar size={200} source={{ uri: u }}></Avatar>
+            <Text>Welcom to {h}  </Text>
+          </View>
+
           <View style={style.backBox}>
 
             {/* <View style={style.search}>
@@ -67,7 +81,7 @@ console.log(rn);
                 ntWeight: "bold" }}>search room</Text>
             </View> */}
 
-            
+
             <View style={style.checkin}>
               <Text style={style.checkInText}>CheckIn</Text>
 
@@ -252,7 +266,7 @@ console.log(rn);
             <TouchableOpacity
               style={style.bookNow}
               onPress={() =>
-                navigation.navigate("AvailableRooms", {roomPictures})
+                navigation.navigate("AvailableRooms", { roomPictures })
 
 
               }
@@ -260,7 +274,7 @@ console.log(rn);
               <Text style={style.bookText}>Search Room</Text>
             </TouchableOpacity>
           </View>
-          
+
         </View>
       </SafeAreaView>
     </>
@@ -271,20 +285,20 @@ const style = StyleSheet.create({
     height: "60%",
     width: "95%",
     marginLeft: 10,
-    paddingTop:50,
+    paddingTop: 50,
     marginTop: 50,
     //backgroundColor:"red",
     elevation: 4,
     borderRadius: 10,
     backgroundColor: "white",
   },
- 
-  pic:{
+
+  pic: {
     // backgroundColor:"red",
 
-    alignItems:"center",
-    marginTop:20,
-    borderRadius:100,
+    alignItems: "center",
+    marginTop: 20,
+    borderRadius: 100,
 
 
   },
@@ -384,7 +398,7 @@ const style = StyleSheet.create({
     color: "white",
   },
   container: {
-  backgroundColor:"white",
+    backgroundColor: "white",
     height: "100%",
   },
 });

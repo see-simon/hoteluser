@@ -12,15 +12,13 @@ import { ListItem } from "react-native-elements/dist/list/ListItem";
 import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 
 import firebase from "firebase";
-const image = {
-  uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRm7t3TPoPgmhbrIGkY5iLCfENgExc44sWJUg&usqp=CAU",
-};
+
 
 const AvailableRooms = ({ navigation, route }) => {
 
-  const {roomPictures} = route.params;
+  const { roomPictures } = route.params;
 
-  console.log(" simon ",roomPictures)
+  console.log(" simon ", roomPictures)
 
   const [room, setUsers] = useState([]);
   const db = firebase.firestore();
@@ -43,39 +41,34 @@ const AvailableRooms = ({ navigation, route }) => {
     <>
       <SafeAreaView>
         <View style={style.cover}>
-          
-            <View style={style.header}>
-              <Text style={style.text}>Available Rooms</Text>
+
+          <View style={style.header}>
+            <Text style={style.text}>Available Rooms</Text>
+          </View>
+          <ScrollView>
+            <View>
+
+              {
+                roomPictures.map((element) =>
+                  <TouchableOpacity onPress={() => navigation.navigate("paymentScreen")}>
+                    <View style={style.details}>
+
+                      <Avatar size={150} source={{ uri: element }}></Avatar>
+
+                      <View style={style.price}>
+                        <Text >Price : R {element.RoomPrice}</Text>
+                        <Text >Room : {element.RoomNumber}</Text>
+                        <Text>Choose room</Text>
+                      </View>
+
+
+                    </View>
+                  </TouchableOpacity>
+                )
+              }
             </View>
-            <ScrollView>
-              <View>
+          </ScrollView>
 
-               <Avatar size={150}  source={ roomPictures }></Avatar>
-
-                {room.map((element) => (
-                 <View style={style.details}>
-                    <TouchableOpacity onPress={() => navigation.navigate("paymentScreen")}>
-
-
-                 {/* <Avatar size={150}  source={{ uri: element.roomPictures }}></Avatar> */}
-                 
-
-                 <Avatar size={150}  source={{ uri: element.Url }}></Avatar>
-                 </TouchableOpacity>
-
-                 <View style={style.price}>
-                 <Text >Price : R {element.RoomPrice}</Text>
-                 <Text >Room : {element.RoomNumber}</Text>
-                 <Text>Choose room</Text>
-                 </View>
-                 
-                 </View>
-                ))}
-                
-              
-              </View>
-            </ScrollView>
-          
         </View>
       </SafeAreaView>
     </>
@@ -85,30 +78,30 @@ const AvailableRooms = ({ navigation, route }) => {
 const style = StyleSheet.create({
   cover: {
     height: "100%",
-    backgroundColor:"white"
+    backgroundColor: "white"
   },
   image: {
     flex: 1,
     justifyContent: "center",
   },
   details: {
-    flexDirection:"row",
+    flexDirection: "row",
     marginTop: "10%",
     marginLeft: 10,
-    width:"95%",
-    borderWidth:1,
-    padding:5,
-    
+    width: "95%",
+    borderWidth: 1,
+    padding: 5,
+
 
   },
-  price:{
+  price: {
     marginLeft: 20,
 
   },
   text: {
     fontWeight: "bold",
     color: "#6666ff",
-    fontSize:18
+    fontSize: 18
   },
   RoomDetails: {
     flexDirection: "row",
@@ -130,10 +123,7 @@ const style = StyleSheet.create({
   container: {
     flexDirection: "column",
   },
-  image: {
-    flex: 1,
-    justifyContent: "center",
-  },
+
 });
 
 export default AvailableRooms;
