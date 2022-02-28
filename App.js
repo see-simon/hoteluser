@@ -52,6 +52,8 @@ import AvailableRooms from './components/screens/AvailableRooms';
 // import BookingSuccess from './components/screens/bookingSuccess';
 
 import users from './components/screens/classes'
+import Payment from './components/screens/Payment';
+import { auth } from './components/screens/firebase';
 
 
 
@@ -62,6 +64,12 @@ export default function App() {
 
   const Drawer = createDrawerNavigator();
   const Stack = createStackNavigator();
+
+  const handleLogout = ()=>{
+
+    auth.signOut()
+    .then(() => console.log('User signed out!'));
+  }
 
 
   function DrawerRoutes({navigation}) {
@@ -115,6 +123,7 @@ export default function App() {
         <Stack.Screen name="ProfileUpdated" component={ProfileUpdated} />
         <Stack.Screen name="Registration" component={Registration} />
         <Stack.Screen name='AvailableRooms' component={AvailableRooms}/>
+        <Stack.Screen name='Payment' component={Payment}/>
        
 
 
@@ -123,18 +132,12 @@ export default function App() {
         {/* <Stack.Screen name="Home" component ={Home}/> */}
 
          <Stack.Screen name ="home" component ={DrawerRoutes}/> 
-
-
-
         <Stack.Screen name="paymentScreen" component={paymentScreen} />
         <Stack.Screen name ="searchroom" component ={searchroom}/>
         <Stack.Screen name = "Map" component={Map}/>
         <Stack.Screen name ="BookingDetails" component={BookingDetails}/>
         <Stack.Screen name='Book' component={Book}/>
-        
-
-
-
+      
       </Stack.Navigator>
     </NavigationContainer>
   );

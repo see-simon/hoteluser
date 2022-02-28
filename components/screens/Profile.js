@@ -25,6 +25,8 @@ import firebase from "firebase";
 import { launchCamera, launchImageLibrary } from "react-native-image-picker";
 
 
+import { auth } from "./firebase";
+
 
 
 const Profile = ({ navigation }) => {

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Avatar } from "react-native-elements";
-import { Text } from "react-native";
+import { FlatList, Text } from "react-native";
 import {
   SafeAreaView,
   View,
@@ -47,9 +47,28 @@ const AvailableRooms = ({ navigation, route }) => {
             <Text style={style.text}>Available Rooms</Text>
           </View>
           <ScrollView>
-            <View >
+          <FlatList
+          horizontal
+          keyExtractor={(item)=>item.id}
+          data={roomPictures}
+          renderItem={(element)=>
+            <TouchableOpacity onPress={() => navigation.navigate("paymentScreen")}>
+            <View style={style.details}>
 
-              {
+              <Avatar size={150} source={{ uri: element.Url }}></Avatar>
+
+              <View style={style.price}>
+                <Text >Price : R {totalPrice}</Text>
+                <Text >Room : {element.RoomNumber}</Text>
+                <Text>Choose room</Text>
+              </View>
+
+
+            </View>
+          </TouchableOpacity>
+          }
+          />
+              {/* {
                 roomPictures.map((element) =>
                   <TouchableOpacity onPress={() => navigation.navigate("paymentScreen")}>
                     <View style={style.details}>
@@ -66,8 +85,14 @@ const AvailableRooms = ({ navigation, route }) => {
                     </View>
                   </TouchableOpacity>
                 )
-              }
-            </View>
+              } */}
+
+              {/* <FlatList showsHorizontalScrollIndicator={true}>
+
+                  <Avatar size={150} source={uri}></Avatar>
+
+              </FlatList> */}
+            
           </ScrollView>
 
         </View>
