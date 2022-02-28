@@ -16,9 +16,10 @@ import firebase from "firebase";
 
 const AvailableRooms = ({ navigation, route }) => {
 
-  const { roomPictures } = route.params;
+  const { roomPictures, totalPrice } = route.params;
 
   console.log(" simon ", roomPictures)
+  console.log("total price : " , totalPrice)
 
   const [room, setUsers] = useState([]);
   const db = firebase.firestore();
@@ -46,7 +47,7 @@ const AvailableRooms = ({ navigation, route }) => {
             <Text style={style.text}>Available Rooms</Text>
           </View>
           <ScrollView>
-            <View>
+            <View >
 
               {
                 roomPictures.map((element) =>
@@ -56,7 +57,7 @@ const AvailableRooms = ({ navigation, route }) => {
                       <Avatar size={150} source={{ uri: element }}></Avatar>
 
                       <View style={style.price}>
-                        <Text >Price : R {element.RoomPrice}</Text>
+                        <Text >Price : R {totalPrice}</Text>
                         <Text >Room : {element.RoomNumber}</Text>
                         <Text>Choose room</Text>
                       </View>

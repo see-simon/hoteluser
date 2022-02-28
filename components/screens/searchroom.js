@@ -54,9 +54,10 @@ const searchroom = ({ navigation, route }) => {
 
   var totalPrice = 0;
 
-  if (audultPlus > 0) {
+  if (audultPlus > 0 ) {
     totalPrice = roomPrice * audultPlus
     console.log(totalPrice)
+    // return totalPrice;
     
   }
 
@@ -266,7 +267,7 @@ const searchroom = ({ navigation, route }) => {
             <TouchableOpacity
               style={style.bookNow}
               onPress={() =>
-                navigation.navigate("AvailableRooms", { roomPictures })
+                navigation.navigate("AvailableRooms", { roomPictures, totalPrice })
 
 
               }
