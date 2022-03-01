@@ -16,10 +16,11 @@ import firebase from "firebase";
 
 const AvailableRooms = ({ navigation, route }) => {
 
-  const { roomPictures, totalPrice } = route.params;
+  const { roomPictures, totalPrice, roomNum } = route.params;
 
   console.log(" simon ", roomPictures)
-  console.log("total price : " , totalPrice)
+  console.log("total price : ", totalPrice)
+  console.log(roomNum)
 
   const [room, setUsers] = useState([]);
   const db = firebase.firestore();
@@ -46,54 +47,55 @@ const AvailableRooms = ({ navigation, route }) => {
           <View style={style.header}>
             <Text style={style.text}>Available Rooms</Text>
           </View>
-          <ScrollView>
-          <FlatList
-          horizontal
-          keyExtractor={(item)=>item.id}
-          data={roomPictures}
-          renderItem={(element)=>
-            <TouchableOpacity onPress={() => navigation.navigate("paymentScreen")}>
-            <View style={style.details}>
-
-              <Avatar size={150} source={{ uri: element.Url }}></Avatar>
-
-              <View style={style.price}>
-                <Text >Price : R {totalPrice}</Text>
-                <Text >Room : {element.RoomNumber}</Text>
-                <Text>Choose room</Text>
-              </View>
 
 
-            </View>
-          </TouchableOpacity>
-          }
-          />
-              {/* {
-                roomPictures.map((element) =>
-                  <TouchableOpacity onPress={() => navigation.navigate("paymentScreen")}>
-                    <View style={style.details}>
+        <View style={{marginTop:15, marginTop: "10%",
+    marginLeft: 10,
+    width: "95%",
+    borderWidth: 1,
+    padding: 5}}>
+          <ScrollView horizontal={true}
 
-                      <Avatar size={150} source={{ uri: element }}></Avatar>
-
-                      <View style={style.price}>
-                        <Text >Price : R {totalPrice}</Text>
-                        <Text >Room : {element.RoomNumber}</Text>
-                        <Text>Choose room</Text>
-                      </View>
+          >
+            {
+              roomPictures.map((element) =>
 
 
-                    </View>
-                  </TouchableOpacity>
-                )
-              } */}
+                
+                  <View>
 
-              {/* <FlatList showsHorizontalScrollIndicator={true}>
+                  <Avatar  size={150} source={{ uri: element }} ></Avatar>
+                    { }
 
-                  <Avatar size={150} source={uri}></Avatar>
+                  </View>
+                
+              )
+            }
 
-              </FlatList> */}
-            
           </ScrollView>
+        </View>
+
+          <View style={style.price}>
+            <Text >Price : R {totalPrice}</Text>
+
+            <Text>Choose room {roomNum}</Text>
+          </View>
+
+          <View  style={{backgroundColor: "#6666ff", 
+    
+             alignItems:"center",
+            justifyContent:"center",
+            marginLeft: "45%",
+            marginTop:"50%",
+    borderRadius: 10,
+    padding: 10,
+    width: "20%",
+    height: "5%",  marginTop:20,}}>
+          <TouchableOpacity onPress={() => navigation.navigate("Payment")}>
+
+              <Text style={{ alignSelf:"center", color: "#fff",textAlign:'center', fontWeight: "bold" }}>Continue</Text>
+              </TouchableOpacity>
+          </View>
 
         </View>
       </SafeAreaView>
@@ -111,7 +113,7 @@ const style = StyleSheet.create({
     justifyContent: "center",
   },
   details: {
-    flexDirection: "row",
+    // flexDirection:"row",
     marginTop: "10%",
     marginLeft: 10,
     width: "95%",
@@ -119,9 +121,12 @@ const style = StyleSheet.create({
     padding: 5,
 
 
+
+
   },
   price: {
     marginLeft: 20,
+    marginTop:20,
 
   },
   text: {
