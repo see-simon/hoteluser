@@ -16,11 +16,13 @@ import firebase from "firebase";
 
 const AvailableRooms = ({ navigation, route }) => {
 
-  const { roomPictures, totalPrice, roomNum } = route.params;
+  const { roomPictures, totalPrice, roomNum ,n ,h ,rn, date} = route.params;
 
   console.log(" simon ", roomPictures)
   console.log("total price : ", totalPrice)
   console.log(roomNum)
+
+  console.log(n ," see ",h, " see ", rn, "  date ", date )
 
   const [room, setUsers] = useState([]);
   const db = firebase.firestore();
@@ -92,7 +94,7 @@ const AvailableRooms = ({ navigation, route }) => {
             width: "20%",
             height: "5%",  marginTop:20,}}>
         
-          <TouchableOpacity onPress={() => navigation.navigate("Payment")}>
+          <TouchableOpacity onPress={() => navigation.navigate("Payment",{roomPictures,roomNum, totalPrice ,n ,h ,rn , date})}>
 
               <Text style={{ alignSelf:"center", color: "#fff",textAlign:'center', fontWeight: "bold" }}>Continue</Text>
               </TouchableOpacity>

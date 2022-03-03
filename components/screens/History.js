@@ -6,20 +6,40 @@ import {
   Text,
   StyleSheet,
   View,
-  FlatList,
-  ImageBackground,
+  
   TextInput,
 } from "react-native";
+import firebase  from "firebase";
+//moment(date).format('YYYY-MM-DD')
 
-const image = {
-  uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRm7t3TPoPgmhbrIGkY5iLCfENgExc44sWJUg&usqp=CAU",
-};
+
 
 const History = () => {
+
+  const db = firebase.firestore();
+
+  const [history, setHistory] = useState([])
+
+
+  useEffect(() => {
+    let historyInfo = [];
+    db.collection("booking")
+      .get()
+      .then((res) => {
+        res.forEach((action) => {
+          historyInfo.push({ ...action.data(), id: action.id });
+        });
+
+        setHistory(historyInfo);
+        // console.log(id)
+      });
+  }, []);
+
+
   return (
     <SafeAreaView>
       <View style={style.container}>
-        <ImageBackground source={image} resizeMode="cover" style={style.image}>
+        
         <TextInput
           style={style.textInputStyle}
           
@@ -27,36 +47,19 @@ const History = () => {
           placeholder="Search Here"
         />
 
-          <View style={style.back}>
-            <View style={style.historyBox}>
-              <Text>Price for 1 Night, 2 Adult</Text>
-              <Text>Double Room</Text>
-              <View style={style.room}>
-                <Text>1 Bed </Text>
-                <Text> Room 2 </Text>
-                <Text> R500 </Text>
-              </View>
-            </View>
-            <View style={style.historyBox}>
-              <Text>Price for 1 Night, 2 Adult</Text>
-              <Text>Double Room</Text>
-              <View style={style.room}>
-                <Text>1 Bed </Text>
-                <Text> Room 2 </Text>
-                <Text> R500 </Text>
-              </View>
-            </View>
-            <View style={style.historyBox}>
-              <Text>Price for 1 Night, 2 Adult</Text>
-              <Text>Double Room</Text>
-              <View style={style.room}>
-                <Text>1 Bed </Text>
-                <Text> Room 2 </Text>
-                <Text> R500 </Text>
-              </View>
-            </View>
-          </View>
-        </ImageBackground>
+
+          
+                {history.map((element)=>
+
+                
+
+                      <Text>{moment(element.date).format('YYYY-MM-DD')}</Text>
+                )}
+
+        
+
+          
+        
       </View>
     </SafeAreaView>
   );
@@ -65,17 +68,15 @@ const History = () => {
 const style = StyleSheet.create({
   container: {
     height: "100%",
+     backgroundColor:"white"
   },
-  image: {
-    flex: 1,
-    justifyContent: "center",
-  },
+ 
   itemStyle: {
     padding: 10,
   },
-  back: {},
   historyBox: {
     width: "90%",
+    backgroundColor:"#6666ff",
     height: "25%",
     alignContent: "center",
     justifyContent: "center",

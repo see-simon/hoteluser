@@ -150,7 +150,7 @@ const searchroom = ({ navigation, route }) => {
                 flexDirection: "column",
                 marginTop: 20,
                 width: "90%",
-                backgroundColor: "#ebeded",
+                backgroundColor: "#6666ff",
                 borderRadius: 50,
                 marginLeft: 16,
                 padding: 20,
@@ -265,14 +265,24 @@ const searchroom = ({ navigation, route }) => {
             </View> */}
             </View>
             <TouchableOpacity
-              style={style.bookNow}
+              style={{backgroundColor: "#6666ff", 
+    
+              alignItems:"center",
+              justifyContent:"center",
+              alignContent:"center",
+               marginLeft: "35%",
+              marginTop:"50%",
+              borderRadius: 10,
+              padding: 10,
+              width: "30%",
+              height: "30%",  marginTop:20,}}
               onPress={() =>
-                navigation.navigate("AvailableRooms", { roomPictures, totalPrice })
+                navigation.navigate("AvailableRooms", { roomPictures,roomNum, totalPrice ,n ,h ,rn, date })
 
 
               }
             >
-              <Text style={style.bookText}>Search Room</Text>
+              <Text style={{ alignSelf:"center", color: "#fff",textAlign:'center', fontWeight: "bold" }}>Search Room</Text>
             </TouchableOpacity>
           </View>
 
@@ -347,6 +357,7 @@ const style = StyleSheet.create({
     paddingLeft: 20,
     paddingRight: 80,
     // backgroundColor: "red",
+    color:"white"
   },
   content: {
     //backgroundColor:"blue",

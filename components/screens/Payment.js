@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import { CreditCardInput } from "react-native-credit-card-input";
 import { Secret_key, STRIPE_PUBLISHABLE_KEY } from './keys';
+import firebase from 'firebase';
 
 // create a component
 const CURRENCY = 'USD';
@@ -59,7 +60,11 @@ function getCreditCardToken(creditCardData){
   });
 };
 
-const Payment = ({navigation}) => {
+const Payment = ({navigation, route}) => {
+
+  const {roomPictures,roomNum, totalPrice ,n ,h ,rn, date } = route.params;
+
+  console.log(roomNum," ",totalPrice," " ,n," ", h ," ", rn)
 
 
   const [CardInput, setCardInput] = React.useState({})
@@ -108,7 +113,7 @@ const Payment = ({navigation}) => {
   const charges = async () => {
 
     const card = {
-        'amount': 50, 
+        'amount': totalPrice, 
         'currency': CURRENCY,
         'source': CARD_TOKEN,
         'description': "Developers Sin Subscription"
@@ -139,6 +144,30 @@ const Payment = ({navigation}) => {
     setCardInput(data)
   }
 
+  //booking 
+
+  const db = firebase.firestore();
+
+  const addBooking=()=>{
+
+    db.collection("booking")
+    .add({
+      roomNum:roomNum,
+      totalPrice: totalPrice,
+      location:n,
+      hotelname:h,
+      roomNum :rn,
+      date:date
+    })
+    .then((res) => {
+      console.log('successfully booked!!')
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  };
+
+
   return (
     <View style={styles.container}>
         <StatusBar barStyle="light-content" backgroundColor="#2471A3" />
@@ -155,7 +184,7 @@ const Payment = ({navigation}) => {
         onChange={_onChange} />
 
       <TouchableOpacity 
-      onPress={onSubmit}
+      onPress={onSubmit , addBooking}
       style={styles.button}>
         <Text
           style={styles.buttonText}>
