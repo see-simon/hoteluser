@@ -8,10 +8,10 @@ import {
   TextInput,
   View,
   useColorScheme,
-  ImageStore,
+  ImageStore, ScrollView, TouchableOpacity
 } from "react-native";
 import { Avatar, Button, ListItem } from "react-native-elements";
-import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
+
 import { Icon } from "react-native-vector-icons/AntDesign";
 import { array } from "yup/lib/locale";
 import Pictures from "./array";

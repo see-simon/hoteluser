@@ -54,6 +54,7 @@ import AvailableRooms from './components/screens/AvailableRooms';
 import users from './components/screens/classes'
 import Payment from './components/screens/Payment';
 import { auth } from './components/screens/firebase';
+// import PaymentStyle from './components/screens/PaymentStyle';
 
 
 
@@ -124,6 +125,7 @@ export default function App() {
         <Stack.Screen name="Registration" component={Registration} />
         <Stack.Screen name='AvailableRooms' component={AvailableRooms}/>
         <Stack.Screen name='Payment' component={Payment}/>
+        {/* <Stack.Screen name='PaymentStyle' component={PaymentStyle}/> */}
        
 
 

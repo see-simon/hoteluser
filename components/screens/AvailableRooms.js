@@ -50,10 +50,10 @@ const AvailableRooms = ({ navigation, route }) => {
 
 
         <View style={{marginTop:15, marginTop: "10%",
-    marginLeft: 10,
-    width: "95%",
-    borderWidth: 1,
-    padding: 5}}>
+          marginLeft: 10,
+          width: "95%",
+          borderWidth: 1,
+          padding: 5}}>
           <ScrollView horizontal={true}
 
           >
@@ -65,7 +65,7 @@ const AvailableRooms = ({ navigation, route }) => {
                   <View>
 
                   <Avatar  size={150} source={{ uri: element }} ></Avatar>
-                    { }
+                    
 
                   </View>
                 
@@ -83,14 +83,15 @@ const AvailableRooms = ({ navigation, route }) => {
 
           <View  style={{backgroundColor: "#6666ff", 
     
-             alignItems:"center",
+            alignItems:"center",
             justifyContent:"center",
             marginLeft: "45%",
             marginTop:"50%",
-    borderRadius: 10,
-    padding: 10,
-    width: "20%",
-    height: "5%",  marginTop:20,}}>
+            borderRadius: 10,
+            padding: 10,
+            width: "20%",
+            height: "5%",  marginTop:20,}}>
+        
           <TouchableOpacity onPress={() => navigation.navigate("Payment")}>
 
               <Text style={{ alignSelf:"center", color: "#fff",textAlign:'center', fontWeight: "bold" }}>Continue</Text>
@@ -119,10 +120,6 @@ const style = StyleSheet.create({
     width: "95%",
     borderWidth: 1,
     padding: 5,
-
-
-
-
   },
   price: {
     marginLeft: 20,
