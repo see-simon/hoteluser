@@ -13,7 +13,10 @@ import Icon from "react-native-vector-icons/MaterialIcons";
 
 const paymentSuccess = ({ navigation }) => {
 
- 
+//  const {totalPrice} = route.params;
+
+//  console.log(totalPrice,"the")
+
   return (
     <>
       <SafeAreaView>
@@ -37,7 +40,7 @@ const paymentSuccess = ({ navigation }) => {
             </View>
             <Text style={style.description}>
               {" "}
-              Successfully paid 500 for booking check your email for
+              Successfully paid R for booking check your email for
               confirmation
             </Text>
 
@@ -55,7 +58,7 @@ const paymentSuccess = ({ navigation }) => {
 
 const style = StyleSheet.create({
   container: {
-    // justifyContent: "center",
+    justifyContent: "center",
     // alignItems: "center",
     // flex: 1,
     // backgroundColor:"#CA730D",
@@ -73,7 +76,7 @@ const style = StyleSheet.create({
     width: "95%",
     
     margin:10,
-    marginTop: 10,
+    marginTop: 30,
     //backgroundColor:"red",
     elevation: 4,
     borderRadius: 10,

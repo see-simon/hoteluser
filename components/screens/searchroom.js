@@ -93,7 +93,7 @@ const searchroom = ({ navigation, route }) => {
                   date={date}
                   mode="date"
                   // placeholder="check in"
-                  format="YYYY-MM-DD"
+                  // format="YYYY-MM-DD"
                   // minDate="0"
                   // maxDate="0"
                   confirmBtnText="Confirm"
@@ -351,6 +351,7 @@ const style = StyleSheet.create({
   room: {
     flexDirection: "row",
     padding: 10,
+    justifyContent:"space-between"
     // width:"80%",
   },
   roomText: {

@@ -80,7 +80,7 @@ const AvailableRooms = ({ navigation, route }) => {
           <View style={style.price}>
             <Text >Price : R {totalPrice}</Text>
 
-            <Text>Choose room {roomNum}</Text>
+            
           </View>
 
           <View  style={{backgroundColor: "#6666ff", 

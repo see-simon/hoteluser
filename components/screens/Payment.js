@@ -100,7 +100,10 @@ const Payment = ({navigation, route}) => {
       console.log('pament_data', pament_data);
       if(pament_data.status == 'succeeded')
       {
-        alert("Payment Successfully");
+        addBooking();
+        navigation.navigate('paymentSuccess')
+        // alert("Payment Successfully");
+
       }
       else{
         alert('Payment failed');
@@ -182,9 +185,11 @@ const Payment = ({navigation, route}) => {
         validColor="#fff"
         placeholderColor="#ccc"
         onChange={_onChange} />
+{/* onPress={() => navigation.navigate("Login", { name: "Login" })} */}
+
 
       <TouchableOpacity 
-      onPress={onSubmit , addBooking}
+      onPress={onSubmit}
       style={styles.button}>
         <Text
           style={styles.buttonText}>

@@ -6,10 +6,13 @@ import {
   Text,
   StyleSheet,
   View,
-  
+
   TextInput,
 } from "react-native";
-import firebase  from "firebase";
+import firebase from "firebase";
+import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
+import moment from "moment";
+
 //moment(date).format('YYYY-MM-DD')
 
 
@@ -36,49 +39,65 @@ const History = () => {
   }, []);
 
 
+  const Delete = () => {
+
+    db.collection('booking').doc().delete()
+
+  }
+
   return (
     <SafeAreaView>
       <View style={style.container}>
-        
+
         <TextInput
           style={style.textInputStyle}
-          
+
           underlineColorAndroid="transparent"
           placeholder="Search Here"
         />
 
 
-          
-                {history.map((element)=>
+        <ScrollView>
+          {history.map((element) =>
+            // <Text>{moment(element.date).format('YYYY-MM-DD')}</Text>
 
-                
 
-                      // <Text>{moment(element.date).format('YYYY-MM-DD')}</Text>
-                      <>
-                      
-                       <Text>
 
-                        {element.hotelname}
-                      </Text>
-                       <Text>
+            <View style={{
+                flexDirection:"row", 
+                backgroundColor:"#6666ff", 
+                marginHorizontal: 20, 
+                marginVertical: 5, 
+                elevation: 2,
+                borderRadius: 5,
+                padding: 8,
+                justifyContent: 'space-between'
+              }}>
 
-                       {element.location}
-                     </Text>
-                      <Text>
+              <View>
+                <Text style={{color: '#fff'}}>Location:  {element.location}</Text>
+                <Text style={{color: '#fff'}}>Hotel Name: {element.hotelname}</Text>
 
-                      {element.roomNum}
-                    </Text>
-                     <Text>
 
-                     {element.totalPrice}
-                   </Text>
-                   </>
-                )}
+                <Text style={{color: '#fff'}}>Date: {moment(element.date).format('DD MMM YYYY')} </Text>
+                <Text style={{color: '#fff'}}>Room: {element.roomNum} </Text>
+                <Text style={{color: '#fff'}}>Total Price: R{element.totalPrice} </Text>
+              </View>
+              <View style={{}}>
+                <TouchableOpacity 
+                  onPress={Delete} 
+                  style={{backgroundColor: 'red', padding: 5, borderRadius: 5}}>
+                  <Text style={{color: '#fff'}}>Delete</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          )}
+        </ScrollView>
 
-        
 
-          
-        
+
+
+
       </View>
     </SafeAreaView>
   );
@@ -87,23 +106,26 @@ const History = () => {
 const style = StyleSheet.create({
   container: {
     height: "100%",
-     backgroundColor:"white"
+    backgroundColor: "white"
   },
- 
+
   itemStyle: {
     padding: 10,
   },
   historyBox: {
     width: "90%",
-    backgroundColor:"#6666ff",
+    backgroundColor: "#6666ff",
     height: "25%",
     alignContent: "center",
     justifyContent: "center",
     backgroundColor: "white",
     borderRadius: 50,
-    marginLeft: 18,
-    paddingLeft: "20%",
-    margin:10
+
+    paddingLeft: "10%",
+    margin: 10
+  },
+  back: {
+    flexDirection: "row"
   },
   textInputStyle: {
     height: 40,

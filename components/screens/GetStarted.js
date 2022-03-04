@@ -12,7 +12,7 @@ const GetStarted = ({ navigation }) => {
     <>
       <View style={style.container}>
        
-         <ImageBackground source={require("../images/back.jpg")} style={{height:"100%"}}>
+         <ImageBackground source={require("../images/picture.jpg")} style={{height:"100%"}}>
             {/* //<Image style={style.bed1} source={require("../images/bed.png")} /> */}
 
               <Text style={{textAlign:"center", color:"white", fontSize:50, marginTop:"50%" , fontWeight:"bold"}}>Happy Stay</Text>
