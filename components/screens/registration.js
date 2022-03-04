@@ -64,7 +64,7 @@ const Registration = ({ navigation }) => {
                   placeholder="First name"
                   autoCapitalize="none"
                   placeholderTextColor="black"
-                 onChangeText={(text) => setFirstName(text)}
+                //  onChangeText={(text) => setFirstName(text)}
                 />
               </View>
               <View style={style.TextInput}>
@@ -79,7 +79,7 @@ const Registration = ({ navigation }) => {
                   placeholder="Surname"
                   autoCapitalize="none"
                   placeholderTextColor="black"
-                  onChangeText={(text) => setSurname(text)}
+                  // onChangeText={(text) => setSurname(text)}
                 />
               </View>
               <View style={style.TextInput}>

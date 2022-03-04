@@ -42,32 +42,14 @@ const home = ({ navigation }) => {
 
   //
 
-  const hotelAndAvailableRooms = (e) => {
-    let uid = e.target.id;
+  
 
-    db.collection("createHotel")
-      .doc(uid)
-      .get({
-        // Name: name,
-        // Surname: surname,
-        // Location: location,
-        // Description: description,
-        // Age: age
-        Url,
-      })
-      .then(() => {
-        console.log("got the url");
-      })
-      .catch((err) => {
-        console.log(Url);
-      });
-  };
-
-  // search 
+  
 
   useEffect(() => {
     let search = [];
     db.collection("createHotel")
+    .where('Location', 'in', [''])
       .get()
       .then((res) => {
         res.forEach((action) => {
@@ -79,6 +61,10 @@ const home = ({ navigation }) => {
       });
   }, []);
 
+
+//search
+
+
   const searchHotel =()=>{
     db.collection('createHotel')
     .where('Location' , 'in' , ['po','PO'])
@@ -88,6 +74,10 @@ const home = ({ navigation }) => {
       console.log(querysnapshot, " jndjmcc")
     })
   }
+
+  useEffect(()=>{
+
+  })
 
   const [search, setSearch] = useState([]);
   
