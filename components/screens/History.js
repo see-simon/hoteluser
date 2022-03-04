@@ -53,7 +53,26 @@ const History = () => {
 
                 
 
-                      <Text>{moment(element.date).format('YYYY-MM-DD')}</Text>
+                      // <Text>{moment(element.date).format('YYYY-MM-DD')}</Text>
+                      <>
+                      
+                       <Text>
+
+                        {element.hotelname}
+                      </Text>
+                       <Text>
+
+                       {element.location}
+                     </Text>
+                      <Text>
+
+                      {element.roomNum}
+                    </Text>
+                     <Text>
+
+                     {element.totalPrice}
+                   </Text>
+                   </>
                 )}
 
         

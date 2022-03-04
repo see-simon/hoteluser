@@ -18,6 +18,7 @@ import DatePicker from "react-native-datepicker";
 import { Button, Image, Platform } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import { Avatar } from "react-native-elements/dist/avatar/Avatar";
+// import moment from 'moment';
 
 
 const searchroom = ({ navigation, route }) => {
