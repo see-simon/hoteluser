@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "react-native";
 import {
   FlatList,
@@ -10,12 +10,14 @@ import {
   View,
   Alert,
 } from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 import Icon from "react-native-vector-icons/FontAwesome5";
-const image = {
-  uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRm7t3TPoPgmhbrIGkY5iLCfENgExc44sWJUg&usqp=CAU",
-};
+
 import Pictures from "./array";
+import firebase from "firebase";
+import moment from "moment";
+
+
 
 const BookingDetails = ({ navigation }) => {
 
@@ -36,76 +38,82 @@ const BookingDetails = ({ navigation }) => {
     ]
   );
 
+
+  //cancel booking 
+
+  const db = firebase.firestore();
+
+  const [history, setHistory] = useState([])
+
+
+  useEffect(() => {
+    let historyInfo = [];
+    db.collection("booking")
+      .get()
+      .then((res) => {
+        res.forEach((action) => {
+          historyInfo.push({ ...action.data(), id: action.id });
+        });
+
+        setHistory(historyInfo);
+        // console.log(id)
+      });
+  }, []);
+
+
   return (
-    <SafeAreaView style={style.cover}>
-      <View style={style.container}>
-      <ImageBackground
-            source={image}
-            resizeMode="cover"
-            style={style.image}
-          >
-        {/* <View style={style.crownContainer}>
-          <Icon name="crown" style={style.crown} size={80} color="#CA730D" />
-          <Text style={style.heading}>Hotel name</Text>
-        </View> */}
+    <View style={style.container}>
 
-        <View style={style.backBox}>
-          <View style={style.backBox}>
-            {/* <View style={style.BookingDetailsText}>
-              <Text>Booking Details</Text>
-            </View> */}
+        
 
-            <Image
-            style={style.HotelPic}
-            source={require("../images/house2.png")}
-          />
-     
 
-            <View style={style.direction}>
-              <View style={style.imageContainer}></View>
-              <Text style={style.directionText}>Directions</Text>
-              <TouchableOpacity style={style.arrow}
-                onPress={() => navigation.navigate("Map", { name: "Map" })}
-              >
-                <Icon
-                  name="directions"
-                  style={style.directionIcon}
-                  color={"#c2c4c3"}
-                  size={30}
-                 
-              
-                ></Icon>
-              </TouchableOpacity>
+        <ScrollView>
+          {history.map((element) =>
+            // <Text>{moment(element.date).format('YYYY-MM-DD')}</Text>
 
-             
-              
+
+
+            <View style={{
+                flexDirection:"row", 
+                backgroundColor:"#6666ff", 
+                marginHorizontal: 20, 
+                marginVertical: 5, 
+                elevation: 2,
+                borderRadius: 5,
+                padding: 8,
+                justifyContent: 'space-between'
+              }}>
+
+              <View>
+                <Text style={{color: '#fff'}}>Location:  {element.location}</Text>
+                <Text style={{color: '#fff'}}>Hotel Name: {element.hotelname}</Text>
+
+
+                <Text style={{color: '#fff'}}>Date: {moment(element.date).format('DD MMM YYYY')} </Text>
+                <Text style={{color: '#fff'}}>Room: {element.roomNum} </Text>
+                <Text style={{color: '#fff'}}>Total Price: R{element.totalPrice} </Text>
+              </View>
+              <View style={{}}>
+                <TouchableOpacity 
+                   
+                  style={{backgroundColor: 'red', padding: 5, borderRadius: 5}}>
+                  <Text style={{color: '#fff'}}>Cancel booking</Text>
+                </TouchableOpacity>
+              </View>
             </View>
-          </View>
+          )}
+        </ScrollView>
 
-          <View style={style.HistoryBox}>
-                <Text>Price for 1 Night, 2 Adult</Text>
-                <Text>Double Room</Text>
-                
-                  <Text>1 Bed </Text>
-                  <View style={style.room}>
-                  <Text> Room 2 </Text>
-                  <Text> R500 </Text>
-                </View>
-              </View>
 
-              <View style={style.cancelbookAndBack}>
-                <Text onPress={createTwoButtonAlert} style={style.cancel}>Cancel Booking</Text>
-                
-              </View>
-        </View>
-        </ImageBackground>
+
+
+
       </View>
-    </SafeAreaView>
   );
 };
 const style = StyleSheet.create({
   cover: {
-    
+    backgroundColor:"white",
     height: "100%",
   },
   
@@ -114,10 +122,7 @@ const style = StyleSheet.create({
     
     
   },
-  image: {
-    flex: 1,
-    justifyContent: "center",
-  },
+  
   arrow:{
     paddingTop: 15,
   },
@@ -226,7 +231,7 @@ const style = StyleSheet.create({
   },
 
   container: {
-    backgroundColor: "#CA730D",
+    backgroundColor: "white",
     height: "100%",
   },
   crownContainer: {

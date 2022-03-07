@@ -20,7 +20,6 @@ import * as ImagePicker from "expo-image-picker";
 import { Avatar } from "react-native-elements/dist/avatar/Avatar";
 // import moment from 'moment';
 
-
 const searchroom = ({ navigation, route }) => {
   const [date, setDate] = useState(new Date());
   const [audultPlus, setAudultPlus] = useState(1);
@@ -28,7 +27,8 @@ const searchroom = ({ navigation, route }) => {
   const [roomPlus, setRoomPlus] = useState(1);
   //
 
-  const { ItemId, name, hotel, url, roomNum, roomPic,roomMoney } = route.params;
+  const { ItemId, name, hotel, url, roomNum, roomPic, roomMoney } =
+    route.params;
 
   const id = ItemId;
   const n = name;
@@ -42,12 +42,11 @@ const searchroom = ({ navigation, route }) => {
   console.log(h);
   console.log(id);
   console.log(n);
-  console.log(u)
+  console.log(u);
 
-  console.log(roomPrice)
+  console.log(roomPrice);
 
-
-  console.log(roomPictures)
+  console.log(roomPictures);
 
   console.log(rn);
 
@@ -55,34 +54,26 @@ const searchroom = ({ navigation, route }) => {
 
   var totalPrice = 0;
 
-  if (audultPlus > 0 ) {
-    totalPrice = roomPrice * audultPlus
-    console.log(totalPrice)
+  if (audultPlus > 0) {
+    totalPrice = roomPrice * audultPlus;
+    console.log(totalPrice);
     // return totalPrice;
-    
   }
-
-  
 
   return (
     <>
       <SafeAreaView>
         <View style={style.container}>
-
-
           <View style={style.pic}>
-
             <Avatar size={200} source={{ uri: u }}></Avatar>
-            <Text>Welcom to {h}  </Text>
+            <Text>Welcom to {h} </Text>
           </View>
 
           <View style={style.backBox}>
-
             {/* <View style={style.search}>
               <Text style={{ fo
                 ntWeight: "bold" }}>search room</Text>
             </View> */}
-
 
             <View style={style.checkin}>
               <Text style={style.checkInText}>CheckIn</Text>
@@ -120,7 +111,7 @@ const searchroom = ({ navigation, route }) => {
               <Text style={style.checkOutText}>CheckOut</Text>
               <DatePicker
                 style={style.datePicker}
-                style={{ width: 165 }}
+                // style={{ width: 165 }}
                 date={date}
                 mode="date"
                 // placeholder="select date"
@@ -266,27 +257,45 @@ const searchroom = ({ navigation, route }) => {
             </View> */}
             </View>
             <TouchableOpacity
-              style={{backgroundColor: "#6666ff", 
-    
-              alignItems:"center",
-              justifyContent:"center",
-              alignContent:"center",
-               marginLeft: "35%",
-              marginTop:"50%",
-              borderRadius: 10,
-              padding: 10,
-              width: "30%",
-              height: "30%",  marginTop:20,}}
+              style={{
+                backgroundColor: "#6666ff",
+
+                alignItems: "center",
+                justifyContent: "center",
+                alignContent: "center",
+                marginLeft: "35%",
+                marginTop: "50%",
+                borderRadius: 10,
+                padding: 10,
+                width: "30%",
+                height: "30%",
+                marginTop: 20,
+              }}
               onPress={() =>
-                navigation.navigate("AvailableRooms", { roomPictures,roomNum, totalPrice ,n ,h ,rn, date })
-
-
+                navigation.navigate("AvailableRooms", {
+                  roomPictures,
+                  roomNum,
+                  totalPrice,
+                  n,
+                  h,
+                  rn,
+                  date,
+                  u
+                })
               }
             >
-              <Text style={{ alignSelf:"center", color: "#fff",textAlign:'center', fontWeight: "bold" }}>Search Room</Text>
+              <Text
+                style={{
+                  alignSelf: "center",
+                  color: "#fff",
+                  textAlign: "center",
+                  fontWeight: "bold",
+                }}
+              >
+                Search Room
+              </Text>
             </TouchableOpacity>
           </View>
-
         </View>
       </SafeAreaView>
     </>
@@ -311,8 +320,6 @@ const style = StyleSheet.create({
     alignItems: "center",
     marginTop: 20,
     borderRadius: 100,
-
-
   },
   bookNow: {
     alignContent: "center",
@@ -331,7 +338,7 @@ const style = StyleSheet.create({
   },
   datePicker: {
     marginLeft: 20,
-    backgroundColor: "red",
+   // backgroundColor: "red",
   },
   checkOut: {
     marginLeft: 30,
@@ -351,7 +358,7 @@ const style = StyleSheet.create({
   room: {
     flexDirection: "row",
     padding: 10,
-    justifyContent:"space-between"
+    justifyContent: "space-between",
     // width:"80%",
   },
   roomText: {
@@ -359,7 +366,7 @@ const style = StyleSheet.create({
     paddingLeft: 20,
     paddingRight: 80,
     // backgroundColor: "red",
-    color:"white"
+    color: "white",
   },
   content: {
     //backgroundColor:"blue",

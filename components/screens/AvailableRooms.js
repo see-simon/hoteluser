@@ -10,19 +10,22 @@ import {
 } from "react-native";
 import { ListItem } from "react-native-elements/dist/list/ListItem";
 import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
+import Icon from 'react-native-vector-icons/AntDesign'
+import Icons from 'react-native-vector-icons/AntDesign'
+import Icon2 from 'react-native-vector-icons/FontAwesome5'
 
 import firebase from "firebase";
 
 
 const AvailableRooms = ({ navigation, route }) => {
 
-  const { roomPictures, totalPrice, roomNum ,n ,h ,rn, date} = route.params;
+  const { roomPictures, totalPrice, roomNum, n, h, rn, date,u } = route.params;
 
   console.log(" simon ", roomPictures)
   console.log("total price : ", totalPrice)
   console.log(roomNum)
 
-  console.log(n ," see ",h, " see ", rn, "  date ", date )
+  console.log(n, " see ", h, " see ", rn, "  date ", date)
 
   const [room, setUsers] = useState([]);
   const db = firebase.firestore();
@@ -51,59 +54,79 @@ const AvailableRooms = ({ navigation, route }) => {
           </View>
 
 
-        <View style={{marginTop:15, marginTop: "10%",
-          marginLeft: 10,
-          width: "95%",
-          borderWidth: 1,
-          padding: 5}}>
-          <ScrollView horizontal={true}
+          <View style={{
+            marginTop: 15, marginTop: "10%",
+            marginLeft: 10,
+            width: "95%",
+            borderWidth: 1,
+            padding: 5
+          }}>
+            <ScrollView horizontal={true}
 
-          >
-            {
-              roomPictures.map((element) =>
+            >
+              {
+                roomPictures.map((element) =>
 
 
-                
-                  <View style={{padding:5}}>
 
-                  <Avatar  size={250} source={{ uri: element }} ></Avatar>
-                    
+                  <View style={{ padding: 5 }}>
+
+                    <Avatar size={250} source={{ uri: element }} ></Avatar>
+
 
                   </View>
-                
-              )
-            }
 
-          </ScrollView>
-        </View>
+                )
+              }
+
+            </ScrollView>
+          </View>
+
 
           <View style={style.price}>
             <Text >Price : R {totalPrice}</Text>
+            <Text >Poom number : {roomNum}</Text>
 
-            <Text>more feartures</Text>
-            <Text>wifi</Text>
-            <Text>packing</Text>
-            <Text>swimming pool</Text>
+            <Text style={{ textAlign: "center", fontSize: 20, fontWeight: "bold", color: "#6666ff", marginTop: "5%" }}>More feartures</Text>
+              <View style={{backgroundColor:"#eeeee4", padding:20, borderRadius:10, marginRight: 20,marginTop: "5%"}}>
+            <View style={{ flexDirection: "row", marginTop: 20 }}>
+              <View style={{ flexDirection: "row" }}>
+                <Icon name="wifi" style={{ color: "#6666ff", marginRight: 20 }}></Icon>
+                <Text>wifi</Text>
+              </View>
 
+              <View style={{marginLeft:"50%", flexDirection:"row"}}>
+                <Icons name="car" style={{color:"#6666ff",  marginRight: 20}}></Icons>
+                <Text>packing</Text>
+              </View>
 
-            
+            </View>
+            <View style={{ marginTop: 20, flexDirection:"row" }}>
+                <Icon2 name="swimmer" style={{marginRight: 20,color:'#6666ff'}}></Icon2>
+              <Text>swimming pool</Text>
+
+            </View>
+
+            </View>
           </View>
 
-          <View  style={{backgroundColor: "#6666ff", 
-    
-            alignItems:"center",
-            justifyContent:"center",
-            marginLeft: "45%",
-            marginTop:"50%",
+          <View style={{
+            backgroundColor: "#6666ff",
+
+            // alignContent: "center",
+            // justifyContent: "center",
+            marginLeft: "38%",
+            marginTop: "10%",
             borderRadius: 10,
             padding: 10,
-            width: "20%",
-            height: "5%",  marginTop:20,}}>
-        
-          <TouchableOpacity onPress={() => navigation.navigate("Payment",{roomPictures,roomNum, totalPrice ,n ,h ,rn , date})}>
+            width: "25%",
+            height: "5%",
+          }}>
 
-              <Text style={{ alignSelf:"center", color: "#fff",textAlign:'center', fontWeight: "bold" }}>Continue</Text>
-              </TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate("Payment", { roomPictures, roomNum, totalPrice, n, h, rn, date,u })}>
+
+              <Text style={{ alignSelf: "center", color: "#fff", textAlign: 'center', fontWeight: "bold" }}>Continue</Text>
+            </TouchableOpacity>
           </View>
 
         </View>
@@ -131,7 +154,7 @@ const style = StyleSheet.create({
   },
   price: {
     marginLeft: 20,
-    marginTop:20,
+    marginTop: 20,
 
   },
   text: {

@@ -44,35 +44,42 @@ const home = ({ navigation }) => {
 
   // search 
 
-  const [locationInfo, setLocation]= useState([])
+  const [queries, setLocation]= useState([])
+  const loc = db.collection("createHotel")
 
-  useEffect(()=>{
-    let locInfo=[];
 
-    db.collection("createHotel")
-   
-    .get()
-    .then((res)=>{
-      res.forEach((action)=>{
-        locInfo.push({...action.data(), id:action.id })
-      })
-      setLocation(locInfo)
-     
-      console.log(locInfo, " this is location")
-    })
+  const Search = () => {
+    // const q = query(loc, where("location", "==", queries));
+    // console.log(q);
+    console.log('RUUNING',queries)
+    if(queries){
 
-  },[])
+      loc.where("location", "==", queries).get()
+        .then(async(querySnapshot) => {
   
+         await querySnapshot.forEach((doc) => {
+            // doc.data() is never undefined for query doc snapshots
+            console.log(doc.id, "============= => ", doc.data());
+          });
+        })
+        .catch((error) => {
+          console.log("Error getting documents: ", error);
+        });
+    }else{
+      loc.where("location", "==", 'limpopo').get()
+        .then(async(querySnapshot) => {
+  
+         await querySnapshot.forEach((doc) => {
+            // doc.data() is never undefined for query doc snapshots
+            console.log(doc.data.id, "============= => ", doc.data);
+          });
+        })
+        .catch((error) => {
+          console.log("Error getting documents: ", error);
+        });
+    }
 
- 
-
-  var [search, setSearch] = useState('');
-
-
-
-
-
-
+  };
 
   return (
     <>
@@ -85,6 +92,12 @@ const home = ({ navigation }) => {
           </Text>
         </View>
         <View>
+          <TextInput placeholder="Search"
+          onBlur={()=>Search()}
+          onChangeText={(text)=>setLocation(text)}
+          value={queries}>
+
+          </TextInput>
 
        
          
@@ -98,6 +111,14 @@ const home = ({ navigation }) => {
             Popular hotels
           </Text>
         </View>
+
+        {/* <View>
+
+          {queries.map((element)=>
+          <Text>{element.Location}</Text>
+          
+          )}
+        </View> */}
 
 
         <ScrollView>

@@ -112,6 +112,7 @@ const Profile = ({ navigation }) => {
                 alignItems: "center",
                 justifyContent: "center",
                 marginTop: 90,
+               
               }}
             >
               {image && (
@@ -122,7 +123,9 @@ const Profile = ({ navigation }) => {
                     height: 150,
                     borderRadius: 100,
                     // backgroundColor: "#6666ff",
-                    borderWidth:1,
+                    
+                    borderRadius:100,
+                    
 
                   }}
                 />
@@ -182,7 +185,7 @@ const Profile = ({ navigation }) => {
                 // }
                 onPress={createProfile}
               >
-                <Text>Update Profile</Text>
+                <Text style={{color:"white", textAlign:"center"}}>Update Profile</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -208,30 +211,33 @@ const style = StyleSheet.create({
     //  backgroundColor:"red",
     marginTop: 100,
     paddingTop: 20,
+    alignContent:"center",
+    marginLeft:"10%"
+    
   },
  
   createAcc: {
     backgroundColor: "#6666ff",
-    padding: 15,
-    paddingLeft: 100,
+   
     // marginTop: 25,
-    marginLeft: 25,
-    borderRadius: 90,
-    width: "87%",
-    marginBottom: 10,
+   
+    borderRadius: 30,
+    width: "37%",
+    height:"10%",
+    marginBottom: 40,
+    alignContent:"center",
+    justifyContent:"center",
+    marginLeft:"35%"
   },
 
-  crownContainer: {
-    flexDirection: "row",
-    padding: 20,
-  },
+  
   icon: {
     paddingLeft: 20,
   },
   inputView: {
     backgroundColor: "#EFEFEF",
     borderRadius: 30,
-    width: "70%",
+    width: "90%",
     height: 45,
     marginBottom: 20,
     paddingTop: 7,
@@ -259,6 +265,8 @@ const style = StyleSheet.create({
     elevation: 4,
     borderRadius: 10,
     backgroundColor: "white",
+    // alignContent:"center",
+    // justifyContent:"center"
   },
 
  
