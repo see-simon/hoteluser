@@ -64,9 +64,9 @@ const AvailableRooms = ({ navigation, route }) => {
 
 
                 
-                  <View>
+                  <View style={{padding:5}}>
 
-                  <Avatar  size={150} source={{ uri: element }} ></Avatar>
+                  <Avatar  size={250} source={{ uri: element }} ></Avatar>
                     
 
                   </View>
@@ -79,6 +79,12 @@ const AvailableRooms = ({ navigation, route }) => {
 
           <View style={style.price}>
             <Text >Price : R {totalPrice}</Text>
+
+            <Text>more feartures</Text>
+            <Text>wifi</Text>
+            <Text>packing</Text>
+            <Text>swimming pool</Text>
+
 
             
           </View>

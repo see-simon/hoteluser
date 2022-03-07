@@ -22,65 +22,57 @@ import firebase from "firebase";
 const home = ({ navigation }) => {
   
 
-  const [users, setUsers] = useState([]);
+  const [hotels, setHotels] = useState([]);
 
   const db = firebase.firestore();
 
   useEffect(() => {
     let userInfo = [];
     db.collection("createHotel")
+    
       .get()
+      
       .then((res) => {
         res.forEach((action) => {
           userInfo.push({ ...action.data(), id: action.id });
         });
 
-        setUsers(userInfo);
+        setHotels(userInfo);
         // console.log(id)
       });
   }, []);
 
-  //
+  // search 
 
-  
-
-  
-
-  useEffect(() => {
-    let search = [];
-    db.collection("createHotel")
-    .where('Location', 'in', [''])
-      .get()
-      .then((res) => {
-        res.forEach((action) => {
-          userInfo.push({ ...action.data(), id: action.id });
-        });
-
-        setSearch(search);
-        // console.log(id)
-      });
-  }, []);
-
-
-//search
-
-
-  const searchHotel =()=>{
-    db.collection('createHotel')
-    .where('Location' , 'in' , ['po','PO'])
-    .limit(5)
-    .get()
-    .then(querysnapshot=>{
-      console.log(querysnapshot, " jndjmcc")
-    })
-  }
+  const [locationInfo, setLocation]= useState([])
 
   useEffect(()=>{
+    let locInfo=[];
 
-  })
+    db.collection("createHotel")
+   
+    .get()
+    .then((res)=>{
+      res.forEach((action)=>{
+        locInfo.push({...action.data(), id:action.id })
+      })
+      setLocation(locInfo)
+     
+      console.log(locInfo, " this is location")
+    })
 
-  const [search, setSearch] = useState([]);
+  },[])
   
+
+ 
+
+  var [search, setSearch] = useState('');
+
+
+
+
+
+
 
   return (
     <>
@@ -92,31 +84,13 @@ const home = ({ navigation }) => {
             Welcome User
           </Text>
         </View>
-        <View
-          style={{
-            // backgroundColor: "#d4d3cf",
-            // width: "95%",
-            // height: "6%",
-            padding: 5,
-            margin: 10,
-          }}
-        >
-          <TextInput
-            style={{
-              width: "100%",
-              height: 40,
-              borderRadius: 10,
-              borderColor: "#6666ff",
-              borderWidth: 3,
-              paddingLeft: 10,
-            }}
-            // onChangeText={(text) => searchFilterFunction(text)}
-             value={search}
-            onChangeText={(text) => searchHotel(text)}
-            //underlineColorAndroid="transparent"
-            placeholder="Search Here"
-          />
+        <View>
+
+       
+         
         </View>
+
+        
         
 
         <View>
@@ -124,16 +98,10 @@ const home = ({ navigation }) => {
             Popular hotels
           </Text>
         </View>
-<View>
-            {
-              search.map(action=>(
-                <Button  onPress={searchHotel}> search</Button>
-              ))
-            }
-            </View>
+
 
         <ScrollView>
-          {users.map((element) => (
+          {hotels.map((element) => (
 
            <> 
             <TouchableOpacity onPress={() => navigation.navigate("searchroom",   {ItemId:element.id , name:element.Location, hotel:element.HotelName,
