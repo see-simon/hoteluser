@@ -69,7 +69,7 @@ const BookingDetails = ({ navigation }) => {
 
         <ScrollView>
           {history.map((element) =>
-            // <Text>{moment(element.date).format('YYYY-MM-DD')}</Text>
+        
 
 
 
@@ -89,7 +89,8 @@ const BookingDetails = ({ navigation }) => {
                 <Text style={{color: '#fff'}}>Hotel Name: {element.hotelname}</Text>
 
 
-                <Text style={{color: '#fff'}}>Date: {moment(element.date).format('DD MMM YYYY')} </Text>
+                <Text style={{color: '#fff'}}>Check in date: {moment(element.chechin).format('DD MMM YYYY')} </Text>
+                <Text style={{color: '#fff'}}>Check out date: {moment(element.chechout).format('DD MMM YYYY')} </Text>
                 <Text style={{color: '#fff'}}>Room: {element.roomNum} </Text>
                 <Text style={{color: '#fff'}}>Total Price: R{element.totalPrice} </Text>
               </View>

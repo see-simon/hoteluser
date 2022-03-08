@@ -41,7 +41,11 @@ const History = () => {
 
   const Delete = () => {
 
-    db.collection('booking').doc().delete()
+    
+        db.collection('booking').doc().delete()
+            .then(() => { console.log('booking deleted') })
+            .catch((err) => { console.log(err) })
+            
 
   }
 
@@ -79,13 +83,15 @@ const History = () => {
                 <Text style={{color: '#fff'}}>Hotel Name: {element.hotelname}</Text>
 
 
-                <Text style={{color: '#fff'}}>Date: {moment(element.date).format('DD MMM YYYY')} </Text>
+                <Text style={{color: '#fff'}}>Check in date: {moment(element.chechin).format('DD MMM YYYY')} </Text>
+                <Text style={{color: '#fff'}}>Check out date: {moment(element.chechout).format('DD MMM YYYY')} </Text>
+                
                 <Text style={{color: '#fff'}}>Room: {element.roomNum} </Text>
                 <Text style={{color: '#fff'}}>Total Price: R{element.totalPrice} </Text>
               </View>
               <View style={{}}>
                 <TouchableOpacity 
-                  onPress={Delete} 
+                  onPress={()=>Delete()} 
                   style={{backgroundColor: 'red', padding: 5, borderRadius: 5}}>
                   <Text style={{color: '#fff'}}>Delete</Text>
                 </TouchableOpacity>

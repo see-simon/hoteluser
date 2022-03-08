@@ -42,7 +42,7 @@ import Profile from './components/screens/Profile';
 import home from './components/screens/Home';
 import History from './components/screens/History';
 import searchroom from './components/screens/searchroom';
-import bookingDetails from './components/screens/BookingDetails';
+
 import Map from './components/screens/Map';
 import BookingDetails from './components/screens/BookingDetails';
 import Book from './components/screens/book';
@@ -58,7 +58,7 @@ import users from './components/screens/classes'
 import Payment from './components/screens/Payment';
 import { auth } from './components/screens/firebase';
 // import PaymentStyle from './components/screens/PaymentStyle';
-
+import Booking from 'react-native-vector-icons/Entypo'
 
 
 
@@ -82,23 +82,28 @@ export default function App() {
         <Drawer.Navigator DrawerContent={props => <drawerContent{...props} />}>
         
           <Drawer.Screen  name="Home" component={home} options={{drawerIcon:({color,size})=>(
-            <Icons name='home' color='blue' size={20} />
+            <Icons name='home' color="#6666ff" size={20} />
           )}}/>
          
           <Drawer.Screen  name="Profile" component={Profile} options={{drawerIcon:({color,size})=>(
-            <Icons name='profile' color='blue' size={20} />
+            <Icons name='profile' color="#6666ff" size={20} />
+          )}}/>
+          <Drawer.Screen  name="Bookings" component={BookingDetails} options={{drawerIcon:({color,size})=>(
+            <Booking name='bookmark' color="#6666ff" size={20} />
           )}}/>
 
 <Drawer.Screen  name="History" component={History} options={{drawerIcon:({color,size})=>(
-            <Icon name='history' color='blue' size={20} />
+            <Icon name='history' color="#6666ff" size={20} />
           )}}/>
 
 <Drawer.Screen  name="Help" component={help} options={{drawerIcon:({color,size})=>(
-            <Helps name='help' color='blue' size={20} />
+            <Helps name='help-circle' color="#6666ff" size={20} />
           )}}/>
 
+
+
 <Drawer.Screen  name="logout" component={Login} options={{headerShown:false ,drawerIcon:({color,size})=>(
-            <Icons name='logout' color='blue' size={20} />
+            <Icons name='logout' color="#6666ff" size={20} />
           )}}/>
            
         </Drawer.Navigator>
