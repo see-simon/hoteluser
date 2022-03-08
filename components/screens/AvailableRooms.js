@@ -84,24 +84,25 @@ const AvailableRooms = ({ navigation, route }) => {
 
 
           <View style={style.price}>
-            <Text >Price : R {totalPrice}</Text>
-            <Text >Poom number : {roomNum}</Text>
-
+            <View style={{justifyContent:"space-between"}}>
+            <Text style={{fontSize:18, color:"#6666ff"}}>Price : R {totalPrice}</Text>
+            <Text style={{fontSize:18, color:"#6666ff"}}>Poom number : {roomNum}</Text>
+            </View>
             <Text style={{ textAlign: "center", fontSize: 20, fontWeight: "bold", color: "#6666ff", marginTop: "5%" }}>More feartures</Text>
               <View style={{backgroundColor:"#eeeee4", padding:20, borderRadius:10, marginRight: 20,marginTop: "5%"}}>
             <View style={{ flexDirection: "row", marginTop: 20 }}>
-              <View style={{ flexDirection: "row" }}>
+              <View style={{ flexDirection: "column" }}>
                 <Icon name="wifi" style={{ color: "#6666ff", marginRight: 20 }}></Icon>
                 <Text>wifi</Text>
               </View>
 
-              <View style={{marginLeft:"50%", flexDirection:"row"}}>
+              <View style={{marginLeft:"50%", flexDirection:"column"}}>
                 <Icons name="car" style={{color:"#6666ff",  marginRight: 20}}></Icons>
                 <Text>packing</Text>
               </View>
 
             </View>
-            <View style={{ marginTop: 20, flexDirection:"row" }}>
+            <View style={{ marginTop: 20, flexDirection:"column" }}>
                 <Icon2 name="swimmer" style={{marginRight: 20,color:'#6666ff'}}></Icon2>
               <Text>swimming pool</Text>
 

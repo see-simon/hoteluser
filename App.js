@@ -50,6 +50,9 @@ import { View ,StyleSheet} from 'react-native';
 import Icons from "react-native-vector-icons/AntDesign";
 import AvailableRooms from './components/screens/AvailableRooms';
 // import BookingSuccess from './components/screens/bookingSuccess';
+import Icon from 'react-native-vector-icons/FontAwesome'
+import Helps from 'react-native-vector-icons/Feather'
+
 
 import users from './components/screens/classes'
 import Payment from './components/screens/Payment';
@@ -78,26 +81,26 @@ export default function App() {
      
         <Drawer.Navigator DrawerContent={props => <drawerContent{...props} />}>
         
-          <Drawer.Screen  name="Home" component={home} />
+          <Drawer.Screen  name="Home" component={home} options={{drawerIcon:({color,size})=>(
+            <Icons name='home' color='blue' size={20} />
+          )}}/>
          
-          
-           <Drawer.Screen Icons  name="Profile" component ={Profile} options={<Icons name="profile"/> }/>
-           <Drawer.Screen name ="Bookings" component ={bookingDetails}/>
+          <Drawer.Screen  name="Profile" component={Profile} options={{drawerIcon:({color,size})=>(
+            <Icons name='profile' color='blue' size={20} />
+          )}}/>
 
-           <Drawer.Screen name = "History" component ={History}/>
-           <Drawer.Screen name="help and support" component={help} />
-          
-          <Drawer.Screen name='logout' options={{headerShown:false}} component ={Login}/>
+<Drawer.Screen  name="History" component={History} options={{drawerIcon:({color,size})=>(
+            <Icon name='history' color='blue' size={20} />
+          )}}/>
+
+<Drawer.Screen  name="Help" component={help} options={{drawerIcon:({color,size})=>(
+            <Helps name='help' color='blue' size={20} />
+          )}}/>
+
+<Drawer.Screen  name="logout" component={Login} options={{headerShown:false ,drawerIcon:({color,size})=>(
+            <Icons name='logout' color='blue' size={20} />
+          )}}/>
            
-              
-          
-              
-            
-         {/*       NB         create all the thins u want in the drawer an put thm here */}
-
-
-
-
         </Drawer.Navigator>
     
     )

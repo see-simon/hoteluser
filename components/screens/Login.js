@@ -101,10 +101,10 @@ const Login = ({ navigation }) => {
                     <Text style={style.forgot_button}>Forgot Password?</Text>
                   </TouchableOpacity>
                   <TouchableOpacity
-                     onPress={handleLogin}
-                    // onPress={() =>
-                    //   navigation.navigate("home", { name: "home" })
-                    // }
+                    // onPress={handleLogin}
+                    onPress={() =>
+                      navigation.navigate("home", { name: "home" })
+                    }
                     style={style.login}
                   >
                     <Text style={{ color: "#fff",textAlign:'center', fontWeight: "bold" }}>

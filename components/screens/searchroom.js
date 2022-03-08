@@ -12,7 +12,7 @@ import { State, TouchableOpacity } from "react-native-gesture-handler";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Icon from "react-native-vector-icons/Foundation";
 import Feather from "react-native-vector-icons/Feather";
-
+import moment from "moment";
 import DatePicker from "react-native-datepicker";
 
 import { Button, Image, Platform } from "react-native";
@@ -21,7 +21,8 @@ import { Avatar } from "react-native-elements/dist/avatar/Avatar";
 // import moment from 'moment';
 
 const searchroom = ({ navigation, route }) => {
-  const [date, setDate] = useState(new Date());
+  const [date1, setDate1] = useState(new Date());
+  const [date2, setDate2] = useState(new Date());
   const [audultPlus, setAudultPlus] = useState(1);
   const [childPlus, setChildPlus] = useState(1);
   const [roomPlus, setRoomPlus] = useState(1);
@@ -51,7 +52,7 @@ const searchroom = ({ navigation, route }) => {
   console.log(rn);
 
   // this should be multiplied with room price from the database
-
+var today=new Date()
   var totalPrice = 0;
 
   if (audultPlus > 0) {
@@ -59,6 +60,21 @@ const searchroom = ({ navigation, route }) => {
     console.log(totalPrice);
     // return totalPrice;
   }
+
+//   function CompareDate() {    
+//     //Note: 00 is month i.e. January    
+//     // var dateOne = new Date(2010, 00, 15); //Year, Month, Date    
+//     // var dateTwo = new Date(2011, 00, 15); //Year, Month, Date    
+    
+
+//     if (date1 > date2) {    
+//          alert("Date One is greater than Date Two.");
+//          return date1, date2;    
+//      }else {    
+//          alert("Date Two is greater than Date One.");    
+//      }    
+//  }    
+//  CompareDate(); 
 
   return (
     <>
@@ -81,11 +97,11 @@ const searchroom = ({ navigation, route }) => {
               <View>
                 <DatePicker
                   style={{ width: 165 }}
-                  date={date}
+                  date={date1}
                   mode="date"
                   // placeholder="check in"
                   // format="YYYY-MM-DD"
-                  // minDate="0"
+                   minDate={today}
                   // maxDate="0"
                   confirmBtnText="Confirm"
                   cancelBtnText="Cancel"
@@ -101,8 +117,11 @@ const searchroom = ({ navigation, route }) => {
                     },
                     // ... You can check the source to find the other keys.
                   }}
-                  onDateChange={(date) => {
-                    setDate(date);
+                  onDateChange={(date1) => {
+
+                   
+                    setDate1(date1);
+                    
                   }}
                 />
               </View>
@@ -112,11 +131,11 @@ const searchroom = ({ navigation, route }) => {
               <DatePicker
                 style={style.datePicker}
                 // style={{ width: 165 }}
-                date={date}
+                date={date2}
                 mode="date"
                 // placeholder="select date"
                 format="YYYY-MM-DD"
-                // minDate="2016-05-01"
+                 minDate={today}
                 // maxDate="2016-06-01"
                 confirmBtnText="Confirm"
                 cancelBtnText="Cancel"
@@ -132,8 +151,12 @@ const searchroom = ({ navigation, route }) => {
                   },
                   // ... You can check the source to find the other keys.
                 }}
-                onDateChange={(date) => {
-                  setDate(date);
+
+            
+                onDateChange={(date2) => {
+                  
+                  setDate2(date2);
+                  
                 }}
               />
             </View>
@@ -142,7 +165,7 @@ const searchroom = ({ navigation, route }) => {
                 flexDirection: "column",
                 marginTop: 20,
                 width: "90%",
-                backgroundColor: "#6666ff",
+                backgroundColor: "#eeeee4",
                 borderRadius: 50,
                 marginLeft: 16,
                 padding: 20,
@@ -161,16 +184,6 @@ const searchroom = ({ navigation, route }) => {
                     backgroundColor: "white",
                   }}
                 >
-                  <Pressable
-                    style={[
-                      style.btnadd,
-                      { backgroundColor: "white", flexDirection: "row" },
-                    ]}
-                    onPress={() => setAudultPlus(Math.max(1, audultPlus + 1))}
-                  >
-                    <Feather name="plus" size={22} color="black" />
-                  </Pressable>
-                  <Text style={{ fontsize: 21 }}> {audultPlus}</Text>
 
                   <Pressable
                     style={[
@@ -181,6 +194,21 @@ const searchroom = ({ navigation, route }) => {
                   >
                     <Feather name="minus" size={22} color="black" />
                   </Pressable>
+
+                  <Text style={{ fontsize: 21 }}> {audultPlus}</Text>
+
+                  <Pressable
+                    style={[
+                      style.btnadd,
+                      { backgroundColor: "white", flexDirection: "row" },
+                    ]}
+                    onPress={() => setAudultPlus(Math.max(1, audultPlus + 1))}
+                  >
+                    <Feather name="plus" size={22} color="black" />
+                  </Pressable>
+
+
+
                 </View>
               </View>
 
@@ -197,16 +225,6 @@ const searchroom = ({ navigation, route }) => {
                     backgroundColor: "white",
                   }}
                 >
-                  <Pressable
-                    style={[
-                      style.btnadd,
-                      { backgroundColor: "white", flexDirection: "row" },
-                    ]}
-                    onPress={() => setChildPlus(Math.max(1, audultPlus + 1))}
-                  >
-                    <Feather name="plus" size={22} color="black" />
-                  </Pressable>
-                  <Text style={{ fontsize: 21 }}> {childPlus}</Text>
 
                   <Pressable
                     style={[
@@ -217,6 +235,21 @@ const searchroom = ({ navigation, route }) => {
                   >
                     <Feather name="minus" size={22} color="black" />
                   </Pressable>
+
+                  <Text style={{ fontsize: 21 }}> {childPlus}</Text>
+
+                  <Pressable
+                    style={[
+                      style.btnadd,
+                      { backgroundColor: "white", flexDirection: "row" },
+                    ]}
+                    onPress={() => setChildPlus(Math.max(1, audultPlus + 1))}
+                  >
+                    <Feather name="plus" size={22} color="black" />
+                  </Pressable>
+
+
+
                 </View>
               </View>
 
@@ -256,45 +289,91 @@ const searchroom = ({ navigation, route }) => {
               </View>
             </View> */}
             </View>
-            <TouchableOpacity
-              style={{
-                backgroundColor: "#6666ff",
-
-                alignItems: "center",
-                justifyContent: "center",
-                alignContent: "center",
-                marginLeft: "35%",
-                marginTop: "50%",
-                borderRadius: 10,
-                padding: 10,
-                width: "30%",
-                height: "30%",
-                marginTop: 20,
-              }}
-              onPress={() =>
-                navigation.navigate("AvailableRooms", {
-                  roomPictures,
-                  roomNum,
-                  totalPrice,
-                  n,
-                  h,
-                  rn,
-                  date,
-                  u
-                })
-              }
-            >
-              <Text
+            {
+              moment(date2).isBefore(date1)?(
+                <TouchableOpacity disabled={true}
                 style={{
-                  alignSelf: "center",
-                  color: "#fff",
-                  textAlign: "center",
-                  fontWeight: "bold",
+                  backgroundColor: "#6666ff",
+  
+                  alignItems: "center",
+                  justifyContent: "center",
+                  alignContent: "center",
+                  marginLeft: "35%",
+                  marginTop: "50%",
+                  borderRadius: 10,
+                  padding: 10,
+                  width: "30%",
+                  height: "30%",
+                  marginTop: 20,
                 }}
+                onPress={() =>
+                  navigation.navigate("AvailableRooms", {
+                    roomPictures,
+                    roomNum,
+                    totalPrice,
+                    n,
+                    h,
+                    rn,
+                    date1,date2,
+                    u
+                  })
+                }
               >
-                Search Room
-              </Text>
-            </TouchableOpacity>
+                <Text
+                  style={{
+                    alignSelf: "center",
+                    color: "#fff",
+                    textAlign: "center",
+                    fontWeight: "bold",
+                  }}
+                >
+                  Search Room
+                </Text>
+              </TouchableOpacity>
+              ):(
+                <TouchableOpacity
+                style={{
+                  backgroundColor: "#6666ff",
+  
+                  alignItems: "center",
+                  justifyContent: "center",
+                  alignContent: "center",
+                  marginLeft: "35%",
+                  marginTop: "50%",
+                  borderRadius: 10,
+                  padding: 10,
+                  width: "30%",
+                  height: "30%",
+                  marginTop: 20,
+                }}
+                onPress={() =>
+                  navigation.navigate("AvailableRooms", {
+                    roomPictures,
+                    roomNum,
+                    totalPrice,
+                    n,
+                    h,
+                    rn,
+                    date1,
+                    date2,
+                    u
+                  })
+                }
+              >
+                <Text
+                  style={{
+                    alignSelf: "center",
+                    color: "#fff",
+                    textAlign: "center",
+                    fontWeight: "bold",
+                  }}
+                >
+                  Search Room
+                </Text>
+              </TouchableOpacity>
+              )
+            }
+           
           </View>
         </View>
       </SafeAreaView>
@@ -338,12 +417,13 @@ const style = StyleSheet.create({
   },
   datePicker: {
     marginLeft: 20,
-   // backgroundColor: "red",
+    // backgroundColor: "red",
   },
   checkOut: {
     marginLeft: 30,
     flexDirection: "row",
     paddingTop: 10,
+    justifyContent:"space-between"
   },
   checkOutText: {
     // backgroundColor:"red",
@@ -375,6 +455,7 @@ const style = StyleSheet.create({
   checkin: {
     marginLeft: 30,
     flexDirection: "row",
+    justifyContent:"space-between"
   },
   rooms: {
     marginLeft: 30,
