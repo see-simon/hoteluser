@@ -150,19 +150,23 @@ const Payment = ({navigation, route}) => {
   //booking 
 
   const db = firebase.firestore();
+  const _db = firebase.database();
 
   const addBooking=()=>{
 
-    db.collection("booking")
-    .add({
-      roomNum:roomNum,
-      totalPrice: totalPrice,
-      location:n,
-      hotelname:h,
-      roomNum :rn,
-      chechin:date1,
-      chechout:date2,
-      u:u
+    _db.ref("booking")
+    .push({
+      // roomNum:roomNum,
+      // totalPrice: totalPrice,
+      // location:n,
+      // hotelname:h,
+      // roomNum :rn,
+      // chechin:date1,
+      // chechout:date2,
+      // u:u
+      totalPrice,
+      u,
+      h ,rn, u , date1, date2
     })
     .then((res) => {
       console.log('successfully booked!!')
