@@ -19,7 +19,7 @@ import firebase from "firebase";
 
 
 
-const home = ({ navigation }) => {
+const Home = ({ navigation }) => {
   
 
   const [hotels, setHotels] = useState([]);
@@ -125,7 +125,7 @@ const home = ({ navigation }) => {
           {hotels.map((element) => (
 
            <> 
-            <TouchableOpacity onPress={() => navigation.navigate("searchroom",   {ItemId:element.id , name:element.Location, hotel:element.HotelName,
+            <TouchableOpacity onPress={() => navigation.navigate("Searchroom",   {ItemId:element.id , name:element.Location, hotel:element.HotelName,
                url: element.Url, roomPic: element.roomUrl, roomNum:element.RoomNumber , 
                roomMoney: element.RoomPrice })}>
                  
@@ -182,4 +182,4 @@ const style = StyleSheet.create({
     // marginTop:-20
   },
 });
-export default home;
+export default Home;

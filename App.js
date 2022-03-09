@@ -16,8 +16,8 @@ import SignUp from './components/screens/SignUp';
 import ForgetPasswordSuccessFul from './components/screens/ForgetPasswordSuccessFul';
 import DashBoard from './components/screens/DashBoard';
 
-import paymentSuccess from './components/screens/paymentSuccess';
-import help from './components/screens/help';
+
+import help from './components/screens/Help';
 
 
 
@@ -27,8 +27,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
-import { PaymentScreen } from './components/screens/paymentScreen';
-import paymentScreen from './components/screens/paymentScreen';
+
+
 import GetStarted from './components/screens/GetStarted';
 import Login from './components/screens/Login';
 import ProfileUpdated from './components/screens/ProfileUpdated';
@@ -36,13 +36,13 @@ import Registration from './components/screens/registration';
 
 
 
-import { TouchableOpacity } from 'react-native-gesture-handler';
+
 
 import Profile from './components/screens/Profile';
-import home from './components/screens/Home';
+
 import History from './components/screens/History';
-import searchroom from './components/screens/searchroom';
-import bookingDetails from './components/screens/BookingDetails';
+import searchroom from './components/screens/Searchroom';
+
 import Map from './components/screens/Map';
 import BookingDetails from './components/screens/BookingDetails';
 import Book from './components/screens/book';
@@ -54,9 +54,15 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 import Helps from 'react-native-vector-icons/Feather'
 
 
+import Bookmark from 'react-native-vector-icons/Entypo'
+
+
 import users from './components/screens/classes'
 import Payment from './components/screens/Payment';
 import { auth } from './components/screens/firebase';
+import Help from './components/screens/Help';
+import Home from './components/screens/Home';
+import Searchroom from './components/screens/Searchroom';
 // import PaymentStyle from './components/screens/PaymentStyle';
 
 
@@ -81,8 +87,13 @@ export default function App() {
      
         <Drawer.Navigator DrawerContent={props => <drawerContent{...props} />}>
         
-          <Drawer.Screen  name="Home" component={home} options={{drawerIcon:({color,size})=>(
+          <Drawer.Screen  name="Home" component={Home} options={{drawerIcon:({color,size})=>(
             <Icons name='home' color='blue' size={20} />
+          )}}/>
+
+          
+<Drawer.Screen  name="Bookings" component={BookingDetails} options={{drawerIcon:({color,size})=>(
+            <Bookmark name='bookmark' color='blue' size={20} />
           )}}/>
          
           <Drawer.Screen  name="Profile" component={Profile} options={{drawerIcon:({color,size})=>(
@@ -93,8 +104,8 @@ export default function App() {
             <Icon name='history' color='blue' size={20} />
           )}}/>
 
-<Drawer.Screen  name="Help" component={help} options={{drawerIcon:({color,size})=>(
-            <Helps name='help' color='blue' size={20} />
+<Drawer.Screen  name="Help" component={Help} options={{drawerIcon:({color,size})=>(
+            <Helps name='help-circle' color='blue' size={20} />
           )}}/>
 
 <Drawer.Screen  name="logout" component={Login} options={{headerShown:false ,drawerIcon:({color,size})=>(
@@ -137,8 +148,8 @@ export default function App() {
         {/* <Stack.Screen name="Home" component ={Home}/> */}
 
          <Stack.Screen name ="home" component ={DrawerRoutes}/> 
-        <Stack.Screen name="paymentScreen" component={paymentScreen} />
-        <Stack.Screen name ="searchroom" component ={searchroom}/>
+
+        <Stack.Screen name ="Searchroom" component ={Searchroom}/>
         <Stack.Screen name = "Map" component={Map}/>
         <Stack.Screen name ="BookingDetails" component={BookingDetails}/>
         <Stack.Screen name='Book' component={Book}/>

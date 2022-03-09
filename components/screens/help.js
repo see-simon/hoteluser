@@ -10,7 +10,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import Icon from "react-native-vector-icons/MaterialIcons";
 
 
-const help = ({ navigation }) => {
+const Help = ({ navigation }) => {
   return (
     <>
       <SafeAreaView>
@@ -77,4 +77,4 @@ const style = StyleSheet.create({
   },
  
 });
-export default help;
+export default Help;

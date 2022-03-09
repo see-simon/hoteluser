@@ -45,6 +45,10 @@ const History = () => {
 
   }
 
+  const handleDelete =(e)=>{
+        db.collection('booking').doc().delete()
+  }
+
   return (
     <SafeAreaView>
       <View style={style.container}>
@@ -79,7 +83,9 @@ const History = () => {
                 <Text style={{color: '#fff'}}>Hotel Name: {element.hotelname}</Text>
 
 
-                <Text style={{color: '#fff'}}>Date: {moment(element.date).format('DD MMM YYYY')} </Text>
+                {/* <Text style={{color: '#fff'}}>Date: {moment(element.date).format('DD MMM YYYY')} </Text> */}
+                <Text style={{color: '#fff'}}>Check out date: {moment(element.chechin).format('DD MMM YYYY')}</Text>
+                <Text style={{color: '#fff'}}>Check out date: {moment(element.chechout).format('DD MMM YYYY')}</Text>
                 <Text style={{color: '#fff'}}>Room: {element.roomNum} </Text>
                 <Text style={{color: '#fff'}}>Total Price: R{element.totalPrice} </Text>
               </View>

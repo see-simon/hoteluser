@@ -62,7 +62,7 @@ function getCreditCardToken(creditCardData){
 
 const Payment = ({navigation, route}) => {
 
-  const {roomPictures,roomNum, totalPrice ,n ,h ,rn, u } = route.params;
+  const {roomPictures,roomNum, totalPrice ,n ,h ,rn, u , date1, date2} = route.params;
 
   console.log(roomNum," ",totalPrice," " ,n," ", h ," ", rn)
 
@@ -160,7 +160,8 @@ const Payment = ({navigation, route}) => {
       location:n,
       hotelname:h,
       roomNum :rn,
-      date:date,
+      chechin:date1,
+      chechout:date2,
       u:u
     })
     .then((res) => {

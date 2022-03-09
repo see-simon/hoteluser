@@ -20,7 +20,7 @@ import * as ImagePicker from "expo-image-picker";
 import { Avatar } from "react-native-elements/dist/avatar/Avatar";
 // import moment from 'moment';
 
-const searchroom = ({ navigation, route }) => {
+const Searchroom = ({ navigation, route }) => {
   const [date1, setDate1] = useState(new Date());
   const [date2, setDate2] = useState(new Date());
   const [audultPlus, setAudultPlus] = useState(1);
@@ -446,7 +446,7 @@ const style = StyleSheet.create({
     paddingLeft: 20,
     paddingRight: 80,
     // backgroundColor: "red",
-    color: "white",
+    color: "black",
   },
   content: {
     //backgroundColor:"blue",
@@ -504,4 +504,4 @@ const style = StyleSheet.create({
     height: "100%",
   },
 });
-export default searchroom;
+export default Searchroom;
