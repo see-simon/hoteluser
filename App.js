@@ -41,7 +41,9 @@ import Registration from './components/screens/registration';
 import Profile from './components/screens/Profile';
 
 import History from './components/screens/History';
-import searchroom from './components/screens/Searchroom';
+
+
+
 
 import Map from './components/screens/Map';
 import BookingDetails from './components/screens/BookingDetails';
@@ -64,7 +66,8 @@ import Help from './components/screens/Help';
 import Home from './components/screens/Home';
 import Searchroom from './components/screens/Searchroom';
 // import PaymentStyle from './components/screens/PaymentStyle';
-
+import Booking from 'react-native-vector-icons/Entypo'
+import paymentSuccess from './components/screens/paymentSuccess';
 
 
 
@@ -87,29 +90,34 @@ export default function App() {
      
         <Drawer.Navigator DrawerContent={props => <drawerContent{...props} />}>
         
+
           <Drawer.Screen  name="Home" component={Home} options={{drawerIcon:({color,size})=>(
             <Icons name='home' color='blue' size={20} />
-          )}}/>
+            )}}/>
 
-          
 <Drawer.Screen  name="Bookings" component={BookingDetails} options={{drawerIcon:({color,size})=>(
             <Bookmark name='bookmark' color='blue' size={20} />
           )}}/>
          
           <Drawer.Screen  name="Profile" component={Profile} options={{drawerIcon:({color,size})=>(
-            <Icons name='profile' color='blue' size={20} />
+            <Icons name='profile' color="#6666ff" size={20} />
           )}}/>
+        
 
 <Drawer.Screen  name="History" component={History} options={{drawerIcon:({color,size})=>(
-            <Icon name='history' color='blue' size={20} />
+            <Icon name='history' color="#6666ff" size={20} />
           )}}/>
 
 <Drawer.Screen  name="Help" component={Help} options={{drawerIcon:({color,size})=>(
             <Helps name='help-circle' color='blue' size={20} />
-          )}}/>
+            )}}/>
+
+
+
+
 
 <Drawer.Screen  name="logout" component={Login} options={{headerShown:false ,drawerIcon:({color,size})=>(
-            <Icons name='logout' color='blue' size={20} />
+            <Icons name='logout' color="#6666ff" size={20} />
           )}}/>
            
         </Drawer.Navigator>
