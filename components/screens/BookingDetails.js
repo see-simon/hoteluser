@@ -42,22 +42,29 @@ const BookingDetails = ({ navigation }) => {
   //cancel booking 
 
   const db = firebase.firestore();
+  const _db =firebase.database();
 
   const [history, setHistory] = useState([])
 
 
   useEffect(() => {
-    let historyInfo = [];
-    db.collection("booking")
-      .get()
-      .then((res) => {
-        res.forEach((action) => {
-          historyInfo.push({ ...action.data(), id: action.id });
-        });
+    
+    _db.ref('booking').on('value' ,snap =>{
+      let historyInfo = [];
+      const a_ = snap.val();
 
-        setHistory(historyInfo);
-        // console.log(id)
-      });
+      for (let x in a_){
+        historyInfo.push({
+          key:x,
+          totalPrice:a_[x].totalPrice,
+          date2:a_[x].date2,
+          
+
+        })}
+
+      setHistory(historyInfo)
+      // console.log(historyInfo,"vghjvhbvh")
+    })
   }, []);
 
 

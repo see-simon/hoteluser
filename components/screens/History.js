@@ -25,7 +25,9 @@ const _db =firebase.database();
         historyInfo.push({
           key:x,
           totalPrice:a_[x].totalPrice,
-          date2:a_[x].date2
+          date2:a_[x].date2,
+          
+          
 
         })}
 

@@ -38,8 +38,9 @@ const Registration = ({ navigation }) => {
     // passwordConfirm: yup.string().required().min(6).max(12).oneOf([yup.ref('password'), null], 'password doess not math'),
  
 })
-  const  handleSinUp =()=>{
-    auth.createUserWithEmailAndPassword(email,password)
+  const  handleSinUp =(data)=>{
+    const { uid, email, password, firstName,surname } = data
+    auth.createUserWithEmailAndPassword(email.trim().toLowerCase(),password)
     // .then(userCredentials =>{
     //   const user = userCredentials.user;
     //   console.log(user.email)
@@ -47,8 +48,8 @@ const Registration = ({ navigation }) => {
     //   ToastAndroid.show('successfully registered!', ToastAndroid.SHORT);
     .then((res) => {
       db.ref('/user').push({
-        email,
-        firstName,
+        email:email.trim().toLowerCase(),
+        firstName:firstName.trim().toLowerCase(),
         surname,
       })
       
@@ -111,7 +112,7 @@ const Registration = ({ navigation }) => {
                     validationSchema={ReviewSchem}
                     onSubmit={(values, action) => {
                         action.resetForm()
-                        createUser(values)
+                        handleSinUp(values)
                     }}
                 >
                     {(props) =>(
