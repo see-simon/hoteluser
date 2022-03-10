@@ -44,8 +44,11 @@ const Home = ({ navigation }) => {
 
   // search 
 
-  const [queries, setLocation]= useState([])
+  const [queries, setQuery]= useState([])
+  
   const loc = db.collection("createHotel")
+
+  console.log(queries," hjdsjndsjndsjnksxdknjsdjkn")
 
 
   const Search = () => {
@@ -56,11 +59,15 @@ const Home = ({ navigation }) => {
 
       loc.where("location", "==", queries).get()
         .then(async(querySnapshot) => {
+          let results=[];
   
          await querySnapshot.forEach((doc) => {
             // doc.data() is never undefined for query doc snapshots
             console.log(doc.id, "============= => ", doc.data());
+            results.push(doc.data())
           });
+
+          setHotels(results)
         })
         .catch((error) => {
           console.log("Error getting documents: ", error);
@@ -94,7 +101,7 @@ const Home = ({ navigation }) => {
         <View>
           <TextInput placeholder="Search"
           onBlur={()=>Search()}
-          onChangeText={(text)=>setLocation(text)}
+          onChangeText={(text)=>setQuery(text)}
           value={queries}>
 
           </TextInput>
