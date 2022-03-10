@@ -17,7 +17,7 @@ import ForgetPasswordSuccessFul from './components/screens/ForgetPasswordSuccess
 import DashBoard from './components/screens/DashBoard';
 
 
-import help from './components/screens/Help';
+// 
 
 
 
@@ -62,13 +62,13 @@ import Bookmark from 'react-native-vector-icons/Entypo'
 import users from './components/screens/classes'
 import Payment from './components/screens/Payment';
 import { auth } from './components/screens/firebase';
-import Help from './components/screens/Help';
+// import Help from './components/screens/Help';
 import Home from './components/screens/Home';
-import Searchroom from './components/screens/Searchroom';
+import Searchroom from './components/screens/searchroom';
 // import PaymentStyle from './components/screens/PaymentStyle';
 import Booking from 'react-native-vector-icons/Entypo'
 import paymentSuccess from './components/screens/paymentSuccess';
-
+import Help from './components/screens/help'
 
 
 
@@ -108,7 +108,7 @@ export default function App() {
             <Icon name='history' color="#6666ff" size={20} />
           )}}/>
 
-<Drawer.Screen  name="Help" component={Help} options={{drawerIcon:({color,size})=>(
+<Drawer.Screen  name="help" component={Help} options={{drawerIcon:({color,size})=>(
             <Helps name='help-circle' color='blue' size={20} />
             )}}/>
 
@@ -140,7 +140,7 @@ export default function App() {
 
 
         <Stack.Screen name="paymentSuccess" component={paymentSuccess} />
-        <Stack.Screen name="help" component={help} />
+        {/* <Stack.Screen name="help" component={help} /> */}
         <Stack.Screen name="Get Started" component={GetStarted} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="ProfileUpdated" component={ProfileUpdated} />
@@ -157,7 +157,7 @@ export default function App() {
 
          <Stack.Screen name ="home" component ={DrawerRoutes}/> 
 
-        <Stack.Screen name ="Searchroom" component ={Searchroom}/>
+        <Stack.Screen name ="searchroom" component ={Searchroom}/>
         <Stack.Screen name = "Map" component={Map}/>
         <Stack.Screen name ="BookingDetails" component={BookingDetails}/>
         <Stack.Screen name='Book' component={Book}/>
