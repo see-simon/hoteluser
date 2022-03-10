@@ -30,31 +30,19 @@ const _db =firebase.database();
         })}
 
       setHistory(historyInfo)
-      console.log(historyInfo,"vghjvhbvh")
+      // console.log(historyInfo,"vghjvhbvh")
     })
    
   }, []);
  
   
-  const Delete = (id) => {
+  
 
-     _db.ref('/booking/' + id) .remove();
-    // db.collection("booking")
-    //   .doc()
-    //   .delete()
-    //   .then(() => {
-    //     console.log("booking deleted");
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
+  const deleteBooking = (id) => {
+     _db.ref('/booking/').child(id).remove();
+
+    // bookingRef.remove();
   };
-
-  // const deleteBooking = (id) => {
-  //    _db.ref('booking').child(id).remove();
-
-  //   // bookingRef.remove();
-  // };
 
   
 
@@ -97,12 +85,13 @@ const _db =firebase.database();
 
                 <Text style={{ color: "#fff" }}>Room: {element.roomNum} </Text>
                 <Text style={{ color: "#fff" }}>
-                  Total Price: R{element.totalPrice}{" "}{element.key}
+                  Total Price: R{element.totalPrice}
                 </Text>
               </View>
               <View style={{}}>
                 <TouchableOpacity
-                  // onPress={deleteBooking(element.key)}
+                onPress={()=>deleteBooking(element.key)}
+                  
                   style={{
                     backgroundColor: "red",
                     padding: 5,
