@@ -26,9 +26,9 @@ const _db =firebase.database();
           key:x,
           totalPrice:a_[x].totalPrice,
           date2:a_[x].date2,
-          
-          
-
+          n:a_[x].n,
+          rn:a_[x].rn,
+          h:a_[x].h,
         })}
 
       setHistory(historyInfo)
@@ -75,17 +75,17 @@ const _db =firebase.database();
             >
               <View>
                 <Text style={{ color: "#fff" }}>
-                  Location: {element.location}
+                  Location: {element.n}
                 </Text>
                 <Text style={{ color: "#fff" }}>
-                  Hotel Name: {element.hotelname}
+                  Hotel Name: {element.h}
                 </Text>
 
                 {/* <Text style={{color: '#fff'}}>Date: {moment(element.date).format('DD MMM YYYY')} </Text> */}
                 <Text style={{ color: "#fff" }}>Check out date : {moment(element.date2).format("DD MMM YYYY")}</Text>
                 <Text style={{ color: "#fff" }}>Check out date : {moment(element.date1).format("DD MMM YYYY")}</Text>
 
-                <Text style={{ color: "#fff" }}>Room: {element.roomNum} </Text>
+                <Text style={{ color: "#fff" }}>Room: {element.rn} </Text>
                 <Text style={{ color: "#fff" }}>
                   Total Price: R{element.totalPrice}
                 </Text>

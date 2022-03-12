@@ -48,7 +48,7 @@ const Home = ({ navigation }) => {
   
   const loc = db.collection("createHotel")
 
-  console.log(queries," hjdsjndsjndsjnksxdknjsdjkn")
+  console.log(hotels," SIMOM")
 
 
   const Search = () => {
@@ -57,7 +57,7 @@ const Home = ({ navigation }) => {
     console.log('RUUNING',queries)
     if(queries){
 
-      loc.where("location", "==", queries).get()
+      loc.where("Location", "==", queries).get()
         .then(async(querySnapshot) => {
           let results=[];
   

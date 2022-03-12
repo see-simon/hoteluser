@@ -156,17 +156,15 @@ const Payment = ({navigation, route}) => {
 
     _db.ref("booking")
     .push({
-      // roomNum:roomNum,
-      // totalPrice: totalPrice,
-      // location:n,
-      // hotelname:h,
-      // roomNum :rn,
-      // chechin:date1,
-      // chechout:date2,
-      // u:u
+      
       totalPrice,
       u,
-      h ,rn, u , date1, date2
+      h 
+      ,rn
+      , u 
+      , date1
+      , date2
+      ,n,roomNum
     })
     .then((res) => {
       console.log('successfully booked!!')

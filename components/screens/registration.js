@@ -71,9 +71,7 @@ const Registration = ({ navigation }) => {
               uid: res.user.uid
           })
       })
-      // .then(then(res =>{
-      //     res.user.sendEmailVerifcation()
-      // }))
+     
   }
   catch (error) {
       if (error.code == 'auth/email-already-in-use') {
@@ -219,7 +217,7 @@ const Registration = ({ navigation }) => {
               <View style={style.createAcc}>
                 <TouchableOpacity
   
-                onPress={props.handleSubmit}>
+                onPress={ props.handleSubmit}>
                   
                   <Text style={{color:'white'}}> Register </Text>
                 </TouchableOpacity>
