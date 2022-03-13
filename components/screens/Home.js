@@ -1,20 +1,14 @@
 import React, { useEffect, useState } from "react";
 import {
-  FlatList,
-  Image,
   SafeAreaView,
   StyleSheet,
   Text,
   TextInput,
   View,
-  useColorScheme,
-  ImageStore, ScrollView, TouchableOpacity
+  ScrollView,
+  TouchableOpacity
 } from "react-native";
-import { Avatar, Button, ListItem } from "react-native-elements";
-
-import { Icon } from "react-native-vector-icons/AntDesign";
-import { array } from "yup/lib/locale";
-import Pictures from "./array";
+import { Avatar} from "react-native-elements";
 import firebase from "firebase";
 
 
@@ -52,8 +46,6 @@ const Home = ({ navigation }) => {
 
 
   const Search = () => {
-    // const q = query(loc, where("location", "==", queries));
-    // console.log(q);
     console.log('RUUNING',queries)
     if(queries){
 
@@ -93,26 +85,19 @@ const Home = ({ navigation }) => {
       <SafeAreaView style={style.cover}>
         {/* <View style={style.backBox}> */}
 
-        <View style={{ alignItems: "center", marginTop: 5 }}>
+        <View style={{ alignItems: "center", marginTop: 5 }}>          
           <Text style={{ color: "#6666ff", fontWeight: "bold", fontSize: 20 }}>
             Welcome User
           </Text>
         </View>
         <View>
           <TextInput placeholder="Search"
+          style={{borderWidth:1}}
           onBlur={()=>Search()}
           onChangeText={(text)=>setQuery(text)}
           value={queries}>
-
           </TextInput>
-
-       
-         
         </View>
-
-        
-        
-
         <View>
           <Text style={{ fontSize: 20, margin: 10, color: "gray" }}>
             Popular hotels
@@ -132,7 +117,7 @@ const Home = ({ navigation }) => {
           {hotels.map((element) => (
 
            <> 
-            <TouchableOpacity onPress={() => navigation.navigate("Searchroom",   {ItemId:element.id , name:element.Location, hotel:element.HotelName,
+            <TouchableOpacity onPress={() => navigation.navigate("searchroom",   {ItemId:element.id , name:element.Location, hotel:element.HotelName,
                url: element.Url, roomPic: element.roomUrl, roomNum:element.RoomNumber , 
                roomMoney: element.RoomPrice })}>
                  

@@ -36,6 +36,7 @@ const Registration = ({ navigation }) => {
 
   const [isPasswordShow, setPasswordShow] = useState(false);
   const [isSelected, setSelection] = useState(false);
+
   const ReviewSchem = yup.object({
     email: yup.string().required().min(6),
     name: yup.string().required().max(15).min(3),
@@ -52,15 +53,26 @@ const Registration = ({ navigation }) => {
       const { uid, email, password, name, surname } = data;
       const user = await auth
         .createUserWithEmailAndPassword(email.trim().toLowerCase(), password)
-        .then((res) => {
-          _db.ref('users').child(res.user.uid).set({
+        // .then(res => {
+        //   _db.ref('users').child(res.user.uid).set({
             
+        //     name: name,
+        //     surname: surname,
+        //     email: email.trim().toLowerCase(),
+        //     uid: res.user.uid,
+        //   });
+        // });
+        .then((res)=>{
+          db.collection('user')
+          .add({
             name: name,
             surname: surname,
             email: email.trim().toLowerCase(),
-            uid: res.user.uid,
-          });
-        });
+
+            //uid: res.user.uid,
+          })
+          console.log('successfully registered')
+        })
     } catch (error) {
       if (error.code == "auth/email-already-in-use") {
         Alert.alert("This email already exist");
