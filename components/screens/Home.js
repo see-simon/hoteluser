@@ -6,7 +6,8 @@ import {
   TextInput,
   View,
   ScrollView,
-  TouchableOpacity
+  TouchableOpacity,
+  FlatList
 } from "react-native";
 import { Avatar} from "react-native-elements";
 import firebase from "firebase";
@@ -15,7 +16,110 @@ import firebase from "firebase";
 
 const Home = ({ navigation }) => {
   
+/////
 
+const [search, setSearch] = useState('');
+const [filteredDataSource, setFilteredDataSource] = useState([]);
+const [masterDataSource, setMasterDataSource] = useState([]);
+
+
+useEffect(() => {
+  let userInfo = [];
+  db.collection("createHotel")
+  
+    .get()
+    
+    .then((res) => {
+      res.forEach((action) => {
+        userInfo.push({ ...action.data(), id: action.id });
+      });
+
+    setFilteredDataSource(userInfo)
+    setMasterDataSource(userInfo);
+      // console.log(id)
+    });
+}, []);
+
+const ItemView = ({item}) => {
+  return (
+    // Flat List Item
+    <View>
+       <TouchableOpacity onPress={() => navigation.navigate("searchroom",   {ItemId:item.id , name:item.Location, hotel:item.HotelName,
+               url: item.Url, roomPic: item.roomUrl, roomNum:item.RoomNumber , 
+               roomMoney: item.RoomPrice })}>
+                 
+              <View
+                style={{
+                  margin: 10,
+                  flexDirection: "row",
+                  borderWidth: 1,
+                  padding: 2,
+                }}
+              >
+                <Avatar size={150} source={{ uri: item.Url }}></Avatar>
+                <View style={style.price}>
+                  <Text
+                    style={{
+                      marginBottom: 10,
+                      fontSize: 12,
+                    }}
+                  ></Text>
+                  <Text>Name: {item.HotelName}</Text>
+                  <Text style={{ marginBottom: 20 }}>
+                    Location: {item.Location}
+                  </Text>
+                </View>
+              </View>
+            </TouchableOpacity>
+    </View>
+  );
+};
+
+const ItemSeparatorView = () => {
+  return (
+    // Flat List Item Separator
+    <View
+      style={{
+        height: 0.5,
+        width: '100%',
+        backgroundColor: '#C8C8C8',
+      }}
+    />
+  );
+};
+
+const getItem = (item) => {
+  // Function for click on an item
+  alert('Id : ' + item.id + ' Title : ' + item.title);
+};
+
+//
+
+const searchFilterFunction = (text) => {
+  // Check if searched text is not blank
+  if (text) {
+    // Inserted text is not blank
+    // Filter the masterDataSource
+    // Update FilteredDataSource
+    const newData = masterDataSource.filter(
+      function (item) {
+        const itemData = item.Location
+          ? item.Location.toUpperCase()
+          : ''.toUpperCase();
+        const textData = text.toUpperCase();
+        return itemData.indexOf(textData) > -1;
+    });
+    setFilteredDataSource(newData);
+    setSearch(text);
+  } else {
+    // Inserted text is blank
+    // Update FilteredDataSource with masterDataSource
+    setFilteredDataSource(masterDataSource);
+    setSearch(text);
+  }
+};
+
+////
   const [hotels, setHotels] = useState([]);
 
   const db = firebase.firestore();
@@ -111,9 +215,9 @@ console.log('user id ' , userId,name);
         <View>
           <TextInput placeholder="Search"
           style={{borderWidth:1}}
-          onBlur={()=>Search()}
-          onChangeText={(text)=>setQuery(text)}
-          value={queries}>
+          onChangeText={(text) => searchFilterFunction(text)}
+          value={search}
+          >
           </TextInput>
         </View>
         <View>
@@ -132,7 +236,7 @@ console.log('user id ' , userId,name);
 
 
         <ScrollView>
-          {hotels.map((element) => (
+          {/* {hotels.map((element) => (
 
            <> 
             <TouchableOpacity onPress={() => navigation.navigate("searchroom",   {ItemId:element.id , name:element.Location, hotel:element.HotelName,
@@ -163,7 +267,14 @@ console.log('user id ' , userId,name);
               </View>
             </TouchableOpacity>
             </>
-          ))}
+          ))} */}
+
+<FlatList
+            data={filteredDataSource}
+            keyExtractor={(item, index) => index.toString()}
+            ItemSeparatorComponent={ItemSeparatorView}
+            renderItem={ItemView}
+          />
         </ScrollView>
       </SafeAreaView>
     </>

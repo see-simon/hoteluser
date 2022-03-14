@@ -61,8 +61,8 @@ const Profile = ({ navigation }) => {
 
   //
 
-  const [name , setName]= useState();
-  const [surname, setSurname] = useState();
+  // const [name , setName]= useState();
+  // const [surname, setSurname] = useState();
 
   const getName = (e) => {
     setName(e.target.value);
@@ -74,28 +74,54 @@ const Profile = ({ navigation }) => {
 
   //create profile
 
-  const db = firebase.firestore()
+  // const db = firebase.firestore()
 
-  const createProfile = (e) => {
-    // e.preventDefault();
-    // let uid = e.target.id
-    db.collection("/createProfile/")
-      .add({
-        // Url: url,
-        // HotelName: hotelName,
-        // Location: location,
+  // const createProfile = (e) => {
+  //   // e.preventDefault();
+  //   // let uid = e.target.id
+  //   db.collection("/createProfile/")
+  //     .add({
+  //       // Url: url,
+  //       // HotelName: hotelName,
+  //       // Location: location,
 
-        Name : name,
-        Surname : surname,          
-      })
-      .then((res) => {
-        console.log("prfile created");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-      ToastAndroid.show('Request sent successfully!', ToastAndroid.SHORT)
-  };
+  //       Name : name,
+  //       Surname : surname,          
+  //     })
+  //     .then((res) => {
+  //       console.log("prfile created");
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  //     ToastAndroid.show('Request sent successfully!', ToastAndroid.SHORT)
+  // };
+
+
+  const auth = firebase.auth();
+const _db = firebase.database();
+//to get user details
+const userId = auth.currentUser.uid;
+//variable
+const [name,setName] = useState();
+const [surname,setSurname] = useState();
+const [email, setEmail] = useState();
+
+//use effect to grab data from the database 
+
+
+useEffect(() =>{
+  _db.ref('/users/' + userId).on('value',value =>{
+    setName(value.val().name)
+    setSurname(value.val().surname)
+    setEmail(value.val().email)
+  })
+},[])
+
+
+
+console.log('user id ' , userId,name);
+
 
 
 
@@ -141,7 +167,7 @@ const Profile = ({ navigation }) => {
 
             <ScrollView style={style.inputContainer}>
             
-                <View style={style.inputView}>
+                {/* <View style={style.inputView}>
                   <Icons
                     style={style.icon}
                     name="user"
@@ -171,6 +197,24 @@ const Profile = ({ navigation }) => {
                     secureTextEntry={true}
                     onChangeText={(surname) => getSurname(surname)}
                   />
+                </View> */}
+                <View >
+                <Text style={{fontSize:20, color:"#6666ff", paddingRight:-10}}>User Details</Text>
+
+                <View style={{justifyContent:"space-between",flexDirection:"row"}}>
+                <Text >Name: </Text> 
+                <Text>{name}</Text>
+                </View>
+                <View style={{flexDirection:"row", justifyContent:"space-between"}}>
+                <Text >Surname: </Text>
+                <Text>{surname}</Text>
+                </View>
+                <View style={{flexDirection:"row", justifyContent:"space-between"}}>
+                <Text >Email: </Text>
+                <Text>{email}</Text>
+                </View>
+
+
                 </View>
               
             </ScrollView>
@@ -183,7 +227,7 @@ const Profile = ({ navigation }) => {
                 //   })
                   
                 // }
-                onPress={createProfile}
+                // onPress={createProfile}
               >
                 <Text style={{color:"white", textAlign:"center"}}>Update Profile</Text>
               </TouchableOpacity>
@@ -210,9 +254,10 @@ const style = StyleSheet.create({
   inputContainer: {
     //  backgroundColor:"red",
     marginTop: 100,
-    paddingTop: 20,
+    padding: 20,
     alignContent:"center",
-    marginLeft:"10%"
+    marginLeft:"10%",
+    height:"40%",
     
   },
  
