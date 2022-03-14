@@ -19,6 +19,23 @@ const Home = ({ navigation }) => {
   const [hotels, setHotels] = useState([]);
 
   const db = firebase.firestore();
+const auth = firebase.auth();
+const _db = firebase.database();
+//to get user details
+const userId = auth.currentUser.uid;
+//variable
+const [name,setName] = useState();
+const [surname,setSurname] = useState();
+//use effect to grab data from the database 
+useEffect(() =>{
+  _db.ref('/users/' + userId).on('value',value =>{
+    setName(value.val().name)
+    setSurname(value.val().surname)
+  })
+},[])
+
+console.log('user id ' , userId,name);
+
 
   useEffect(() => {
     let userInfo = [];
@@ -37,6 +54,7 @@ const Home = ({ navigation }) => {
   }, []);
 
   // search 
+
 
   const [queries, setQuery]= useState([])
   
@@ -87,7 +105,7 @@ const Home = ({ navigation }) => {
 
         <View style={{ alignItems: "center", marginTop: 5 }}>          
           <Text style={{ color: "#6666ff", fontWeight: "bold", fontSize: 20 }}>
-            Welcome User
+            Welcome {surname} {name}
           </Text>
         </View>
         <View>
