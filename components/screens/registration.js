@@ -53,26 +53,17 @@ const Registration = ({ navigation }) => {
       const { uid, email, password, name, surname } = data;
       const user = await auth
         .createUserWithEmailAndPassword(email.trim().toLowerCase(), password)
-        // .then(res => {
-        //   _db.ref('users').child(res.user.uid).set({
+        .then(res => {
+          _db.ref('users').child(res.user.uid).set({
             
-        //     name: name,
-        //     surname: surname,
-        //     email: email.trim().toLowerCase(),
-        //     uid: res.user.uid,
-        //   });
-        // });
-        .then((res)=>{
-          db.collection('user')
-          .add({
             name: name,
             surname: surname,
             email: email.trim().toLowerCase(),
+            uid: res.user.uid,
+          });
+          console.log('new user =====',data);
+        });
 
-            //uid: res.user.uid,
-          })
-          console.log('successfully registered')
-        })
     } catch (error) {
       if (error.code == "auth/email-already-in-use") {
         Alert.alert("This email already exist");
@@ -207,7 +198,7 @@ const Registration = ({ navigation }) => {
 
 
                 
-                {/* <View style={style.TextInput}>
+                <View style={style.TextInput}>
                 <Icons
                   style={style.icon}
                   name="lock"
@@ -228,7 +219,7 @@ const Registration = ({ navigation }) => {
                   onChangeText={(text) => setPassword(text)}
                 />
                 
-              </View> */}
+              </View>
                 <View style={style.createAcc}>
                   <TouchableOpacity onPress={props.handleSubmit}>
                     <Text style={{ color: "white" }}> Register </Text>
@@ -302,7 +293,8 @@ const style = StyleSheet.create({
     padding: 20,
   },
   backBox: {
-    height: "46%",
+    padding:10,
+    height: "45%",
     width: "95%",
     marginLeft: 10,
     justifyContent: "center",
