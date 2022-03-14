@@ -221,12 +221,12 @@ console.log('user id ' , userId,name);
 
             <View style={style.createAcc}>
               <TouchableOpacity
-                // onPress={() =>
-                //   navigation.navigate("ProfileUpdated", {
-                //     name: "ProfileUpdated",
-                //   })
+                onPress={() =>
+                  navigation.navigate("ProfileUpdated", {
+                    name: "ProfileUpdated",
+                  })
                   
-                // }
+                }
                 // onPress={createProfile}
               >
                 <Text style={{color:"white", textAlign:"center"}}>Update Profile</Text>
