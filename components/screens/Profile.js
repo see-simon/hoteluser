@@ -3,12 +3,12 @@ import {
   Text,
   SafeAreaView,
   StyleSheet,
-  ScrollView,ImageBackground,
+  ScrollView,
+  ImageBackground,
   ImagePickerIOS,
 } from "react-native";
 import * as yup from "yup";
 import { Formik } from "formik";
-
 
 import React, { useState, useEffect } from "react";
 import { Button, Image, Platform, ToastAndroid } from "react-native";
@@ -24,10 +24,7 @@ import firebase from "firebase";
 
 import { launchCamera, launchImageLibrary } from "react-native-image-picker";
 
-
 import { auth } from "./firebase";
-
-
 
 const Profile = ({ navigation }) => {
   const [isPasswordShow, setPasswordShow] = useState(false);
@@ -36,8 +33,6 @@ const Profile = ({ navigation }) => {
     email: yup.string().required().min(8),
     password: yup.string().required().min(8),
   });
-
-  
 
   // picture
 
@@ -64,13 +59,7 @@ const Profile = ({ navigation }) => {
   // const [name , setName]= useState();
   // const [surname, setSurname] = useState();
 
-  const getName = (e) => {
-    setName(e.target.value);
-  };
-
-  const getSurname = (e) => {
-    setSurname(e.target.value);
-  };
+ 
 
   //create profile
 
@@ -86,7 +75,7 @@ const Profile = ({ navigation }) => {
   //       // Location: location,
 
   //       Name : name,
-  //       Surname : surname,          
+  //       Surname : surname,
   //     })
   //     .then((res) => {
   //       console.log("prfile created");
@@ -97,48 +86,45 @@ const Profile = ({ navigation }) => {
   //     ToastAndroid.show('Request sent successfully!', ToastAndroid.SHORT)
   // };
 
-
   const auth = firebase.auth();
-const _db = firebase.database();
-//to get user details
-const userId = auth.currentUser.uid;
-//variable
-const [name,setName] = useState();
-const [surname,setSurname] = useState();
-const [email, setEmail] = useState();
+  const _db = firebase.database();
+  //to get user details
+  const userId = auth.currentUser.uid;
+  //variable
+  const [name, setName] = useState();
+  const [surname, setSurname] = useState();
+  const [email, setEmail] = useState();
 
-//use effect to grab data from the database 
+  //use effect to grab data from the database
 
+  useEffect(() => {
+    _db.ref("/users/" + userId).on("value", (value) => {
+      setName(value.val().name);
+      setSurname(value.val().surname);
+      setEmail(value.val().email);
+    });
+  }, []);
 
-useEffect(() =>{
-  _db.ref('/users/' + userId).on('value',value =>{
-    setName(value.val().name)
-    setSurname(value.val().surname)
-    setEmail(value.val().email)
-  })
-},[])
-
-
-
-console.log('user id ' , userId,name);
-
-
-
+  const update = () => {
+    _db.ref("/users/"+ userId).update({
+      name: name,
+      surname: surname,
+    });
+  };
+ 
+  console.log("user id ", userId, name);
 
   return (
     <>
       <SafeAreaView>
         <View style={style.container}>
           <View style={style.backBox}>
-            
-
             <View
               style={{
                 flex: 1,
                 alignItems: "center",
                 justifyContent: "center",
                 marginTop: 90,
-               
               }}
             >
               {image && (
@@ -148,11 +134,9 @@ console.log('user id ' , userId,name);
                     width: 150,
                     height: 150,
                     borderRadius: 100,
-                    // backgroundColor: "#6666ff",
-                    
-                    borderRadius:100,
-                    
+                    backgroundColor: "#eeeee4",
 
+                    borderRadius: 100,
                   }}
                 />
               )}
@@ -166,8 +150,44 @@ console.log('user id ' , userId,name);
             </View>
 
             <ScrollView style={style.inputContainer}>
-            
-                {/* <View style={style.inputView}>
+              <View style={{ backgroundColor: "#eeeee4", padding: 10 }}>
+                <Text
+                  style={{ fontSize: 20, color: "#6666ff", paddingRight: -10 }}
+                >
+                  User Details
+                </Text>
+
+                <View
+                  style={{
+                    justifyContent: "space-between",
+                    flexDirection: "row",
+                  }}
+                >
+                  <Text>Name: </Text>
+                  <Text>{name}</Text>
+                </View>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <Text>Surname: </Text>
+                  <Text>{surname}</Text>
+                </View>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <Text>Email: </Text>
+                  <Text>{email}</Text>
+                </View>
+              </View>
+
+              <View style={{marginTop:20}}>
+                <View style={style.inputView}>
                   <Icons
                     style={style.icon}
                     name="user"
@@ -179,7 +199,7 @@ console.log('user id ' , userId,name);
                     style={style.TextInput}
                     placeholder="First name"
                     placeholderTextColor="black"
-                    onChangeText={(name) => getName(name)}
+                   onChangeText={(name) => setName(name)}
                   />
                 </View>
 
@@ -194,46 +214,28 @@ console.log('user id ' , userId,name);
                     style={style.TextInput}
                     placeholder="Surname"
                     placeholderTextColor="black"
-                    secureTextEntry={true}
-                    onChangeText={(surname) => getSurname(surname)}
+                    
+                    onChangeText={(surname) => setSurname(surname)}
                   />
-                </View> */}
-                <View >
-                <Text style={{fontSize:20, color:"#6666ff", paddingRight:-10}}>User Details</Text>
-
-                <View style={{justifyContent:"space-between",flexDirection:"row"}}>
-                <Text >Name: </Text> 
-                <Text>{name}</Text>
                 </View>
-                <View style={{flexDirection:"row", justifyContent:"space-between"}}>
-                <Text >Surname: </Text>
-                <Text>{surname}</Text>
-                </View>
-                <View style={{flexDirection:"row", justifyContent:"space-between"}}>
-                <Text >Email: </Text>
-                <Text>{email}</Text>
-                </View>
-
-
-                </View>
-              
+              </View>
             </ScrollView>
 
             <View style={style.createAcc}>
               <TouchableOpacity
-                onPress={() =>
-                  navigation.navigate("ProfileUpdated", {
-                    name: "ProfileUpdated",
-                  })
-                  
-                }
-                // onPress={createProfile}
+                // onPress={() =>
+                //   navigation.navigate("ProfileUpdated", {
+                //     name: "ProfileUpdated",
+                //   })
+                // }
+                 onPress={update}
               >
-                <Text style={{color:"white", textAlign:"center"}}>Update Profile</Text>
+                <Text style={{ color: "white", textAlign: "center" }}>
+                  Update Profile
+                </Text>
               </TouchableOpacity>
             </View>
           </View>
-          
         </View>
       </SafeAreaView>
     </>
@@ -252,37 +254,33 @@ const style = StyleSheet.create({
     marginTop: 50,
   },
   inputContainer: {
-    //  backgroundColor:"red",
     marginTop: 100,
     padding: 20,
-    alignContent:"center",
-    marginLeft:"10%",
-    height:"40%",
-    
-  },
- 
-  createAcc: {
-    backgroundColor: "#6666ff",
-   
-    // marginTop: 25,
-   
-    borderRadius: 30,
-    width: "37%",
-    height:"10%",
-    marginBottom: 40,
-    alignContent:"center",
-    justifyContent:"center",
-    marginLeft:"35%"
+
+    height: "40%",
   },
 
-  
+  createAcc: {
+    backgroundColor: "#6666ff",
+
+    // marginTop: 25,
+
+    borderRadius: 30,
+    width: "37%",
+    height: "10%",
+    marginBottom: 40,
+    alignContent: "center",
+    justifyContent: "center",
+    marginLeft: "35%",
+  },
+
   icon: {
     paddingLeft: 20,
   },
   inputView: {
     backgroundColor: "#EFEFEF",
-    borderRadius: 30,
-    width: "90%",
+    borderRadius: 10,
+    
     height: 45,
     marginBottom: 20,
     paddingTop: 7,
@@ -298,10 +296,8 @@ const style = StyleSheet.create({
     marginLeft: 20,
   },
 
-  
-  
   backBox: {
-    height: "80%",
+    height: "85%",
     width: "95%",
     marginLeft: 10,
 
@@ -313,10 +309,5 @@ const style = StyleSheet.create({
     // alignContent:"center",
     // justifyContent:"center"
   },
-
- 
- 
-   
-
 });
 export default Profile;

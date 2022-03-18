@@ -96,6 +96,8 @@ const AvailableRooms = ({ navigation, route }) => {
                 <Text>wifi</Text>
               </View>
 
+              
+
               <View style={{marginLeft:"50%", flexDirection:"column"}}>
                 <Icons name="car" style={{color:"#6666ff",  marginRight: 20}}></Icons>
                 <Text>packing</Text>
