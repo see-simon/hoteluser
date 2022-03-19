@@ -13,11 +13,14 @@ const History = () => {
 const _db =firebase.database();
   const [history, setHistory] = useState([]);
   const [name,setN] =useState();
+  const [code, setCode] = useState('');
+  const auth = firebase.auth();
+  
+  const uid = auth.currentUser.uid;
 
   useEffect(() => {
 
-    
-    _db.ref('booking').on('value' ,snap =>{
+    _db.ref('booking' + uid).on('value' ,snap =>{
       let historyInfo = [];
       const a_ = snap.val();
 
@@ -29,16 +32,17 @@ const _db =firebase.database();
           n:a_[x].n,
           rn:a_[x].rn,
           h:a_[x].h,
+          // userId:a_[x].userId
         })}
 
       setHistory(historyInfo)
-      // console.log(historyInfo,"vghjvhbvh")
+  
     })
    
   }, []);
- 
+
   
-  
+  console.log(code," codeeee")
 
   const deleteBooking = (id) => {
      _db.ref('/booking/').child(id).remove();
@@ -60,7 +64,7 @@ const _db =firebase.database();
         <ScrollView>
           {history.map((element) => (
             // <Text>{moment(element.date).format('YYYY-MM-DD')}</Text>
-
+            
             <View
               style={{
                 flexDirection: "row",
@@ -80,6 +84,7 @@ const _db =firebase.database();
                 <Text style={{ color: "#fff" }}>
                   Hotel Name: {element.h}
                 </Text>
+                
 
                 {/* <Text style={{color: '#fff'}}>Date: {moment(element.date).format('DD MMM YYYY')} </Text> */}
                 <Text style={{ color: "#fff" }}>Check out date : {moment(element.date2).format("DD MMM YYYY")}</Text>

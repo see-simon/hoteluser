@@ -43,13 +43,15 @@ const BookingDetails = ({ navigation }) => {
 
   const db = firebase.firestore();
   const _db =firebase.database();
-
+  const auth = firebase.auth();
+  
+  const uid = auth.currentUser.uid;
   const [history, setHistory] = useState([])
 
 
   useEffect(() => {
     
-    _db.ref('booking').on('value' ,snap =>{
+    _db.ref('booking' + uid).on('value' ,snap =>{
       let historyInfo = [];
       const a_ = snap.val();
 
@@ -61,14 +63,17 @@ const BookingDetails = ({ navigation }) => {
           n:a_[x].n,
           rn:a_[x].rn,
           h:a_[x].h,
+         
 
         })}
 
       setHistory(historyInfo)
+    
       // console.log(historyInfo,"vghjvhbvh")
     })
   }, []);
 
+   
 
   return (
     <View style={style.container}>
@@ -96,6 +101,7 @@ const BookingDetails = ({ navigation }) => {
               <View>
                 <Text style={{color: '#fff'}}>Location:  {element.n}</Text>
                 <Text style={{color: '#fff'}}>Hotel Name: {element.h}</Text>
+                {/* <Text style={{color: '#fff'}}>Status: {element.Status}</Text> */}
 
 
                 <Text style={{color: '#fff'}}>Check in date: {moment(element.chechin).format('DD MMM YYYY')} </Text>

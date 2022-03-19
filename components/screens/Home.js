@@ -76,10 +76,10 @@ const Home = ({ navigation }) => {
               <Text style={{ marginBottom: 20 }}>
                 Location: {item.Location}
               </Text>
-              <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+              <View style={{ flexDirection: "row", justifyContent: "space-between" , backgroundColor :"red"}}>
                 <Text>Direction:</Text>
-                <TouchableOpacity>
-                  <Icon name="directions"></Icon>
+                <TouchableOpacity onPress={()=>navigation.navigate('Map')}>
+                  <Icon style={{color:"#6666ff", height:30}} name="directions"></Icon>
                 </TouchableOpacity>
               </View>
             </View>

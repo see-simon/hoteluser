@@ -24,6 +24,7 @@ import { ListItem } from "react-native-elements";
 import { auth, db } from "./firebase";
 import firebase from "firebase";
 
+
 import { Formik } from "formik";
 import * as yup from "yup";
 const Registration = ({ navigation }) => {
@@ -62,7 +63,9 @@ const Registration = ({ navigation }) => {
             uid: res.user.uid,
           });
           console.log('new user =====',data);
+          
         });
+        
 
     } catch (error) {
       if (error.code == "auth/email-already-in-use") {
@@ -74,6 +77,7 @@ const Registration = ({ navigation }) => {
         Alert.alert(error.code);
       }
     }
+    ToastAndroid.show("Succussfully registered ", ToastAndroid.SHORT)
   };
 
   return (
@@ -214,8 +218,8 @@ const Registration = ({ navigation }) => {
                   size={22}
                   
                   name="lock"
-                  
-                  color={"#6666ff"}
+                  secureTextEntry={true}
+                  color={"black"}
                   onChangeText={(text) => setPassword(text)}
                 />
                 

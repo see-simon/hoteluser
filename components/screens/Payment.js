@@ -151,10 +151,13 @@ const Payment = ({navigation, route}) => {
 
   const db = firebase.firestore();
   const _db = firebase.database();
+  const auth = firebase.auth();
+
+  const uid = auth.currentUser.uid;
 
   const addBooking=()=>{
 
-    _db.ref("booking")
+    _db.ref("booking" + uid)
     .push({
       
       totalPrice,
@@ -164,7 +167,8 @@ const Payment = ({navigation, route}) => {
       , u 
       , date1
       , date2
-      ,n,roomNum
+      ,n,roomNum,
+      
     })
     .then((res) => {
       console.log('successfully booked!!')

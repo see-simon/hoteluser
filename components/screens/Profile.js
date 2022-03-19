@@ -45,7 +45,7 @@ const Profile = ({ navigation }) => {
       allowsEditing: true,
       aspect: [4, 3],
       quality: 1,
-    });
+    })
 
     console.log(result);
 
@@ -54,42 +54,13 @@ const Profile = ({ navigation }) => {
     }
   };
 
-  //
-
-  // const [name , setName]= useState();
-  // const [surname, setSurname] = useState();
-
- 
-
-  //create profile
-
-  // const db = firebase.firestore()
-
-  // const createProfile = (e) => {
-  //   // e.preventDefault();
-  //   // let uid = e.target.id
-  //   db.collection("/createProfile/")
-  //     .add({
-  //       // Url: url,
-  //       // HotelName: hotelName,
-  //       // Location: location,
-
-  //       Name : name,
-  //       Surname : surname,
-  //     })
-  //     .then((res) => {
-  //       console.log("prfile created");
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  //     ToastAndroid.show('Request sent successfully!', ToastAndroid.SHORT)
-  // };
+  
 
   const auth = firebase.auth();
   const _db = firebase.database();
   //to get user details
   const userId = auth.currentUser.uid;
+  
   //variable
   const [name, setName] = useState();
   const [surname, setSurname] = useState();
@@ -125,6 +96,7 @@ const Profile = ({ navigation }) => {
                 alignItems: "center",
                 justifyContent: "center",
                 marginTop: 90,
+                
               }}
             >
               {image && (
@@ -135,7 +107,7 @@ const Profile = ({ navigation }) => {
                     height: 150,
                     borderRadius: 100,
                     backgroundColor: "#eeeee4",
-
+                    borderWidth:1,
                     borderRadius: 100,
                   }}
                 />

@@ -23,21 +23,33 @@ const ForgetPassword = ({ navigation }) => {
     })
 
 
-    const [email, setEmail] = useState("");
+    const [email, setEmail] = useState();
+    // console.log(email," email")
     const [password, setPassword] = useState("");
+      
+    const userId = auth.currentUser.uid;
 
-
-    const sendPasswordReset = async (email) => {
-        try {
-          await sendPasswordResetEmail(auth, email);
-          alert("Password reset link sent!");
-        } catch (err) {
-          console.error(err);
-          alert(err.message);
-        }
+    const sendPasswordReset =  () => {
+        auth.sendPasswordResetEmail(email)
+        .then(function() {
+        // Email sent.
+        console.log("email sent")
+        })
+        .catch(function(error) {
+        // An error happened.
+        console.log(error)
+        });
       };
 
     //  auth.confirmPasswordReset(code , password)
+    // auth.sendPasswordResetEmail(emailAddress)
+    // .then(function() {  
+    // // Email sent.
+    // })
+    // .catch(function(error) {
+    // // An error happened.
+    // });
+  
 
     return (
         <>

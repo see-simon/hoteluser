@@ -11,6 +11,7 @@ import Home from "./Home";
 import users from "./classes";
 import { auth } from "./firebase";
 import { useEffect } from "react";
+import {ToastAndroid} from 'react-native'
 
 // const image = {
 //   uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRm7t3TPoPgmhbrIGkY5iLCfENgExc44sWJUg&usqp=CAU",
@@ -101,10 +102,10 @@ const Login = ({ navigation }) => {
                     <Text style={style.forgot_button}>Forgot Password?</Text>
                   </TouchableOpacity>
                   <TouchableOpacity
-                    //  onPress={handleLogin}
-                    onPress={() =>
-                      navigation.navigate("home", { name: "home" })
-                    }
+                     onPress={handleLogin}
+                    // onPress={() =>
+                    //   navigation.navigate("home", { name: "home" })
+                    // }
                     style={style.login}
                   >
                     <Text style={{ color: "#fff",textAlign:'center', fontWeight: "bold" }}>

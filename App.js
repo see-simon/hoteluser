@@ -69,7 +69,7 @@ import Searchroom from './components/screens/searchroom';
 import Booking from 'react-native-vector-icons/Entypo'
 import paymentSuccess from './components/screens/paymentSuccess';
 import Help from './components/screens/help'
-
+import {ToastAndroid} from 'react-native'
 
 
 export default function App() {
@@ -78,11 +78,11 @@ export default function App() {
   const Drawer = createDrawerNavigator();
   const Stack = createStackNavigator();
 
-  const handleLogout = ()=>{
-
-    auth.signOut()
-    .then(() => console.log('User signed out!'));
-  }
+  const signOut =({navigation}) =>{
+    auth.signOut();
+    navigation.navigate('Login')
+ToastAndroid.show("Succussfully loged out ", ToastAndroid.SHORT)
+}
 
 
   function DrawerRoutes({navigation}) {
@@ -116,7 +116,7 @@ export default function App() {
 
 
 
-<Drawer.Screen  name="logout" component={Login} options={{headerShown:false ,drawerIcon:({color,size})=>(
+<Drawer.Screen  name="logout" component={signOut}  options={{headerShown:false ,drawerIcon:({color,size})=>(
             <Icons name='logout' color="#6666ff" size={20} />
           )}}/>
            
