@@ -39,6 +39,7 @@ const Login = ({ navigation }) => {
         console.log(user.email);
       })
       .catch((error) => alert(error.message));
+      ToastAndroid.show("Succussfully loged in ", ToastAndroid.SHORT)
   };
 
   return (

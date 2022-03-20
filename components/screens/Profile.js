@@ -45,7 +45,7 @@ const Profile = ({ navigation }) => {
       allowsEditing: true,
       aspect: [4, 3],
       quality: 1,
-    })
+    });
 
     console.log(result);
 
@@ -54,13 +54,42 @@ const Profile = ({ navigation }) => {
     }
   };
 
-  
+  //
+
+  // const [name , setName]= useState();
+  // const [surname, setSurname] = useState();
+
+ 
+
+  //create profile
+
+  // const db = firebase.firestore()
+
+  // const createProfile = (e) => {
+  //   // e.preventDefault();
+  //   // let uid = e.target.id
+  //   db.collection("/createProfile/")
+  //     .add({
+  //       // Url: url,
+  //       // HotelName: hotelName,
+  //       // Location: location,
+
+  //       Name : name,
+  //       Surname : surname,
+  //     })
+  //     .then((res) => {
+  //       console.log("prfile created");
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  //     ToastAndroid.show('Request sent successfully!', ToastAndroid.SHORT)
+  // };
 
   const auth = firebase.auth();
   const _db = firebase.database();
   //to get user details
   const userId = auth.currentUser.uid;
-  
   //variable
   const [name, setName] = useState();
   const [surname, setSurname] = useState();
@@ -85,20 +114,38 @@ const Profile = ({ navigation }) => {
  
   console.log("user id ", userId, name);
 
+  const signOut =() =>{
+    auth.signOut();
+    navigation.navigate('Login')
+ToastAndroid.show("Succussfully loged out ", ToastAndroid.SHORT)
+}
+
   return (
     <>
       <SafeAreaView>
         <View style={style.container}>
           <View style={style.backBox}>
+          
+     
+          <TouchableOpacity  onPress={signOut}>
+                <Text style={{ color: "white",width:"20%", backgroundColor:"#6666ff", borderBottomLeftRadius:10,
+                 textAlign: "center", alignContent:"flex-start", marginLeft:"80%" , padding:2 }}>
+                  logout
+                </Text>
+              </TouchableOpacity>
+             
             <View
               style={{
                 flex: 1,
                 alignItems: "center",
                 justifyContent: "center",
                 marginTop: 90,
+                // flexDirection:"row"
                 
               }}
             >
+              
+
               {image && (
                 <Image
                   source={{ uri: image }}
@@ -109,6 +156,7 @@ const Profile = ({ navigation }) => {
                     backgroundColor: "#eeeee4",
                     borderWidth:1,
                     borderRadius: 100,
+                    margin:2
                   }}
                 />
               )}
@@ -119,6 +167,7 @@ const Profile = ({ navigation }) => {
                 onPress={pickImage}
                 marginTop={5}
               />
+               
             </View>
 
             <ScrollView style={style.inputContainer}>
@@ -192,8 +241,10 @@ const Profile = ({ navigation }) => {
                 </View>
               </View>
             </ScrollView>
+           
 
             <View style={style.createAcc}>
+            
               <TouchableOpacity
                 // onPress={() =>
                 //   navigation.navigate("ProfileUpdated", {
@@ -207,6 +258,7 @@ const Profile = ({ navigation }) => {
                 </Text>
               </TouchableOpacity>
             </View>
+            
           </View>
         </View>
       </SafeAreaView>

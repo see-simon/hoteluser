@@ -27,7 +27,7 @@ const ForgetPassword = ({ navigation }) => {
     // console.log(email," email")
     const [password, setPassword] = useState("");
       
-    const userId = auth.currentUser.uid;
+  
 
     const sendPasswordReset =  () => {
         auth.sendPasswordResetEmail(email)
@@ -41,14 +41,7 @@ const ForgetPassword = ({ navigation }) => {
         });
       };
 
-    //  auth.confirmPasswordReset(code , password)
-    // auth.sendPasswordResetEmail(emailAddress)
-    // .then(function() {  
-    // // Email sent.
-    // })
-    // .catch(function(error) {
-    // // An error happened.
-    // });
+   
   
 
     return (

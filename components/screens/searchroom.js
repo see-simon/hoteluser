@@ -140,6 +140,7 @@ var today=new Date()
                 confirmBtnText="Confirm"
                 cancelBtnText="Cancel"
                 customStyles={{
+                  
                   dateIcon: {
                     position: "absolute",
                     left: 0,

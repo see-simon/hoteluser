@@ -45,9 +45,10 @@ const _db =firebase.database();
   console.log(code," codeeee")
 
   const deleteBooking = (id) => {
-     _db.ref('/booking/').child(id).remove();
+     _db.ref('booking'+ uid).child(id).remove();
 
     // bookingRef.remove();
+    
   };
 
   

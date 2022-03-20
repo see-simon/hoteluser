@@ -63,9 +63,9 @@ const Registration = ({ navigation }) => {
             uid: res.user.uid,
           });
           console.log('new user =====',data);
-          
+         
         });
-        
+        ToastAndroid.show("Succussfully registered ", ToastAndroid.SHORT)
 
     } catch (error) {
       if (error.code == "auth/email-already-in-use") {
@@ -77,7 +77,7 @@ const Registration = ({ navigation }) => {
         Alert.alert(error.code);
       }
     }
-    ToastAndroid.show("Succussfully registered ", ToastAndroid.SHORT)
+  
   };
 
   return (

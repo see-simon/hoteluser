@@ -78,11 +78,7 @@ export default function App() {
   const Drawer = createDrawerNavigator();
   const Stack = createStackNavigator();
 
-  const signOut =({navigation}) =>{
-    auth.signOut();
-    navigation.navigate('Login')
-ToastAndroid.show("Succussfully loged out ", ToastAndroid.SHORT)
-}
+  
 
 
   function DrawerRoutes({navigation}) {
@@ -108,7 +104,7 @@ ToastAndroid.show("Succussfully loged out ", ToastAndroid.SHORT)
             <Icon name='history' color="#6666ff" size={20} />
           )}}/>
 
-<Drawer.Screen  name="help" component={Help} options={{drawerIcon:({color,size})=>(
+<Drawer.Screen  name="help" component={Help} options={{ drawerIcon:({color,size})=>(
             <Helps name='help-circle' color='blue' size={20} />
             )}}/>
 
@@ -116,7 +112,7 @@ ToastAndroid.show("Succussfully loged out ", ToastAndroid.SHORT)
 
 
 
-<Drawer.Screen  name="logout" component={signOut}  options={{headerShown:false ,drawerIcon:({color,size})=>(
+<Drawer.Screen  name="logout" component={Login}   options={{ headerShown:false ,drawerIcon:({color,size})=>(
             <Icons name='logout' color="#6666ff" size={20} />
           )}}/>
            

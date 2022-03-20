@@ -36,40 +36,7 @@ const [coordinates] = useState([
   return (
     <>
 
-    {/* previous map */}
-       {/* <View style={style.container}> */}
-  
-        {/* <Button
-        onPress={() => { this._callShowDirections() }} 
-        // title="Open map"
-        Icon  name="directions"
-
-        
-        color="#841584"
-      /> */}
-       {/* <MapView style={style.map} />
-      </View> */}
-
-      {/* until hear */}
-      
-      {/* <View style={style.container}>
-    <MapView
-      style={style.map}
-      initialRegion={limpopo} //your region data goes here.
-    >
-      {/*Make sure the Marker component is a child of MapView. Otherwise it won't render*/}
-      {/* <Marker coordinate={limpopo} />
-    </MapView>
-  </View> */}
-
-
-{/* <MapView initialRegion={GOOGLE_MAPS_APIKEY}>
-  <MapViewDirections
-    origin={origin}
-    destination={destination}
-    apikey={GOOGLE_MAPS_APIKEY}
-  />
-</MapView> */}
+   
 
 <View style={style.container}>
       <MapView

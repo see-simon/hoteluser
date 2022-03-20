@@ -149,7 +149,7 @@ const Payment = ({navigation, route}) => {
 
   //booking 
 
-  const db = firebase.firestore();
+  
   const _db = firebase.database();
   const auth = firebase.auth();
 
