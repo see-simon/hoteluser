@@ -65,8 +65,7 @@ const Registration = ({ navigation }) => {
           console.log('new user =====',data);
          
         });
-        ToastAndroid.show("Succussfully registered ", ToastAndroid.SHORT)
-
+        
     } catch (error) {
       if (error.code == "auth/email-already-in-use") {
         Alert.alert("This email already exist");
@@ -77,7 +76,8 @@ const Registration = ({ navigation }) => {
         Alert.alert(error.code);
       }
     }
-  
+    ToastAndroid.show("Succussfully registered ", ToastAndroid.SHORT)
+    navigation.navigate('Login')
   };
 
   return (

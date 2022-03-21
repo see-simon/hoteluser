@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, Text, SafeAreaView, StyleSheet, ScrollView } from 'react-native'
+import { View, Text, SafeAreaView, StyleSheet, ScrollView, ToastAndroid } from 'react-native'
 import * as yup from 'yup'
 
 
@@ -25,7 +25,7 @@ const ForgetPassword = ({ navigation }) => {
 
     const [email, setEmail] = useState();
     // console.log(email," email")
-    const [password, setPassword] = useState("");
+    
       
   
 
@@ -34,11 +34,16 @@ const ForgetPassword = ({ navigation }) => {
         .then(function() {
         // Email sent.
         console.log("email sent")
+        navigation.navigate('Login')
+       
+        // ToastAndroid.show("link sent to email", ToastAndroid.SHORT)
         })
         .catch(function(error) {
         // An error happened.
         console.log(error)
         });
+        alert("link sent to email")
+        
       };
 
    
@@ -53,13 +58,6 @@ const ForgetPassword = ({ navigation }) => {
 
               
                 <Image   style={{alignSelf:"center", width:"120%", height:"40%", borderBottomRightRadius:300, marginBottom:0  }} source={require("../images/images.jpg")} />
-
-
-
-
-
-
-
 
                     <View style={style.backBox}>
 

@@ -32,6 +32,7 @@ const AvailableRooms = ({ navigation, route }) => {
 
   useEffect(() => {
     let userInfo = [];
+
     db.collection("createRoom")
       .get()
       .then((res) => {
