@@ -4,7 +4,7 @@ import { View, Text, SafeAreaView, StyleSheet } from "react-native";
 import { Image, ImageBackground } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import Icon from "react-native-vector-icons/Foundation";
-
+import Lottie from 'lottie-react-native';
 
 
 const GetStarted = ({ navigation }) => {
@@ -14,8 +14,11 @@ const GetStarted = ({ navigation }) => {
        
          <ImageBackground source={require("../images/picture.jpg")} style={{height:"100%"}}>
             {/* //<Image style={style.bed1} source={require("../images/bed.png")} /> */}
+            <Lottie source={require('../lottie/69160-welcome-blue.json')} autoPlay loop style={{height:100, width:100, marginTop:"20%"}}/>
+              <Text style={{textAlign:"center", color:"white", fontSize:50, marginTop:"15%" , fontWeight:"bold"}}>To Happy Stay </Text>
 
-              <Text style={{textAlign:"center", color:"white", fontSize:50, marginTop:"50%" , fontWeight:"bold"}}>Happy Stay</Text>
+             
+
             <TouchableOpacity
               onPress={() => navigation.navigate("Login", { name: "Login" })}
             >

@@ -24,8 +24,7 @@ const ForgetPassword = ({ navigation }) => {
 
 
     const [email, setEmail] = useState();
-    // console.log(email," email")
-    
+    // console.log(email," email") 
       
   
 

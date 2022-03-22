@@ -9,6 +9,7 @@ import {
   ImageBackground,
 } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
+import Lottie from 'lottie-react-native';
 
 
 const paymentSuccess = ({ navigation }) => {
@@ -34,9 +35,13 @@ const paymentSuccess = ({ navigation }) => {
                 height:"20%",
               }}
             >
-              <Icon name="done" size={80} color="white">
+              {/* <Icon name="done" size={80} color="white">
                 {" "}
-              </Icon>
+              </Icon> */}
+
+              <Lottie source={require('../lottie/50465-done.json')} autoPlay loop style={{height:500, width:350}}/>
+
+
             </View>
             <Text style={style.description}>
               {" "}
@@ -47,7 +52,7 @@ const paymentSuccess = ({ navigation }) => {
             <TouchableOpacity style={{backgroundColor:"#6666ff", width:"20%", height:"8%", alignItems:"center", marginTop:10, borderRadius:10 }}
               onPress={() => navigation.navigate("Home", { name: "Home" })}
             >
-              <Text style={{ color: "white", fontSize:18,fontWeight:"900" }}>OK</Text>
+              <Text style={{ color: "white", fontSize:18,fontWeight:"900" ,marginTop:10}}>OK</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -72,7 +77,7 @@ const style = StyleSheet.create({
   },
 
   backBox: {
-    height: "80%",
+    height: "95%",
     width: "95%",
     
     margin:10,

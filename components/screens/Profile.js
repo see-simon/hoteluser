@@ -289,7 +289,7 @@ const style = StyleSheet.create({
 
     // marginTop: 25,
 
-    borderRadius: 30,
+    borderRadius: 10,
     width: "37%",
     height: "10%",
     marginBottom: 40,
