@@ -45,7 +45,7 @@ const paymentSuccess = ({ navigation }) => {
             </View>
             <Text style={style.description}>
               {" "}
-              Successfully paid R for booking check your email for
+              Successfully paid check your bookings for
               confirmation
             </Text>
 

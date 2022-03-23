@@ -47,6 +47,11 @@ const Profile = ({ navigation }) => {
       quality: 1,
     });
 
+    _db.ref("profilePicture" + userId)
+    .push({
+      result
+    })
+
     console.log(result);
 
     if (!result.cancelled) {
@@ -98,6 +103,8 @@ const Profile = ({ navigation }) => {
   //use effect to grab data from the database
 
   useEffect(() => {
+
+
     _db.ref("/users/" + userId).on("value", (value) => {
       setName(value.val().name);
       setSurname(value.val().surname);
@@ -120,6 +127,21 @@ const Profile = ({ navigation }) => {
 ToastAndroid.show("Succussfully loged out ", ToastAndroid.SHORT)
 }
 
+// grap the profilr picture
+
+const [picture, setPicture]=useState('')
+
+useEffect(()=>{
+
+  _db.ref("profilePicture" + userId)
+  .on("value", (value)=>{
+    setPicture(value.val().type)
+
+  })
+
+})
+
+console.log(picture,"profile pic")
   return (
     <>
       <SafeAreaView>
