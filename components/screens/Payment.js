@@ -183,12 +183,12 @@ const Payment = ({navigation, route}) => {
   return (
     <View style={styles.container}>
         <StatusBar barStyle="light-content" backgroundColor="#2471A3" />
-        {/* <Image 
+        <Image 
         source={{uri:'https://upload.wikimedia.org/wikipedia/en/thumb/e/eb/Stripe_logo%2C_revised_2016.png/1200px-Stripe_logo%2C_revised_2016.png'}}
         style={styles.ImgStyle}
-        /> */}
-
-<Lottie source={require('../lottie/86864-card-ubank.json')} autoPlay loop style={{height:500, width:350}}/>
+        />
+{/* 
+<Lottie source={require('../lottie/86864-card-ubank.json')} autoPlay loop style={{height:500, width:350}}/> */}
         <CreditCardInput 
         inputContainerStyle={styles.inputContainerStyle}
         inputStyle={styles.inputStyle}

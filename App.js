@@ -112,9 +112,9 @@ ToastAndroid.show("Succussfully loged out ", ToastAndroid.SHORT)
             <Helps name='help-circle' color='blue' size={20} />
             )}}/>
 
-<Drawer.Screen  name="logout" getComponent={signOut}  options={{ headerShown:false ,drawerIcon:({color,size})=>(
+{/* <Drawer.Screen  name="logout" getComponent={signOut}  options={{ headerShown:false ,drawerIcon:({color,size})=>(
             <Icons name='logout' color="#6666ff" size={20} />
-          )}}/>
+          )}}/> */}
            
         </Drawer.Navigator>
     

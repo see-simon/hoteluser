@@ -73,6 +73,18 @@ const BookingDetails = ({ navigation }) => {
     })
   }, []);
 
+  //
+
+  const markTodoComplete = (uid) => {
+    const newTodosItem = todos.map((item) => {
+      if (item.id == todoId) {
+        return { ...item, completed: true };
+      }
+      return item;
+    });
+
+    setTodos(newTodosItem);
+  };
    
 
   return (
